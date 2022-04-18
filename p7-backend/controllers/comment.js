@@ -149,8 +149,8 @@ exports.getOneComment = (req, res, next) =>{
 
 //Controller GET
 exports.getAllComments = (req, res) =>{
-    //renvoyer un tableau contenant toutes les Comments
+    //renvoyer un tableau contenant toutes les Comment
     Comment.find()
-        .then(comments => res.status(200).json(comments))
+        .then(comment => res.status(200).json(comment))
         .catch(error => res.status(400).json({ error }))
 }
