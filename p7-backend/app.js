@@ -18,21 +18,30 @@ const cors = require('cors')
 const sauceRoutes = require('./routes/sauce')
 const userRoutes = require('./routes/user')
 
-// Connexion MongoDB-Atlas
-//const { MongoClient } = require('mongodb')
+// Connexion BDD MySql
 
 // Variable environnement dotenv
-//const uri = process.env.MONGO_URL
+//const uri = 
 
-//Connexion à la base de données
-/*mongoose
-    .connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => console.log('Connexion à la base de données établie'))
-    .catch((error) => console.log(error))
-*/
+// get the client
+const mysql = require('mysql2')
+
+// create the connection to database
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    database: 'groupomania_bdd'
+})
+
+// simple query
+connection.query(
+    "SELECT table_name as names_of_tables FROM information_schema.tables WHERE table_schema = 'groupomania_bdd'",
+    function(err, results, fields) {
+      console.log(results); // results contains rows returned by server
+      console.log(fields); // fields contains extra meta data about results, if available
+    }
+)
+
 
 // Création application express
 const app = express()
