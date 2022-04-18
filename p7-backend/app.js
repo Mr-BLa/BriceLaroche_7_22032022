@@ -5,9 +5,6 @@
 // Import express
 const express = require("express")
 
-// Import mongoose
-//const mongoose = require('mongoose')
-
 // Import de path (chemin de notre systeme de fichier)
 const path = require('path')
 
@@ -15,7 +12,8 @@ const path = require('path')
 const cors = require('cors')
 
 // Import routers
-const sauceRoutes = require('./routes/sauce')
+const postRoutes = require('./routes/post')
+const commentRoutes = require('./routes/comment')
 const userRoutes = require('./routes/user')
 
 // Connexion BDD MySql
@@ -51,21 +49,24 @@ const app = express()
 // Middleware général, pour permettre à l'app, d'accéder à l'API sans problèmes
 
 const corsOptions ={
-    origin:'http://127.0.0.1:8081'
+    origin:'http://localhost:3306'
 }
 app.use(cors(corsOptions))
 
-// Pour gérer la requête POST venant de l'application front-end, on a besoin d'en extraire le corps JSON
+// Extraction corps json pour gérer la requête POST venant de l'application front-end
 app.use(express.json())
 
 // Lors de requête /images, servir le dossier images
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
-// Pour la route "/api/sauce", on utilise sauceRoutes (donc le router)
-app.use('/api/sauces', sauceRoutes)
+// Pour la route "/api/post", on utilise postRoutes (donc le router)
+app.use('/api/post', postRoutes)
+
+// Pour la route "/api/comment", on utilise commentRoutes
+app.use('/api/comment', commentRoutes)
 
 // Pour la route "/api/auth", on utilise userRoutes
 app.use('/api/auth', userRoutes)
 
-// Exportation cette app, pour qu'on puisse y accéder depuis d'autres fichiers (notamment node)
+// Exportation app
 module.exports = app
