@@ -17,13 +17,13 @@ router.post('/signup', userCtrl.signup)
 // Connection utilisateurs existants
 router.post('/login', userCtrl.login)
 // Recherche de tous les utilisateurs
-router.get('/all', userCtrl.getAllUsers)
+router.get('/all', auth, userCtrl.getAllUsers)
 // Recherche d'un utilisateur par son Id
-router.get('/all/:id', userCtrl.getUserById)
+router.get('/all/:id', auth, userCtrl.getUserById)
 // Modification d'un utilisateur
-router.put('/:id',  userCtrl.modifyUser)
+router.put('/:id', auth, userCtrl.modifyUser)
 // Suppression d'un utilisateur
-router.delete('/:id', userCtrl.deleteUser)
+router.delete('/:id', auth, userCtrl.deleteUser)
 
 // Export router
 module.exports = router

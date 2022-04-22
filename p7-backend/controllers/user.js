@@ -1,5 +1,5 @@
 /*
-*          CONTROLLERS AUTHENTIFICATION
+*          CONTROLLERS USER
 */
 
 // Import package bcrypt
@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt')
 
 // Import package jsonWebToken
 const jwt = require('jsonwebtoken')
+// Connexion BDD
 const connection = require('../services/database')
 
 // Récupérer tous les utilisateurs
