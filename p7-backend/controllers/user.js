@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
 const connection = require('../services/database')
 
 // Récupérer tous les utilisateurs
-exports.getAllUsers = (req, res) => {
+exports.getAllUsers = (req, res, next) => {
     // Connection BDD MySql
     connection.query(`SELECT * FROM users`).then(results => {
         return res.send(results)
@@ -20,7 +20,7 @@ exports.getAllUsers = (req, res) => {
 }
 
 // Trouver un utilisateur par son Id
-exports.getUserById = (req, res) => {
+exports.getUserById = (req, res, next) => {
     // Connection BDD MySql
     const id = parseInt(req.params.id)
     connection.execute(`SELECT * FROM users WHERE user_id=?`,[id]).then(results => {
@@ -31,10 +31,10 @@ exports.getUserById = (req, res) => {
 }
 
 // Modification d'un utilisateur
-exports.modifyUser = (req, res) => {
+exports.modifyUser = (req, res, next) => {
     // Connection BDD MySql
-    const id = parseInt(req.params.id)
-    connection.execute("UPDATE users SET `?` = `?` WHERE user_id = ?",[id]).then(modifications => {
+    const id = parseInt(req.auth.userId)
+    connection.execute(`UPDATE users SET email = ?`,req.body.email `, username = ?`,req.body.username `, firstname = ?`, req.body.firstname `, lastname = ?`, req.body.lastname `, role = ?`, req.body.role `, bio = ?`, req.body.bio ` WHERE user_id = ?`,[id]).then(modifications => {
         return res.send(modifications)
     }).catch(err=> {
         return res.sendStatus(400)
@@ -43,7 +43,7 @@ exports.modifyUser = (req, res) => {
 
 // Suppression d'un utilisateur
 exports.deleteUser = (req, res, next) => {
-    const id = parseInt(req.params.id)
+    const id = parseInt(req.auth.userId)
     connection.execute(`DELETE FROM users WHERE user_id = ?`,[id]).then(suppr => {
         return res.send(suppr)
     })

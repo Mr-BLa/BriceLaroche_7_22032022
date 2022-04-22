@@ -21,9 +21,9 @@ router.get('/all', userCtrl.getAllUsers)
 // Recherche d'un utilisateur par son Id
 router.get('/all/:id', userCtrl.getUserById)
 // Modification d'un utilisateur
-/*router.put('/:id',  userCtrl.modifyUser)
+router.put('/:id',  userCtrl.modifyUser)
 // Suppression d'un utilisateur
 router.delete('/:id', userCtrl.deleteUser)
-*/
+
 // Export router
 module.exports = router
