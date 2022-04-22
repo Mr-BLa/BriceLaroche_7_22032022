@@ -12,21 +12,22 @@ const router = express.Router()
 // Associer fonctions aux différentes routes
 const postCtrl = require('../controllers/post')
 // Import Middleware Authentification Token
-const auth = require("../middleware/auth")
+//const auth = require("../middleware/auth")
 // Import Middleware multer-config
-const multer = require('../middleware/multer-config')
+//const multer = require('../middleware/multer-config')
 
 
-// Création d'un post
-router.post('/', auth, multer, postCtrl.createPost)
-// Modification d'un post
-router.put('/:id', auth, multer, postCtrl.modifyPost)
-// Suppression d'un post
-router.delete('/:id', auth, postCtrl.deletePost)
 // Recherche de tous les posts
-router.get('/all', auth, postCtrl.getAllPosts)
+router.get('/all', /*auth,*/postCtrl.getAllPosts)
+// Création d'un post
+//router.post('/', auth, multer, postCtrl.createPost)
+// Modification d'un post
+/*router.put('/:id', auth, multer, postCtrl.modifyPost)
+// Suppression d'un post
+router.delete('/:id', auth, postCtrl.deletePost)*/
+
 // Recherche d'un post par son Id
-router.get('/all/:id', auth, postCtrl.getPostById)
+router.get('/all/:id', postCtrl.getPostById)
 
 
 
