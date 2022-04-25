@@ -27,13 +27,8 @@ const connection = require("./services/database")
 //const uri = 
 
 
-
-
-
-
 // Création application express
 const app = express()
-
 
 
 // Middleware général, pour permettre à l'app, d'accéder à l'API sans problèmes
