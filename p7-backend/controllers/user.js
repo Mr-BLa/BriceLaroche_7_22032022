@@ -13,7 +13,7 @@ const connection = require('../services/database')
 // Récupérer tous les utilisateurs
 exports.getAllUsers = (req, res, next) => {
     // Connection BDD MySql
-    connection.query(`SELECT * FROM users`).then(results => {
+    connection.query("SELECT * FROM users ORDER BY `username` ASC").then(results => {
         return res.send(results)
     }).catch(err=> {
         return res.sendStatus(400)

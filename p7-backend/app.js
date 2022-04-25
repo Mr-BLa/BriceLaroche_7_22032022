@@ -15,6 +15,7 @@ const cors = require('cors')
 
 const userRoutes = require('./routes/user')
 const postRoutes = require('./routes/post')
+const commentsRoutes = require('./routes/comments')
 
 // Connexion BDD MySql
 const connection = require("./services/database")
@@ -52,6 +53,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')))
 // Pour la route "/api/auth", on utilise userRoutes
 app.use('/api/auth', userRoutes)
 app.use('/api/post', postRoutes)
+app.use('/api/comments', commentsRoutes)
 
 
 // Exportation app
