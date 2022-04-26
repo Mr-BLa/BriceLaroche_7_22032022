@@ -55,8 +55,9 @@ exports.getAllPosts = (req, res, next) => {
 // Recherche d'un post par son Id
 exports.getPostById = (req, res, next) => {
     // Connection BDD MySql
-    const post_id = parseInt(req.params.post_id)
-    connection.execute(`SELECT * FROM post WHERE post_id=?`,[post_id]).then(results => {
+    const post_id = parseInt(req.params.id);
+    console.log("Post ID : ",post_id);
+    connection.query(`SELECT * FROM post WHERE post_id=?`,[post_id]).then(results => {
         return res.send(results[0])
     }).catch(err=> {
         return res.sendStatus(400)

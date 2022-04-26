@@ -4,7 +4,6 @@
 
 
 // Import package File System (accès aux différentes opérations liées au système de fichier)
-const { timeStamp } = require('console')
 const fs = require('fs')
 
 //Connexion BDD
@@ -26,7 +25,7 @@ exports.createComment = (req, res, next) => {
 exports.modifyComment = (req, res, next) => {
     // Connection BDD MySql
     const comment_id = parseInt(req.body.comment_id)
-    connection.execute(`UPDATE comments SET text = ?`, req.body.text `WHERE comment_id = ?`,[comment_id]).then(modifications => {
+    connection.execute(`UPDATE comments SET text = ? WHERE comment_id = ?`,[req.body.text, comment_id]).then(modifications => {
         return res.send(modifications)
     }).catch(err=> {
         return res.sendStatus(400)
