@@ -35,7 +35,7 @@ exports.modifyComment = (req, res, next) => {
 
 // Suppression d'un commentaire
 exports.deleteComment = (req, res, next) => {
-    const comment_id = parseInt(req.params.comment_id)
+    const comment_id = parseInt(req.body.comment_id)
     connection.execute(`DELETE FROM post WHERE comment_id = ?`,[comment_id]).then(suppr => {
         return res.send(suppr)
     })
