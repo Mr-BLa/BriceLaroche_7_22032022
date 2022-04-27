@@ -15,13 +15,13 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY)
 
         // Récupérer l'id dedans
-        const userId = decodedToken.userId
+        const user_id = decodedToken.userId
 
         // Attribuer userId à l'objet requête
-        req.auth = { userId }
+        req.auth = { user_id }
 
         // Si jamais il y a un user.Id dans le corps de la requête et que celui-ci est différent que l'userId: on n'authentifie pas la requête
-        if (req.body.userId && req.body.userId !== userId) {
+        if (req.body.user_id && req.body.user_id !== user_id) {
             throw 'Invalid user ID'
         } else {
             next()
