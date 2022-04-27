@@ -45,8 +45,8 @@ app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
 
-// Pour la route "/api/auth", on utilise userRoutes
-app.use('/api/auth', userRoutes)
+// CHEMINS + ROUTES
+app.use('/api/user', userRoutes)
 app.use('/api/post', postRoutes)
 app.use('/api/comments', commentsRoutes)
 

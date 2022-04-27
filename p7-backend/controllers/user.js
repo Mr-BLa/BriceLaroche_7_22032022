@@ -22,10 +22,14 @@ exports.getAllUsers = (req, res, next) => {
 
 // Trouver un utilisateur par son Id
 exports.getUserById = (req, res, next) => {
-    // Connection BDD MySql
+    // Connexion BDD MySql + verification présence id
     const id = parseInt(req.params.id)
     connection.execute(`SELECT * FROM users WHERE user_id=?`,[id]).then(results => {
-        return res.send(results[0])
+        if (results.length === 0) {
+            return res.sendStatus(404)
+        } else {
+            return res.send(results[0])
+        }
     }).catch(err=> {
         return res.sendStatus(400)
     })

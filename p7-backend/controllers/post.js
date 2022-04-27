@@ -12,10 +12,12 @@ const connection = require('../services/database')
 
 // Création d'un post
 exports.createPost = (req, res, next) => {
-    const id = parseInt(req.auth.userId)
+    const id = parseInt(req.auth.user_id)
+    console.log("CONST ID:", id)
     connection.execute("INSERT INTO `post` (`user_id`, `title`, `content`, `attachement`) VALUES "([id], req.body.title, req.body.content, req.body.attachement)).then(results => {
         return res.send(results)
     }).catch(err=> {
+        console.log("error:", err)
         return res.sendStatus(400)
     })
 }
@@ -55,8 +57,7 @@ exports.getAllPosts = (req, res, next) => {
 // Recherche d'un post par son Id
 exports.getPostById = (req, res, next) => {
     // Connection BDD MySql
-    const post_id = parseInt(req.params.id);
-    console.log("Post ID : ",post_id);
+    const post_id = parseInt(req.params.id)
     connection.query(`SELECT * FROM post WHERE post_id=?`,[post_id]).then(results => {
         return res.send(results[0])
     }).catch(err=> {
