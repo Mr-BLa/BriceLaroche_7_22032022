@@ -10,6 +10,8 @@ const jwt = require('jsonwebtoken')
 // Connexion BDD
 const connection = require('../services/database')
 
+
+
 // Récupérer tous les utilisateurs
 exports.getAllUsers = (req, res, next) => {
     // Connection BDD MySql
@@ -59,19 +61,28 @@ exports.deleteUser = (req, res, next) => {
 
 // Création de nouveaux utilisateurs
 exports.signup = (req, res, next) => {
+    const password = req.body.password
+    console.log(password)
     // Hacher le mdp
-    bcrypt.hash(req.body.password, 10)
+    bcrypt.hash(password, 10)
         // On récupère le hash...
-        .then(hash => {
+        .then(function(hash){
+            console.log("mdp hashé")
+            console.log(hash)
             // ... Qu'on enregistre dans un nouvel User...
-            connection.execute("INSERT INTO `users` (`email`, `password`, `username`, `firstname`, `lastname`, `role`, `bio`) VALUES "(req.body.email, hash, req.body.username, req.body.firstname, req.body.lastname, req.body.role, req.body.bio))
+            connection.execute('INSERT INTO `users` (`email`, `password`, `username`, `firstname`, `lastname`, `role`, `bio`) VALUES (?, ?, ?, ?, ?, ?, ?)',[req.body.email, hash, req.body.username, req.body.firstname, req.body.lastname, req.body.role, req.body.bio])
                 .then(newUser => {
                     return res.send(newUser)
                 }).catch(err => {
+                    console.log(err)
+                    console.log("hash passé, mais pas enregistré dans bdd")
                     return res.sendStatus(400)
                 })
+            return res.sendStatus(200)
         })
         .catch(err => {
+            console.log(err)
+            console.log("mdp hashé: mais ERREUR")
             return res.sendStatus(500)
         })
 }

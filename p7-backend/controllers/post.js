@@ -3,7 +3,6 @@
 */
 
 // Import package File System (accès aux différentes opérations liées au système de fichier)
-const { timeStamp } = require('console')
 const fs = require('fs')
 
 //Connexion BDD
