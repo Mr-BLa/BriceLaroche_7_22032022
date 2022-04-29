@@ -90,13 +90,18 @@ exports.signup = (req, res, next) => {
 // Connecter utilisateurs existants
 exports.login = (req, res, next) => {
     // Retrouver le mail dans la BDD
-    connection.query("SELECT `email` FROM `users` WHERE email = ?", req.body.email).then(email => {
+    connection.query("SELECT email FROM users WHERE email = ?", req.body.email).then(function(email){
+        console.log(email)
         // Si email introuvable
         if (!email) {
             return res.sendStatus(401)
         } else {
             // Si mail présent
-            connection.query("SELECT `password` FROM `users` WHERE `email`= ?", email).then(password => {
+            connection.query("SELECT password FROM users WHERE email= ?", req.body.email).then(function(userPassword){
+                console.log(req.body.password)
+                console.log(userPassword[0])
+                let { password } = userPassword[0]
+                console.log(password)
                 bcrypt.compare(req.body.password, password)
                     // Si Mdp incorrect
                     .then(valid => {
@@ -104,36 +109,47 @@ exports.login = (req, res, next) => {
                             return res.sendStatus(401)
                         } else {
                             // Si Mdp correct, renvoyer un user_id + un token
-                            connection.query("SELECT `user_id` FROM `users` WHERE `email`= ?", email).then(user_id =>{
+                            connection.query("SELECT user_id FROM users WHERE email= ?", req.body.email).then(function(userId){
+                                let { user_id } = userId[0]
                                 res.status(200).json({
-                                    userId: user_id,
+                                    user_id: user_id,
                                     // Utilisation jwt: création et vérification de token
                                     token: jwt.sign(
                                     // Payload: données que l'on veut encoder à l'intérieur du token:
                                         // Objet avec l'userId qui est l'identifiant utilisateur (donc vérification que la requête correspond bien à l'userId)
-                                        { userId: user_id },
+                                        { user_id: user_id },
                                         // Clé secrète pour encodage
                                         process.env.SECRET_KEY,
                                         // Expiration du TOKEN à 24h
                                         { expiresIn: "24h" }
                                     )
                                 })
+                                console.log(userId)
+                                console.log(user_id)
                             })
                             .catch(err => {
+                                console.log("1")
+                                console.log(err)
                                 return res.sendStatus(500)
                             })
                         }
                     })
                     .catch(err => {
+                        console.log("2")
+                        console.log(err)
                         return res.sendStatus(500)
                     })
             })
             .catch(err => {
+                console.log("3")
+                console.log(err)
                 return res.sendStatus(500)
             })
         }
     })
     .catch(err => {
+        console.log("4")
+        console.log(err)
         return res.sendStatus(500)
     })
 }
