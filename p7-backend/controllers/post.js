@@ -24,21 +24,25 @@ exports.createPost = (req, res, next) => {
 // Modification d'un post
 exports.modifyPost = (req, res, next) => {
     // Connection BDD MySql
-    const post_id = parseInt(req.body.post_id)
-    connection.execute(`UPDATE post SET title = ?`, req.body.title `, content = ?`, req.body.content `, attachement = ?`, req.body.attachement `WHERE post_id = ?`,[post_id]).then(modifications => {
+    const post_id = parseInt(req.params.id)
+    connection.execute(`UPDATE post SET title = '?', content = '?', attachement = '?' WHERE post_id = '?'`, [req.body.title, req.body.content, req.body.attachement, post_id]).then(modifications => {
+        console.log(modifications)
         return res.send(modifications)
     }).catch(err=> {
+        console.log(err)
         return res.sendStatus(400)
     })
 }
 
 // Suppression d'un post
 exports.deletePost = (req, res, next) => {
-    const post_id = parseInt(req.params.post_id)
-    connection.execute(`DELETE FROM post WHERE post_id = ?`,[post_id]).then(suppr => {
+    const post_id = parseInt(req.params.id)
+    connection.execute(`DELETE FROM post WHERE post_id = ?`, [post_id]).then(suppr => {
+        console.log(suppr)
         return res.send(suppr)
     })
     .catch(err => {
+        console.log(err)
         return res.sendStatus(400)
     })
 }

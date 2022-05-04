@@ -40,17 +40,52 @@ exports.getUserById = (req, res, next) => {
 // Modification d'un utilisateur
 exports.modifyUser = (req, res, next) => {
     // Connection BDD MySql
-    const id = parseInt(req.auth.userId)
-    connection.execute(`UPDATE users SET email = ?`,req.body.email `, username = ?`,req.body.username `, firstname = ?`, req.body.firstname `, lastname = ?`, req.body.lastname `, role = ?`, req.body.role `, bio = ?`, req.body.bio ` WHERE user_id = ?`,[id]).then(modifications => {
+    //const user_id = parseInt(req.user.user_id)
+    const id = parseInt(req.params.id)
+    let bodyKey = []
+    let bodyValue = []
+    let stringKey = null
+    let stringValue = null
+    let commandKey = null 
+    let commandValue = null
+    //On récupère les paires clés valeurs, nécessaire à la modif, via le body
+    Object.entries(req.body).forEach(([key, value]) => {
+        // On ne s'intéresse qu'aux éléments OÙ il y a eu modifications
+        if (value !== ''){
+            // Qu'on récupère et prépare dans les [tableaux], pour la commande sql
+                bodyKey.push(" " + key + " = '?'") 
+                bodyValue.push( value )
+                //On rassemble et stringify les différents items des 2 [tableaux]
+                stringKey = bodyKey.join(',')
+                stringValue = bodyValue.join(', ')
+        }
+    })
+    console.log(stringKey)
+    console.log(stringValue)
+    // On attend que les toutes les données soient traitées, pour envoyer qu'une seule fois la commande
+        // On rassemble les différents strings pour créer un string de commande sql
+        string1 = "UPDATE users SET"
+        string2 = " WHERE user_id = '?'"
+        commandKey = string1 + stringKey + string2
+        commandValue = stringValue
+        console.log(commandKey)
+        console.log(commandValue)
+
+    // On passe la commande sql pour enregistrer les modifications dans la bdd
+    connection.execute(commandKey ,[commandValue, id]).then(modifications => {
+        console.log(modifications)
         return res.send(modifications)
     }).catch(err=> {
+        console.log(err)
         return res.sendStatus(400)
     })
 }
 
+
+//connection.execute(`UPDATE users SET email = ?, WHERE user_id = ?`,[req.body.email, id]
 // Suppression d'un utilisateur
 exports.deleteUser = (req, res, next) => {
-    const id = parseInt(req.auth.userId)
+    const id = parseInt(req.params.id)
     connection.execute(`DELETE FROM users WHERE user_id = ?`,[id]).then(suppr => {
         return res.send(suppr)
     })
@@ -78,7 +113,6 @@ exports.signup = (req, res, next) => {
                     console.log("hash passé, mais pas enregistré dans bdd")
                     return res.sendStatus(400)
                 })
-            return res.sendStatus(200)
         })
         .catch(err => {
             console.log(err)
@@ -116,7 +150,7 @@ exports.login = (req, res, next) => {
                                     // Utilisation jwt: création et vérification de token
                                     token: jwt.sign(
                                     // Payload: données que l'on veut encoder à l'intérieur du token:
-                                        // Objet avec l'userId qui est l'identifiant utilisateur (donc vérification que la requête correspond bien à l'userId)
+                                        // Objet avec l'userId qui est l'identifiant utilisateur (donc vérification que la requête correspond bien à l'user_id)
                                         { user_id: user_id },
                                         // Clé secrète pour encodage
                                         process.env.SECRET_KEY,
