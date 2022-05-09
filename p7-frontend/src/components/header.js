@@ -5,7 +5,6 @@
 import React from "react"
 import logo from "../logos/icon-above-font.svg"
 
-
 export default function Header() {
     return (
         <header id="headerContainer">
