@@ -5,54 +5,66 @@
 import React from "react"
 import logo from "../logos/icon.svg"
 
+
 export default function Main() {
-    //Objet avec email et password
+    // Création d'un composant-objet, contenant email et password
     const [formLogin, setFormLogin] = React.useState(
         {email: "", password: ""}
     )
-    console.log(formLogin)
 
     // On récupère notre objet avec tous ses composants et on actualise en fonction des éléments qui sont modifiés (via target.name)
     function handleChange(event) {
+        // Déstructuration d'event.target pour sortir les éléments dont on a besoin
+        const {name, value} = event.target
+        // Actualisation de l'objet en fonction des changements de value éffectués
         setFormLogin(prevFormLogin => {
             return {
                 ...prevFormLogin,
-                [event.target.name]: event.target.value
+                [name]: value
             }
         })
     }
     
+    // Fonction Bouton Login (Submit form)
+    function handleSubmit(event) {
+        //pour ne pas raffraichir la page (et donc le formulaire) au clic sur le bouton (et éviter de passer les value du form dans url)
+        event.preventDefault()
+        //submitToApi(formLogin)
+        console.log(formLogin)
+    }
 
-
+    /*  CI-DESSOUS:
+    *   - Form:
+            Input Email 
+            Input Password
+            Bouton Login (submit)
+        - Img-Logo
+    */
     return (
         <main id="mainContent">
-            <form id="mainContent__form">
+            <form id="mainContent__form" onSubmit={handleSubmit}>
                 <div className="form__container">
-                    <label className="emailLabel">
-                        Email     :      
-                    </label>
                     <input 
+                        placeholder="Email"
                         type="email" 
                         className="inputForm" 
                         onChange={handleChange}
-                        name="email"/>
-                        
+                        name="email"
+                        value={formLogin.email}/>
                 </div>    
                 <div className="form__container">
-                    <label>
-                        Password :
-                    </label>
                     <input 
+                        placeholder="Password"
                         type="password" 
                         className="inputForm" 
                         onChange={handleChange}
-                        name="password"/>
-
+                        name="password"
+                        value={formLogin.password}/>
                 </div>
-                <input 
-                    type="submit" 
-                    className="submitButton" 
-                    value="Login" />
+                <button 
+                    className="submitButton">
+                    Login
+                </button>
             </form>
             <div className="img__container">
                 <img 
