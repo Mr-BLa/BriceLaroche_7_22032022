@@ -53,7 +53,7 @@ code {
   flex-direction: column;
 }
 
-.form__container{
+.input__container{
 max-width: 100%; 
 width: 100%;
 display: flex;

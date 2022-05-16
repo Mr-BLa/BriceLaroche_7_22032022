@@ -7,16 +7,17 @@ import logo from "../logos/icon.svg"
 
 
 export default function Main() {
-    // Création d'un composant-objet, contenant email et password
+    // Création d'un composant-objet, contenant email et password:
     const [formLogin, setFormLogin] = React.useState(
         {email: "", password: ""}
     )
 
-    // On récupère notre objet avec tous ses composants et on actualise en fonction des éléments qui sont modifiés (via target.name)
+
+    // On récupère notre objet avec tous ses composants et on actualise en fonction des éléments qui sont modifiés (via target.name):
     function handleChange(event) {
         // Déstructuration d'event.target pour sortir les éléments dont on a besoin
         const {name, value} = event.target
-        // Actualisation de l'objet en fonction des changements de value éffectués
+        // Actualisation de l'objet en fonction des changements de value effectués
         setFormLogin(prevFormLogin => {
             return {
                 ...prevFormLogin,
@@ -25,15 +26,18 @@ export default function Main() {
         })
     }
     
-    // Fonction Bouton Login (Submit form)
+
+    // Fonction au Submit/Login (bouton login):
     function handleSubmit(event) {
-        //pour ne pas raffraichir la page (et donc le formulaire) au clic sur le bouton (et éviter de passer les value du form dans url)
+        //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
         //submitToApi(formLogin)
         console.log(formLogin)
     }
 
-    /*  CI-DESSOUS:
+
+
+    /* CI-DESSOUS:
     *   - Form:
             Input Email 
             Input Password
@@ -43,7 +47,7 @@ export default function Main() {
     return (
         <main id="mainContent">
             <form id="mainContent__form" onSubmit={handleSubmit}>
-                <div className="form__container">
+                <div className="input__container">
                     <input 
                         placeholder="Email"
                         type="email" 
@@ -52,7 +56,7 @@ export default function Main() {
                         name="email"
                         value={formLogin.email}/>
                 </div>    
-                <div className="form__container">
+                <div className="input__container">
                     <input 
                         placeholder="Password"
                         type="password" 
