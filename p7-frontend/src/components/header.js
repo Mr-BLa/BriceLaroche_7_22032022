@@ -3,18 +3,21 @@
 */
 
 import React from "react"
-import logo from "../logos/icon-above-font.svg"
+import Headerlogo from "../logos/icon-above-font.svg"
+import { Link } from "react-router-dom"
 
 export default function Header() {
     return (
-        <header id="headerContainer">
-            <nav id="navBar">
-                <img 
-                    src={logo}
-                    className="header--logo"
-                    alt="Groupomania Logo"/>
-            </nav>
-        </header>
+        <Link to="/">
+            <header id="headerContainer">
+                <nav id="navBar">
+                    <img 
+                        src={Headerlogo}
+                        className="header--logo"
+                        alt="Groupomania Logo"/>
+                </nav>
+            </header>
+        </Link>
     )
 }
 
