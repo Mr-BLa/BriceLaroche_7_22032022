@@ -123,6 +123,7 @@ exports.signup = (req, res, next) => {
 
 // Connecter utilisateurs existants
 exports.login = (req, res, next) => {
+    console.log(req.body)
     // Retrouver le mail dans la BDD
     connection.query("SELECT email FROM users WHERE email = ?", req.body.email).then(function(email){
         console.log(email)

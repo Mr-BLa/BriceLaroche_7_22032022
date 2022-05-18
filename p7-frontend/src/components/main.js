@@ -4,14 +4,14 @@
 
 import React from "react"
 import logo from "../logos/icon.svg"
-
+import axios from "axios"
 
 export default function Main() {
+
     // Création d'un composant-objet, contenant email et password:
     const [formLogin, setFormLogin] = React.useState(
         {email: "", password: ""}
     )
-
 
     // On récupère notre objet avec tous ses composants et on actualise en fonction des éléments qui sont modifiés (via target.name):
     function handleChange(event) {
@@ -24,17 +24,33 @@ export default function Main() {
                 [name]: value
             }
         })
+        console.log(formLogin)
     }
     
-
     // Fonction au Submit/Login (bouton login):
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        //submitToApi(formLogin)
         console.log(formLogin)
+        // Submit la data au backend via POST
+        axios.post('http://localhost:5000/api/user/login', formLogin)
+            .then(res => console.log(res.data))
     }
-
+/*
+*   const params = {
+        param1: value1,
+        param2: value2; 
+    };
+    const options = {
+        method: 'POST',
+        body: JSON.stringify( params )  
+    };
+    fetch( 'https://domain.com/path/', options )
+        .then( response => response.json() )
+        .then( response => {
+            // Do something with response.
+        } );
+*/
 
 
     /* CI-DESSOUS:
