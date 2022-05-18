@@ -1,12 +1,13 @@
 /* 
-*           MAIN
+*           LOGIN
 */
 
 import React from "react"
 import logo from "../logos/icon.svg"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
-export default function Main() {
+export default function Login() {
 
     // Création d'un composant-objet, contenant email et password:
     const [formLogin, setFormLogin] = React.useState(
@@ -71,7 +72,7 @@ export default function Main() {
                 </button>
             </form>
             <div className="signup__container">
-                <a href="https://www.codeur.com" className="signup__link">Créer un compte</a>
+                <Link to="/signup" className="signup__link">Créer un compte</Link>
             </div>
             <div className="img__container">
                 <img 

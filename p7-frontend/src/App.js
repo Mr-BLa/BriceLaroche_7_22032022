@@ -1,14 +1,15 @@
 /*
 *           APP
 */
+
 import Header from "./components/header"
-import Main from "./components/main"
+import Login from "./components/login"
 
 function App() {
     return(
         <div>
             <Header />
-            <Main />
+            <Login />
         </div>
     )
 }
