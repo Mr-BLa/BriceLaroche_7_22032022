@@ -36,22 +36,6 @@ export default function Main() {
         axios.post('http://localhost:5000/api/user/login', formLogin)
             .then(res => console.log(res.data))
     }
-/*
-*   const params = {
-        param1: value1,
-        param2: value2; 
-    };
-    const options = {
-        method: 'POST',
-        body: JSON.stringify( params )  
-    };
-    fetch( 'https://domain.com/path/', options )
-        .then( response => response.json() )
-        .then( response => {
-            // Do something with response.
-        } );
-*/
-
 
     /* CI-DESSOUS:
     *   - Form:
@@ -86,6 +70,9 @@ export default function Main() {
                     Login
                 </button>
             </form>
+            <div className="signup__container">
+                <a href="https://www.codeur.com" className="signup__link">Créer un compte</a>
+            </div>
             <div className="img__container">
                 <img 
                     src={logo}
