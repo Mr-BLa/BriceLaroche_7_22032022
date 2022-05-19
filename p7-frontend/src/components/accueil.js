@@ -13,10 +13,10 @@ export default function Accueil() {
             <div>
                 <p>À remplir</p>
             </div>
-            <div className="img__container">
+            <div className="imgAccueil__container">
                 <img 
                     src={logo}
-                    className="main--logo"
+                    className="mainAccueil--logo"
                     alt="Groupomania World Logo"/>
             </div>
         </main>

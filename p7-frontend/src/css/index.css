@@ -1,3 +1,10 @@
+/*
+*           CSS INDEX
+*/
+
+
+
+
 body {
   margin: 0;
   font-family: 'Arial', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -146,9 +153,6 @@ padding: 2rem 0 1rem 0;
 .img__container{
   margin: -13% 0 0 98%;
 }
-
-
-
 
           /*PAGE SIGN-UP*/
 .title__signup{

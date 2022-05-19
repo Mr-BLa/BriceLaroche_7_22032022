@@ -1,0 +1,36 @@
+/*
+*           CSS ACCUEIL
+*/
+
+/* HEADER ACCUEIL*/
+
+#headerAccueilContainer {
+max-width: 100%;
+max-height: 5rem;
+height: 5rem;
+display: flex;
+justify-content: center;
+background-color: white;
+box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+position: relative;
+}
+
+.headerAccueil--logo { 
+width: 20rem;
+position:absolute;
+top: -7.3rem;
+left: -1rem;
+}
+
+
+
+
+/*LOGO MAIN*/
+
+.mainAccueil--logo{
+width: 32rem;
+}
+
+.imgAccueil__container{
+margin: -10% 0 0 98%;
+}

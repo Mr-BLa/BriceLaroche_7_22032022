@@ -6,7 +6,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route} from "react-router-dom"
-import './index.css'
+import '../src/css/index.css'
+import '../src/css/accueil.css'
 import LoginPage from './LoginPage'
 import SignupPage from './signupPage'
 import App from './App'
