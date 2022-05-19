@@ -11,7 +11,7 @@ export default function Accueil() {
     return(
         <main id="mainContent">
             <div>
-                <p>A remplir</p>
+                <p>À remplir</p>
             </div>
             <div className="img__container">
                 <img 
