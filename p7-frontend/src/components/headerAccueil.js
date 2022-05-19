@@ -1,18 +1,19 @@
 /*
-*           HEADER
+*           HEADER APP
 */
 
+
 import React from "react"
-import Headerlogo from "../logos/icon-above-font.svg"
+import HeaderAppLogo from "../logos/icon-left-font.svg"
 import { Link } from "react-router-dom"
 
-export default function Header() {
+export default function HeaderApp() {
     return (
-        <Link to="/">
+        <Link to="/accueil">
             <header id="headerContainer">
                 <nav id="navBar">
                     <img 
-                        src={Headerlogo}
+                        src={HeaderAppLogo}
                         className="header--logo"
                         alt="Groupomania Logo"/>
                 </nav>
@@ -20,4 +21,3 @@ export default function Header() {
         </Link>
     )
 }
-

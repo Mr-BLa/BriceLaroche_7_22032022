@@ -36,11 +36,18 @@ export default function Login() {
         console.log(formLogin)
         // Submit la data au backend via POST
         axios.post('http://localhost:5000/api/user/login', formLogin)
-            .then(res => console.log(res.data))
+            .then(res => {
+                // Si la requête est réussie: redirection vers page Accueil
+                if(res.status === 200){
+                    window.location.href = 'http://localhost:3000/accueil'
+                }
+            }).catch(err => {
+                console.log(err)
+            })
     }
 
 
-    
+
     /* CI-DESSOUS:
     *   - Form:
             Input Email 

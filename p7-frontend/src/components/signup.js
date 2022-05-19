@@ -5,7 +5,9 @@
 import React from "react"
 import logo from "../logos/icon.svg"
 import axios from "axios"
-import { Redirect } from "react-router-dom"
+
+
+
 
 export default function Signup() {
 
@@ -47,7 +49,7 @@ export default function Signup() {
     }
 
 
-    
+
 
     /* CI-DESSOUS:
     *   - H1

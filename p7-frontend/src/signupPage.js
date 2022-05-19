@@ -1,8 +1,8 @@
 /*
-*           SIGN-UP PAGE
+*           SIGN-UP
 */
 
-import Header from "./components/header"
+import Header from "./components/headerStart"
 import Signup from "./components/signup"
 
 function SignupPage() {
