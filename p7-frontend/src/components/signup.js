@@ -37,6 +37,7 @@ export default function Signup() {
         // Submit la data au backend via POST
         axios.post('http://localhost:5000/api/user/signup', formSignup)
             .then(res => {
+                // Si la requête est réussie: redirection vers page login
                 if(res.status === 200){
                     window.location.href = 'http://localhost:3000/'
                 }
@@ -44,6 +45,23 @@ export default function Signup() {
                 console.log(err)
             })
     }
+
+
+    
+
+    /* CI-DESSOUS:
+    *   - H1
+        - Form:
+            Input Email 
+            Input Password
+            Input Username
+            Input Firstname
+            Input Lastname
+            Input Role
+            Input Bio
+            Bouton Inscription (submit)
+        - Img-Logo
+    */
 
     return (
         <main id="mainContent">
