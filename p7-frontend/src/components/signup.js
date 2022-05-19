@@ -5,7 +5,7 @@
 import React from "react"
 import logo from "../logos/icon.svg"
 import axios from "axios"
-
+import { Redirect } from "react-router-dom"
 
 export default function Signup() {
 
@@ -36,7 +36,13 @@ export default function Signup() {
         console.log(formSignup)
         // Submit la data au backend via POST
         axios.post('http://localhost:5000/api/user/signup', formSignup)
-            .then(res => console.log(res.data))
+            .then(res => {
+                if(res.status === 200){
+                    window.location.href = 'http://localhost:3000/'
+                }
+            }).catch(err => {
+                console.log(err)
+            })
     }
 
     return (
