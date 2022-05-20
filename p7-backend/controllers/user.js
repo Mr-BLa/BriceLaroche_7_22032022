@@ -46,17 +46,13 @@ exports.login = (req, res, next) => {
     console.log(req.body)
     // Retrouver le mail dans la BDD
     connection.query("SELECT email FROM users WHERE email = ?", req.body.email).then(function(email){
-        console.log(email)
         // Si email introuvable
         if (!email) {
             return res.sendStatus(401)
         } else {
             // Si mail présent
             connection.query("SELECT password FROM users WHERE email= ?", req.body.email).then(function(userPassword){
-                console.log(req.body.password)
-                console.log(userPassword[0])
                 let { password } = userPassword[0]
-                console.log(password)
                 bcrypt.compare(req.body.password, password)
                     // Si Mdp incorrect
                     .then(valid => {
@@ -79,8 +75,6 @@ exports.login = (req, res, next) => {
                                         { expiresIn: "24h" }
                                     )
                                 })
-                                console.log(userId)
-                                console.log(user_id)
                             })
                             .catch(err => {
                                 console.log("1")
