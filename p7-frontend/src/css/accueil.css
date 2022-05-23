@@ -12,6 +12,12 @@ display: flex;
 justify-content: center;
 background-color: white;
 box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+position: -webkit-sticky;
+position: sticky;
+top: 0px;
+}
+
+.navBarAccueil{
 position: relative;
 }
 

@@ -11,7 +11,7 @@ export default function HeaderApp() {
     return (
         <Link to="/accueil">
             <header id="headerAccueilContainer">
-                <nav id="navBar">
+                <nav id="navBarAccueil">
                     <img 
                         src={HeaderAppLogo}
                         className="headerAccueil--logo"

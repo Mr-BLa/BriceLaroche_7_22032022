@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY)
 
         // Récupérer l'id dedans
-        const user_id = decodedToken.user_id
+        const user_id = decodedToken.userId
 
         // Attribuer userId à l'objet requête
         req.user = { user_id }
