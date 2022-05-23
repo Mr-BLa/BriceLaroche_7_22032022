@@ -26,23 +26,26 @@ export default function Login() {
                 [name]: value
             }
         })
-        console.log(formLogin)
     }
     
     // Fonction au Submit/Login (bouton login):
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        console.log(formLogin)
         // Submit la data au backend via POST
         axios.post('http://localhost:5000/api/user/login', formLogin, {
             headers: {
-                'Authorization': 'Bearer ' + process.env.SECRET_KEY
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
         })
             .then(res => {
                 // Si la requête est réussie: redirection vers page Accueil
+                // Enregistrement du token dans le localStorage
                 if(res.status === 200){
+                    const token = res.data
+                    localStorage.setItem('token', token)
+                    console.log(token)
+                    console.log(localStorage.token)
                     //window.location.href = 'http://localhost:3000/accueil'
                 }
             }).catch(err => {
