@@ -10,22 +10,30 @@ import { Link } from "react-router-dom"
 
 export default function Login() {
 
+
+    /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = React.useState(false)
     
-    // Dans useEffect : acceder au local storage pour verifier si le token existe
+    // Dans useEffect : acceder au localStorage pour verifier si le token existe déjà
     React.useEffect(() => {
-        // Si Token présent dans LocalStorage, alors, fait passer le state isLoggedIn à true
         let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
-        // Sinon on le garde a false 
+        // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
+        // Sinon on le garde à false 
         tokenInLocalStorage !== null ? setIsLoggedIn(prevLog => !prevLog) : isLoggedIn = false
     }, [])
 
+
+
+    /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant email et password:
     const [formLogin, setFormLogin] = React.useState(
         {email: "", password: ""}
     )
 
+
+
+    /** GESTION/ACTUALISATION DU FORMULAIRE **/
     // On récupère notre objet avec tous ses composants et on actualise en fonction des éléments qui sont modifiés (via target.name):
     function handleChange(event) {
         // Déstructuration d'event.target pour sortir les éléments dont on a besoin
@@ -39,17 +47,16 @@ export default function Login() {
         })
     }
     
+
+
+    /** SOUMISSION ET RECEPTION REQUETE **/
     // Fonction au Submit/Login (bouton login):
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
 
         // Submit la data au backend via POST
-        axios.post('http://localhost:5000/api/user/login', formLogin, {
-            headers: {
-                'Authorization': 'Bearer ' 
-            }
-        })
+        axios.post('http://localhost:5000/api/user/login', formLogin)
             .then(res => {
                 // Enregistrement du token dans le localStorage
                 // Si la requête est réussie: redirection vers page Accueil
@@ -73,6 +80,8 @@ export default function Login() {
         - Img-Logo
     */
 
+        
+    /** AFFICHAGE PAGE LOGIN SI USER PAS ENCORE CONNECTE. SI DEJA CONNECTE => REDIRECTION PAGE ACCUEIL **/
     if( isLoggedIn === false ){
         return (
             <main id="mainContent">
