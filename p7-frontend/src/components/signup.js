@@ -25,13 +25,12 @@ export default function Signup() {
     }, [])
 
 
-    
+
     /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant email et password:
     const [formSignup, setFormSignup] = React.useState(
         {email: "", password: "", username: "", firstname: "", lastname: "", role: "", bio: ""}
     )
-
 
 
     /** GESTION/ACTUALISATION DU FORMULAIRE **/
