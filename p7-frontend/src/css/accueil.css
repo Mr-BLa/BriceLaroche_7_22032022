@@ -29,7 +29,10 @@ left: -1rem;
 }
 
 .headerAccueil--profilLogo{
-    width: 10rem;
+    width: 3rem;
+    position: absolute;
+    top: 0.9rem; 
+    right: 0.9rem;
 }
 
 
