@@ -10,6 +10,17 @@ import { Link } from "react-router-dom"
 
 export default function Login() {
 
+    // Statut Login de l'utilisateur ("non connecté" par défaut)
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+    
+    // Dans useEffect : acceder au local storage pour verifier si le token existe
+    React.useEffect(() => {
+        // Si Token présent dans LocalStorage, alors, fait passer le state isLoggedIn à true
+        let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
+        // Sinon on le garde a false 
+        tokenInLocalStorage !== null ? setIsLoggedIn(prevLog => !prevLog) : isLoggedIn = false
+    }, [])
+
     // Création d'un composant-objet, contenant email et password:
     const [formLogin, setFormLogin] = React.useState(
         {email: "", password: ""}
@@ -32,21 +43,16 @@ export default function Login() {
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        // Si Token présent dans LocalStorage, on le récupère pour le passer au header.authorization
-        let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
-        if (tokenInLocalStorage === null){
-            tokenInLocalStorage = 'No Token'
-        } 
-        //console.log(tokenInLocalStorage)
+
         // Submit la data au backend via POST
         axios.post('http://localhost:5000/api/user/login', formLogin, {
             headers: {
-                'Authorization': 'Bearer ' + tokenInLocalStorage
+                'Authorization': 'Bearer ' 
             }
         })
             .then(res => {
-                // Si la requête est réussie: redirection vers page Accueil
                 // Enregistrement du token dans le localStorage
+                // Si la requête est réussie: redirection vers page Accueil
                 if(res.status === 200){
                     const token = res.data
                     localStorage.setItem('token', JSON.stringify(token.token))
@@ -66,42 +72,46 @@ export default function Login() {
             Bouton Login (submit)
         - Img-Logo
     */
-    return (
-        
-        <main id="mainContent">
-            <form id="mainContent__form" onSubmit={handleSubmit}>
-                <div className="input__container">
-                    <input 
-                        placeholder="Email"
-                        type="email" 
-                        className="inputForm" 
-                        onChange={handleChange}
-                        name="email"
-                        value={formLogin.email}/>
-                </div>    
-                <div className="input__container">
-                    <input 
-                        placeholder="Password"
-                        type="password" 
-                        className="inputForm" 
-                        onChange={handleChange}
-                        name="password"
-                        value={formLogin.password}/>
+
+    if( isLoggedIn === false ){
+        return (
+            <main id="mainContent">
+                <form id="mainContent__form" onSubmit={handleSubmit}>
+                    <div className="input__container">
+                        <input 
+                            placeholder="Email"
+                            type="email" 
+                            className="inputForm" 
+                            onChange={handleChange}
+                            name="email"
+                            value={formLogin.email}/>
+                    </div>    
+                    <div className="input__container">
+                        <input 
+                            placeholder="Password"
+                            type="password" 
+                            className="inputForm" 
+                            onChange={handleChange}
+                            name="password"
+                            value={formLogin.password}/>
+                    </div>
+                    <button 
+                        className="submitButton">
+                        Login
+                    </button>
+                </form>
+                <div className="signup__container">
+                    <Link to="/signup" className="signup__link">Créer un compte</Link>
                 </div>
-                <button 
-                    className="submitButton">
-                    Login
-                </button>
-            </form>
-            <div className="signup__container">
-                <Link to="/signup" className="signup__link">Créer un compte</Link>
-            </div>
-            <div className="img__container">
-                <img 
-                    src={logo}
-                    className="main--logo"
-                    alt="Groupomania World Logo"/>
-            </div>
-        </main>
-    )
+                <div className="img__container">
+                    <img 
+                        src={logo}
+                        className="main--logo"
+                        alt="Groupomania World Logo"/>
+                </div>
+            </main>
+        )
+    } else {
+        window.location.href = 'http://localhost:3000/accueil'
+    }
 }

@@ -19,7 +19,8 @@ export default function HeaderApp() {
                         alt="Groupomania Logo"/>
                     <img
                         src={ProfilLogo}
-                        className="headerAccueil--profilLogo"/>
+                        className="headerAccueil--profilLogo"
+                        alt="Profil Logo"/>
                 </nav>
             </header>
         </Link>
