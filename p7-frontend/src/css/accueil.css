@@ -28,7 +28,9 @@ top: -7.3rem;
 left: -1rem;
 }
 
-
+.headerAccueil--profilLogo{
+    width: 10rem;
+}
 
 
 /*LOGO MAIN*/
