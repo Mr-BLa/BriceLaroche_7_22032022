@@ -10,7 +10,6 @@ import { Link } from "react-router-dom"
 
 export default function Login() {
 
-
     /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = React.useState(false)
@@ -20,7 +19,9 @@ export default function Login() {
         let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
         // Sinon on le garde à false 
-        tokenInLocalStorage !== null ? setIsLoggedIn(prevLog => !prevLog) : isLoggedIn = false
+        if (tokenInLocalStorage !== null ){
+            setIsLoggedIn(prevLog => !prevLog)
+        }
     }, [])
 
 
@@ -80,7 +81,7 @@ export default function Login() {
         - Img-Logo
     */
 
-        
+
     /** AFFICHAGE PAGE LOGIN SI USER PAS ENCORE CONNECTE. SI DEJA CONNECTE => REDIRECTION PAGE ACCUEIL **/
     if( isLoggedIn === false ){
         return (

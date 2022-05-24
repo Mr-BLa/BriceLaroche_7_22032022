@@ -30,6 +30,13 @@ export default function HeaderApp() {
     }
     
 
+    /**DECONNEXION**/
+    function delog() {
+        localStorage.removeItem('token')
+        console.log(localStorage)
+        window.location.href = 'http://localhost:3000/'
+    }
+
     return (
         <Link to="/accueil">
             <header id="headerAccueilContainer">
@@ -38,16 +45,16 @@ export default function HeaderApp() {
                         src={HeaderAppLogo}
                         className="headerAccueil--logo"
                         alt="Groupomania Logo"/>
-                    <div class="dropdown">
+                    <div className="dropdown">
                         <img
                             src={ProfilLogo}
                             className="headerAccueil--profilLogo"
                             className="dropbtn"
                             alt="Profil Logo"
                             onClick={dropDown}/>
-                                <div id="myDropdown" class="dropdown-content">
-                                    <a href="#">Modifier le Profil</a>
-                                    <a href="#">Déconnexion</a>
+                                <div id="myDropdown" className="dropdown-content">
+                                    <a href="#">Profil</a>
+                                    <a href="#" onClick={delog}>Déconnexion</a>
                                 </div>
                     </div>
                 </nav>
