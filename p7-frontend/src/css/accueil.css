@@ -96,6 +96,7 @@ left: -1rem;
     font: inherit;
     width: 100%;
     text-align: left;
+    border-radius: 5px;
 }
 
 /* Change color of dropdown links on hover */
