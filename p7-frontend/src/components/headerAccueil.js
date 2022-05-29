@@ -10,12 +10,12 @@ import { Link } from "react-router-dom"
 
 export default function HeaderApp() {
     /** DropDown **/
-    /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+    /* Quand l'user clique sur le bouton, toggle entre "hide" et "show" le dropdown*/
     function dropDown(){
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    // Close the dropdown menu if the user clicks outside of it
+    // Ferme le menu dropdown, si l'user clique à l'éxtérieur de celui-ci
     window.onclick = function(event) {
         if (!event.target.matches('.dropbtn')) {
             let dropdowns = document.getElementsByClassName("dropdown-content");
@@ -31,11 +31,14 @@ export default function HeaderApp() {
     
 
     /**DECONNEXION**/
-    function delog() {
+    function logOff() {
         localStorage.removeItem('token')
-        console.log(localStorage)
         window.location.href = 'http://localhost:3000/'
     }
+
+        /* Button > a 
+
+        */
 
     return (
         <Link to="/accueil">
@@ -48,13 +51,12 @@ export default function HeaderApp() {
                     <div className="dropdown">
                         <img
                             src={ProfilLogo}
-                            className="headerAccueil--profilLogo"
-                            className="dropbtn"
+                            className="headerAccueil--profilLogo dropbtn"
                             alt="Profil Logo"
                             onClick={dropDown}/>
                                 <div id="myDropdown" className="dropdown-content">
                                     <a href="#">Profil</a>
-                                    <a href="#" onClick={delog}>Déconnexion</a>
+                                    <button onClick={logOff}>Déconnexion</button>
                                 </div>
                     </div>
                 </nav>
