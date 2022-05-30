@@ -36,12 +36,9 @@ export default function HeaderApp() {
         window.location.href = 'http://localhost:3000/'
     }
 
-        /* Button > a 
-
-        */
 
     return (
-        <Link to="/accueil">
+        <Link to="/accueil/">
             <header id="headerAccueilContainer">
                 <nav id="navBarAccueil">
                     <img 
@@ -55,7 +52,7 @@ export default function HeaderApp() {
                             alt="Profil Logo"
                             onClick={dropDown}/>
                                 <div id="myDropdown" className="dropdown-content">
-                                    <a href="#">Profil</a>
+                                    <Link to="/accueil/profil" className="profil--link">Profil</Link>
                                     <button onClick={logOff}>Déconnexion</button>
                                 </div>
                     </div>

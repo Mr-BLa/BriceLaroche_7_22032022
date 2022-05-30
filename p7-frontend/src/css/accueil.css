@@ -73,7 +73,7 @@ left: -1rem;
 }
 
 /* Lien à l'intérieur du Dropdown */
-.dropdown-content a {
+.profil--link {
     color: black;
     padding: 1.2rem 1rem;
     text-decoration: none;
@@ -81,7 +81,7 @@ left: -1rem;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
+.profil--link:hover {
     background-color: #ddd;
     border-radius: 5px;
 }

@@ -11,18 +11,15 @@ import '../src/css/accueil.css'
 import LoginPage from './LoginPage'
 import SignupPage from './signupPage'
 import App from './App'
-
-import reportWebVitals from './reportWebVitals'
+import ProfilPage from './profilPage'
 
 ReactDOM.render(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/accueil" element={<App />}/>
+            <Route path="/" element={<LoginPage />}/>
+            <Route path="/signup" element={<SignupPage />}/>
+            <Route path="/accueil/" element={<App />}/>
+            <Route path="/accueil/profil" element={<ProfilPage />}/>
         </Routes>
     </BrowserRouter>, 
     document.getElementById('root'))
-
-
-reportWebVitals(console.log)

@@ -21,13 +21,15 @@ export default function Signup() {
         let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
         // Sinon on le garde à false 
-        tokenInLocalStorage !== null ? setIsLoggedIn(prevLog => !prevLog) : isLoggedIn = false
+        if (tokenInLocalStorage !== null ){
+            setIsLoggedIn(prevLog => !prevLog)
+        }
     }, [])
 
 
 
     /** OBJET FORMULAIRE **/
-    // Création d'un composant-objet, contenant email et password:
+    // Création d'un composant-objet, contenant email, password, Nom d'utilisateur, prénom, nom, role et bio:
     const [formSignup, setFormSignup] = React.useState(
         {email: "", password: "", username: "", firstname: "", lastname: "", role: "", bio: ""}
     )
