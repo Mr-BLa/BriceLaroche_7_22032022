@@ -138,37 +138,9 @@ exports.modifyUser = (req, res, next) => {
     // Connection BDD MySql
     //const user_id = parseInt(req.user.user_id)
     const id = parseInt(req.params.id)
-    let bodyKey = []
-    let bodyValue = []
-    let stringKey = null
-    let stringValue = null
-    let commandKey = null 
-    let commandValue = null
-    //On récupère les paires clés valeurs, nécessaire à la modif, via le body
-    Object.entries(req.body).forEach(([key, value]) => {
-        // On ne s'intéresse qu'aux éléments OÙ il y a eu modifications
-        if (value !== ''){
-            // Qu'on récupère et prépare dans les [tableaux], pour la commande sql
-                bodyKey.push(" " + key + " = '?'") 
-                bodyValue.push( value )
-                //On rassemble et stringify les différents items des 2 [tableaux]
-                stringKey = bodyKey.join(',')
-                stringValue = bodyValue.join(', ')
-        }
-    })
-    console.log(stringKey)
-    console.log(stringValue)
-    // On attend que les toutes les données soient traitées, pour envoyer qu'une seule fois la commande
-        // On rassemble les différents strings pour créer un string de commande sql
-        string1 = "UPDATE users SET"
-        string2 = " WHERE user_id = '?'"
-        commandKey = string1 + stringKey + string2
-        commandValue = stringValue
-        console.log(commandKey)
-        console.log(commandValue)
 
     // On passe la commande sql pour enregistrer les modifications dans la bdd
-    connection.execute(commandKey ,[commandValue, id]).then(modifications => {
+    connection.execute('UPDATE users SET (`username`, `firstname`, `lastname`, `role`, `bio`) VALUES (?, ?, ?, ?, ?, ?)',[req.body.username, req.body.firstname, req.body.lastname, req.body.role, req.body.bio], "WHERE user_id='?'",[id]).then(modifications => {
         console.log(modifications)
         return res.send(modifications)
     }).catch(err=> {

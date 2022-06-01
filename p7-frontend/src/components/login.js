@@ -3,32 +3,35 @@
 */
 
 import React from "react"
+import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link, useNavigate, Navigate } from "react-router-dom"
 
 
 export default function Login() {
+    // Fonction qui nous permettra de programmer des changements de page
+    const navigate = useNavigate()
 
     /** VERIFICATION STATUT CONNEXION **/
-    // Statut Login de l'utilisateur ("non connecté" par défaut)
-    const [isLoggedIn, setIsLoggedIn] = React.useState(false)
-    
-    // Dans useEffect : acceder au localStorage pour verifier si le token existe déjà
-    React.useEffect(() => {
+    // Statut Login de l'utilisateur (en fonction de la présence du token dans le localStorage)
+    const [isLoggedIn, setIsLoggedIn] = useState(()=>{
         let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
+
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
-        // Sinon on le garde à false 
+        // Sinon on retourne false 
         if (tokenInLocalStorage !== null ){
-            setIsLoggedIn(prevLog => !prevLog)
+            return true
+        } else {
+            return false
         }
-    }, [])
+    })
 
 
 
     /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant email et password:
-    const [formLogin, setFormLogin] = React.useState(
+    const [formLogin, setFormLogin] = useState(
         {email: "", password: ""}
     )
 
@@ -59,12 +62,14 @@ export default function Login() {
         // Submit la data au backend via POST
         axios.post('http://localhost:5000/api/user/login', formLogin)
             .then(res => {
-                // Enregistrement du token dans le localStorage
-                // Si la requête est réussie: redirection vers page Accueil
+                // Si la requête est réussie: 
+                // Enregistrement du token + de l'user_id, dans le localStorage
+                // redirection vers page Accueil
                 if(res.status === 200){
                     const token = res.data
                     localStorage.setItem('token', JSON.stringify(token.token))
-                    window.location.href = 'http://localhost:3000/accueil'
+                    localStorage.setItem('user_id', JSON.stringify(token.user_id))
+                    navigate('/accueil')
                 }
             }).catch(err => {
                 console.log(err)
@@ -82,7 +87,7 @@ export default function Login() {
     */
 
 
-    /** AFFICHAGE PAGE LOGIN SI USER PAS ENCORE CONNECTE. SI DEJA CONNECTE => REDIRECTION PAGE ACCUEIL **/
+    /** AFFICHAGE PAGE LOGIN SI USER PAS ENCORE CONNECTE. Si déjà connécté => Redirection vers Page Accueil **/
     if( isLoggedIn === false ){
         return (
             <main id="mainContent">
@@ -122,6 +127,6 @@ export default function Login() {
             </main>
         )
     } else {
-        window.location.href = 'http://localhost:3000/accueil'
+        return <Navigate to='/accueil'/>
     }
 }

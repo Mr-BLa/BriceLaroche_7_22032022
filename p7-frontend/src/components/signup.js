@@ -3,34 +3,36 @@
 */
 
 import React from "react"
+import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
-
+import { Link, useNavigate, Navigate } from "react-router-dom"
 
 
 
 export default function Signup() {
-
+    // Fonction qui nous permettra de programmer des changements de page
+    const navigate = useNavigate()
 
     /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
-    const [isLoggedIn, setIsLoggedIn] = React.useState(false)
-    
-    // Dans useEffect : acceder au localStorage pour verifier si le token existe déjà
-    React.useEffect(() => {
+    const [isLoggedIn, setIsLoggedIn] = useState(()=>{
         let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
+
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
-        // Sinon on le garde à false 
+        //  Sinon on retourne false 
         if (tokenInLocalStorage !== null ){
-            setIsLoggedIn(prevLog => !prevLog)
+            return true
+        } else {
+            return false
         }
-    }, [])
+    })
 
 
 
     /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant email, password, Nom d'utilisateur, prénom, nom, role et bio:
-    const [formSignup, setFormSignup] = React.useState(
+    const [formSignup, setFormSignup] = useState(
         {email: "", password: "", username: "", firstname: "", lastname: "", role: "", bio: ""}
     )
 
@@ -62,7 +64,7 @@ export default function Signup() {
             .then(res => {
                 // Si la requête est réussie: redirection vers page login
                 if(res.status === 200){
-                    window.location.href = 'http://localhost:3000/'
+                    navigate('/')
                 }
             }).catch(err => {
                 console.log(err)
@@ -87,7 +89,7 @@ export default function Signup() {
     */
 
 
-    /** AFFICHAGE PAGE SIGN-IN, SI USER PAS ENCORE CONNECTE. SI DEJA CONNECTE => REDIRECTION PAGE ACCUEIL **/
+    /** AFFICHAGE PAGE SIGN-IN, SI USER PAS ENCORE CONNECTE. Si déjà connécté => Redirection vers Page Accueil **/
     if( isLoggedIn === false ){
         return (
             <main id="mainContent">
@@ -172,6 +174,6 @@ export default function Signup() {
             </main>
         )
     } else {
-        window.location.href = 'http://localhost:3000/accueil'
+        return <Navigate to='/accueil'/>
     }
 }
