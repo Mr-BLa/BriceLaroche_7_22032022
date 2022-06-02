@@ -120,6 +120,7 @@ exports.getAllUsers = (req, res, next) => {
 exports.getUserById = (req, res, next) => {
     // Connexion BDD MySql + verification présence id
     const id = parseInt(req.params.id)
+    console.log(id)
     connection.execute(`SELECT * FROM users WHERE user_id=?`,[id]).then(results => {
         if (results.length === 0) {
             return res.sendStatus(404)

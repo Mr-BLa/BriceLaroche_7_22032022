@@ -19,6 +19,7 @@ export default function ModifProfil() {
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
 
 
+
         /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = useState(()=>{
@@ -34,12 +35,33 @@ export default function ModifProfil() {
     })
 
 
+
+
+    // Définition variable res.data
+    let data
+
+        /**  Au chargement de la page, récupération dans la BDD des éléments liés au profil **/
+    // Récupérer la data au backend via Get/:id
+    axios.get(`http://localhost:5000/api/user/all/${idInLocalStorage}`, {
+        headers: {
+            'Authorization': `Bearer ${tokenInLocalStorage}`
+        },
+    })
+        .then(res => {
+            // Si la requête est réussie: redirection vers page login
+            if(res.status === 200){
+                data = res.data
+                console.log(data)
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+
         /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant: Nom d'utilisateur, prénom, nom, role et bio:
     const [formModify, setFormModify] = useState(
-        {username: "", firstname: "", lastname: "", role: "", bio: ""}
+        { username: `${data.username}`, firstname: `${data.firstname}`, lastname: `${data.lastname}`, role: `${data.role}`, bio: `${data.bio}` }
     )
-    console.log(formModify)
 
 
         /** GESTION/ACTUALISATION DU FORMULAIRE **/

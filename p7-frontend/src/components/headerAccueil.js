@@ -6,9 +6,13 @@
 import React from "react"
 import HeaderAppLogo from "../logos/icon-left-font.svg"
 import ProfilLogo from "../logos/iconmonstr-user-20.svg"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function HeaderApp() {
+    // Fonction qui nous permettra de programmer des changements de page
+    const navigate = useNavigate()
+
+
     /** DropDown **/
     /* Quand l'user clique sur le bouton, toggle entre "hide" et "show" le dropdown*/
     function dropDown(){
@@ -33,7 +37,8 @@ export default function HeaderApp() {
     /**DECONNEXION**/
     function logOff() {
         localStorage.removeItem('token')
-        window.location.href = 'http://localhost:3000/'
+        localStorage.removeItem('user_id')
+        navigate('/accueil')
     }
 
 
