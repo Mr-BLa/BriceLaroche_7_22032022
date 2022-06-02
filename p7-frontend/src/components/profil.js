@@ -35,33 +35,40 @@ export default function ModifProfil() {
     })
 
 
+        /** OBJET FORMULAIRE **/
+    // Création d'un composant-objet, contenant: Nom d'utilisateur, prénom, nom, role et bio:
+    const [formModify, setFormModify] = useState({
+        username: "",
+        firstname: "",
+        lastname: "",
+        role: "",
+        bio: "",
+    })
+    console.log(formModify)
 
-
-    // Définition variable res.data
-    let data
 
         /**  Au chargement de la page, récupération dans la BDD des éléments liés au profil **/
     // Récupérer la data au backend via Get/:id
-    axios.get(`http://localhost:5000/api/user/all/${idInLocalStorage}`, {
-        headers: {
-            'Authorization': `Bearer ${tokenInLocalStorage}`
-        },
-    })
-        .then(res => {
-            // Si la requête est réussie: redirection vers page login
-            if(res.status === 200){
-                data = res.data
-                console.log(data)
-            }
-        }).catch(err => {
-            console.log(err)
-        })
+    useEffect(() => {
+        axios.get(`http://localhost:5000/api/user/all/${idInLocalStorage}`, {
+                headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+            })
+                .then((res) => {
+                    const data = res.data
+                    console.log(res.data)
+                    setFormModify({
+                        username: data.username,
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        role: data.role,
+                        bio: data.bio,
+                    })
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+    }, []);
 
-        /** OBJET FORMULAIRE **/
-    // Création d'un composant-objet, contenant: Nom d'utilisateur, prénom, nom, role et bio:
-    const [formModify, setFormModify] = useState(
-        { username: `${data.username}`, firstname: `${data.firstname}`, lastname: `${data.lastname}`, role: `${data.role}`, bio: `${data.bio}` }
-    )
 
 
         /** GESTION/ACTUALISATION DU FORMULAIRE **/
@@ -78,6 +85,7 @@ export default function ModifProfil() {
         })
     }
 
+    
         /** SOUMISSION ET RECEPTION REQUETE **/
     // Fonction au Submit/Signup (bouton login):
     function handleSubmit(event) {
