@@ -92,17 +92,17 @@ export default function ModifProfil() {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
         console.log(formModify)
-        // Submit la data au backend via POST
+        // Submit la data au backend via PUT
         axios.put(`http://localhost:5000/api/user/${idInLocalStorage}`, formModify, {
             headers: {
                 'Authorization': `Bearer ${tokenInLocalStorage}`
             },
         })
-            .then(res => {
-                // Si la requête est réussie: redirection vers page login
-                if(res.status === 200){
+            .then((res) => {
+                // Message confirmation modification + retour page accueil
+                    alert("Votre profil a été modifié")
                     navigate('/accueil')
-                }
+                
             }).catch(err => {
                 console.log(err)
             })

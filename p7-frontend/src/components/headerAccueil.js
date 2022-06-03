@@ -38,7 +38,7 @@ export default function HeaderApp() {
     function logOff() {
         localStorage.removeItem('token')
         localStorage.removeItem('user_id')
-        navigate('/accueil')
+        navigate('/')
     }
 
 
