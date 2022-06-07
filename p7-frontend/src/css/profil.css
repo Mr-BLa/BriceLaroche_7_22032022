@@ -1,0 +1,38 @@
+/*
+*           CSS PROFIL
+*/
+
+/* Bouton Profil */
+
+.deleteButton{
+    max-width: 20rem;
+    margin-top: 2rem;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    background-color: #fea347 ;
+    border-radius: 50px;
+    -o-transition: all .6s ease-in-out;
+    -webkit-transition: all .6s ease-in-out;
+    transition: all .6s ease-in-out;
+}
+
+
+.deleteButton:hover {
+    background-position: 100% 0;
+    -o-transition: all .6s ease-in-out;
+    -webkit-transition: all .6s ease-in-out;
+    transition: all .6s ease-in-out;
+    background-image: linear-gradient(54deg, #fea347  15%, rgba(252,237,237,1) 20%, rgba(253,45,1,1) 100%);
+    box-shadow: 0 4px 15px 0 rgba(253,45,1,1);
+}
+
+.deleteButton:focus {
+    outline: none;
+}

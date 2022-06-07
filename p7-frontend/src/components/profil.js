@@ -111,24 +111,20 @@ export default function ModifProfil() {
 
     /**SUPPRESSION PROFIL**/
     function deleteProfil() {
-        let text = "Confirmez la suppression";
-        if (confirm(text) == true) {
-            // Submit la data au backend via PUT
-            axios.delete(`http://localhost:5000/api/user/${idInLocalStorage}`, {
-                headers: {
-                    'Authorization': `Bearer ${tokenInLocalStorage}`
-                },
+        // Submit la data au backend via PUT
+        axios.delete(`http://localhost:5000/api/user/${idInLocalStorage}`, {
+            headers: {
+                'Authorization': `Bearer ${tokenInLocalStorage}`
+            },
+        })
+            .then((res) => {
+                // Message confirmation suppression + retour page accueil
+                    alert("Votre profil a été supprimé")
+                    navigate('/')
+                
+            }).catch(err => {
+                console.log(err)
             })
-                .then((res) => {
-                    // Message confirmation suppression + retour page accueil
-                        alert("Votre profil a été supprimé")
-                        navigate('/')
-                    
-                }).catch(err => {
-                    console.log(err)
-                })
-        }
-        
     }
 
 
@@ -203,7 +199,6 @@ export default function ModifProfil() {
                         className="submitButton">
                         Modifier
                     </button>
-                    
                 </form>
                 <button 
                     onClick={deleteProfil}
