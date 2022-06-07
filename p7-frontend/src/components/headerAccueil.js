@@ -14,7 +14,7 @@ export default function HeaderApp() {
 
 
     /** DropDown **/
-    /* Quand l'user clique sur le bouton, toggle entre "hide" et "show" le dropdown*/
+    /* Quand l'user clique sur le bouton, toggle entre: "hide" et "show" le dropdown*/
     function dropDown(){
         document.getElementById("myDropdown").classList.toggle("show");
     }
