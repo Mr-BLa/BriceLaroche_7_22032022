@@ -103,6 +103,70 @@ left: -1rem;
 
 
 
+
+/***********/
+/*MAIN CONTENT*/
+
+/* Main Container */
+.accueil--main{
+    background-color: #f5f6fa;
+}
+
+/* Div Post  */
+.post--container{
+    background-color: white;
+    min-width: 66%;
+    margin: 3rem 0;
+    padding: 0;
+    border-radius: 20px;
+    border-left: 4px solid rgba(253,45,1,0.43);
+    border-radius: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+/* Title */
+.post__title{
+    padding: 1.5rem 2rem 1rem 2rem;
+    border-bottom: 1px dotted rgba(253,45,1,0.43);
+}
+
+/* Container du content */
+.postContent--container{
+    background-color: #fdfdfd;
+    padding: .3rem 2rem;
+    border-radius: 0 0 20px 20px;
+}
+/* Contenu */
+.post__content{
+    /* background-color: #fdfdfd;
+    padding: 0.3rem 1.6rem;
+    margin: 0; */
+}
+
+/* Attachement */
+.post__attachement{
+    /* background-color: #fdfdfd;
+    padding: 0.3rem 1.6rem;
+    margin: 0; */
+}
+
+/* Date */
+.post__date{
+    /* background-color: #fdfdfd;
+    padding: 0.3rem 1.6rem;
+    margin: 0; */
+}
+
+/* Créateur du post */
+.post__creator{
+    /* background-color: #fdfdfd;
+    padding: 0.3rem 1.6rem;
+    margin: 0; */
+}
+
+
+
+
 /***********/
 /*LOGO MAIN*/
 
@@ -111,5 +175,5 @@ width: 32rem;
 }
 
 .imgAccueil__container{
-margin: -10% 0 0 98%;
+margin: 0 0 0 98%;
 }
