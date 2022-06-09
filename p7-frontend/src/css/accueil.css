@@ -126,6 +126,7 @@ left: -1rem;
 
 /* Title */
 .post__title{
+    margin: 0;
     padding: 1.5rem 2rem 1rem 2rem;
     border-bottom: 1px dotted rgba(253,45,1,0.43);
 }
