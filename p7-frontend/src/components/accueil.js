@@ -35,6 +35,11 @@ export default function Accueil() {
 
         /** Tableau des posts **/
     const [allPosts, setAllPosts] = useState([])
+
+            // Retrouver le nom et prénoms va les user_id présent dans allPosts
+    const [findUserId, setFindUserId] = useState([])
+
+
         /**  Au chargement de la page, récupération dans la BDD des posts **/
     // Récupérer la data au backend via Get/post/all/
     useEffect(() => {
@@ -45,13 +50,20 @@ export default function Accueil() {
                     const postsData = res.data
                     setAllPosts(postsData)
                     console.log(allPosts)
+                    setFindUserId(allPosts.user_id)
+                    console.log(findUserId)
                 })
                 .catch((err) => {
                     console.log(err)
                 })
     }, []);
     console.log(allPosts)
+    console.log(findUserId)
 
+
+
+
+    /** Tableau des posts **/
 
 
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
@@ -68,6 +80,9 @@ export default function Accueil() {
                                 <p className="post__attachement">{post.attachement}</p>
                                 <p className="post__date">{post.createdAt}</p>
                                 <p className="post__creator">{post.user_id}</p>
+                            </div>
+                            <div className="comments--container">
+                                <p className="post__comments"></p>
                             </div>
                             
                     </div>
