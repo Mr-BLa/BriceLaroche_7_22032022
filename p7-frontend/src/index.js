@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom"
 import '../src/css/index.css'
 import '../src/css/accueil.css'
 import '../src/css/profil.css'
+import '../src/css/newPost.css'
 import LoginPage from './LoginPage'
 import SignupPage from './signupPage'
 import App from './App'

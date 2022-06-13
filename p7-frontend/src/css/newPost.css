@@ -1,0 +1,16 @@
+/*
+*           CSS NEW POST
+*/
+
+/* NEW POST FORM */
+
+.postForm--container{
+    padding: 1rem;
+}
+
+
+/* BOUTON */
+
+.newPostSubmitButton{
+    margin-bottom: 2rem;
+}

@@ -88,7 +88,7 @@ export default function NewPost() {
     if( isLoggedIn === true) {
         return (
             <main id="mainContent" className="accueil--main">
-                <div className="post--container">
+                <div className="post--container postForm--container">
                     <h1 className="post__title">Créer une Nouvelle Publication :</h1>
                     <form id="post__form" onSubmit={handleSubmit}>
                         <h2 className="input__title">Titre de la publication:</h2>
@@ -122,7 +122,7 @@ export default function NewPost() {
                                 value={formNewPost.attachement}/>
                         </div>
                         <button 
-                        className="submitButton">
+                        className="submitButton newPostSubmitButton">
                         Poster Nouvelle Publication
                     </button>
                     </form>
