@@ -36,8 +36,37 @@ export default function Accueil() {
         /** Tableau des posts **/
     const [allPosts, setAllPosts] = useState([])
 
-            // Retrouver le nom et prénoms va les user_id présent dans allPosts
-    const [findUserId, setFindUserId] = useState([])
+            // Retrouver les username et les user_id présent dans allPosts
+
+    // Création d'un tableau qui listera les user_id en fonction des username
+
+    const [findUsername, setFindUsername] = useState([ {user_id : "", username: ""} ])
+    
+        /**  Au chargement de la page, récupération dans la BDD des posts **/
+    // Récupérer la data au backend via Get/user/all/
+    useEffect(() => {
+        axios.get(`http://localhost:5000/api/user/all/`, {
+            headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+        })
+            .then((res) => {
+                const userData = res.data
+
+                userData.forEach(element => {
+                    setFindUsername(prevFindUsername => [
+                        ...prevFindUsername,
+                        {
+                        user_id: element.user_id,
+                        username: element.username,
+                        },
+                    ])
+                console.log(userData)
+                console.log(findUsername)
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, []);
 
 
         /**  Au chargement de la page, récupération dans la BDD des posts **/
@@ -50,15 +79,12 @@ export default function Accueil() {
                     const postsData = res.data
                     setAllPosts(postsData)
                     console.log(allPosts)
-                    setFindUserId(allPosts.user_id)
-                    console.log(findUserId)
                 })
                 .catch((err) => {
                     console.log(err)
                 })
     }, []);
     console.log(allPosts)
-    console.log(findUserId)
 
 
 
@@ -74,12 +100,10 @@ export default function Accueil() {
                     <div 
                         key={`${post.post_id}`}
                         className="post--container">
-                            <h1 className="post__title">{post.title}</h1>
+                            <h1 className="post__title">{post.user_id} - {post.createdAt}<br/> {post.title}</h1>
                             <div className="postContent--container">
                                 <p className="post__content">{post.content}</p>
-                                <p className="post__attachement">{post.attachement}</p>
-                                <p className="post__date">{post.createdAt}</p>
-                                <p className="post__creator">{post.user_id}</p>
+                                <div className="post__attachement">{post.attachement}</div>
                             </div>
                             <div className="comments--container">
                                 <p className="post__comments"></p>

@@ -13,6 +13,11 @@ export default function HeaderApp() {
     const navigate = useNavigate()
 
 
+    /** Bouton Nouvelle Publication **/
+    function newPost() {
+        
+    }
+
     /** DropDown **/
     /* Quand l'user clique sur le bouton, toggle entre: "hide" et "show" le dropdown*/
     function dropDown(){
@@ -50,6 +55,11 @@ export default function HeaderApp() {
                         src={HeaderAppLogo}
                         className="headerAccueil--logo"
                         alt="Groupomania Logo"/>
+                    <button 
+                    onClick={newPost}
+                    className="newPostButton">
+                    Nouvelle Publication
+                    </button>
                     <div className="dropdown">
                         <img
                             src={ProfilLogo}
