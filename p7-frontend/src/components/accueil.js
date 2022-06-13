@@ -100,7 +100,7 @@ export default function Accueil() {
                     <div 
                         key={`${post.post_id}`}
                         className="post--container">
-                            <h1 className="post__title">{post.user_id} - {post.createdAt}<br/> {post.title}</h1>
+                            <h1 className="post__title">{post.user_id} - le {post.createdAt}<br/> {post.title}</h1>
                             <div className="postContent--container">
                                 <p className="post__content">{post.content}</p>
                                 <div className="post__attachement">{post.attachement}</div>

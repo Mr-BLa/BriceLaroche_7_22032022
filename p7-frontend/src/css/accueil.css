@@ -168,14 +168,14 @@ left: -1rem;
 /* Title */
 .post__title{
     margin: 0;
-    padding: 1.5rem 2rem 1rem 2rem;
+    padding: 1.5rem 1rem 1rem 1rem;
     border-bottom: 1px dotted rgba(253,45,1,0.43);
 }
 
 /* Container du content */
 .postContent--container{
     background-color: #fdfdfd;
-    padding: .3rem 2rem;
+    padding: .3rem 1rem;
     border-radius: 0 0 20px 20px;
 }
 /* Contenu */
