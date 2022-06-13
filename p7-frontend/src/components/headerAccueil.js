@@ -15,12 +15,12 @@ export default function HeaderApp() {
 
     /** Bouton Nouvelle Publication **/
     function newPost() {
-        
+        navigate('/accueil/new')
     }
 
     /** DropDown **/
     /* Quand l'user clique sur le bouton, toggle entre: "hide" et "show" le dropdown*/
-    function dropDown(){
+    function dropDown() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
@@ -48,30 +48,31 @@ export default function HeaderApp() {
 
 
     return (
-        <Link to="/accueil/">
+        <Link to="/accueil">
             <header id="headerAccueilContainer">
-                <nav id="navBarAccueil">
-                    <img 
-                        src={HeaderAppLogo}
-                        className="headerAccueil--logo"
-                        alt="Groupomania Logo"/>
-                    <button 
-                    onClick={newPost}
-                    className="newPostButton">
-                    Nouvelle Publication
-                    </button>
-                    <div className="dropdown">
-                        <img
-                            src={ProfilLogo}
-                            className="headerAccueil--profilLogo dropbtn"
-                            alt="Profil Logo"
-                            onClick={dropDown}/>
-                                <div id="myDropdown" className="dropdown-content">
-                                    <Link to="/accueil/profil" className="profil--link">Profil</Link>
-                                    <button onClick={logOff}>Déconnexion</button>
-                                </div>
-                    </div>
-                </nav>
+                    <nav id="navBarAccueil">
+                        <img 
+                            src={HeaderAppLogo}
+                            className="headerAccueil--logo"
+                            alt="Groupomania Logo"/>
+                        <Link to='/accueil/new' className="new--link">
+                            <button
+                            className="newPostButton">
+                            Nouvelle Publication
+                            </button>
+                        </Link>
+                        <div className="dropdown">
+                            <img
+                                src={ProfilLogo}
+                                className="headerAccueil--profilLogo dropbtn"
+                                alt="Profil Logo"
+                                onClick={dropDown}/>
+                                    <div id="myDropdown" className="dropdown-content">
+                                        <Link to="/accueil/profil" className="profil--link">Profil</Link>
+                                        <button onClick={logOff}>Déconnexion</button>
+                                    </div>
+                        </div>
+                    </nav>
             </header>
         </Link>
     )

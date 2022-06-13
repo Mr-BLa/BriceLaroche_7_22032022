@@ -13,6 +13,7 @@ import LoginPage from './LoginPage'
 import SignupPage from './signupPage'
 import App from './App'
 import ProfilPage from './profilPage'
+import NewPage from './newPostPage'
 
 ReactDOM.render(
     <BrowserRouter>
@@ -21,6 +22,7 @@ ReactDOM.render(
             <Route path="/signup" element={<SignupPage />}/>
             <Route path="/accueil" element={<App />}/>
             <Route path="/accueil/profil" element={<ProfilPage />}/>
+            <Route path="/accueil/new" element={<NewPage />}/>
         </Routes>
     </BrowserRouter>, 
     document.getElementById('root'))
