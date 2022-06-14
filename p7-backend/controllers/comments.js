@@ -48,7 +48,7 @@ exports.deleteComment = (req, res, next) => {
 // Récupérer tous les commentaires
 exports.getAllComments = (req, res, next) => {
     // Connection BDD MySql
-    connection.query("SELECT * FROM comments ORDER BY `comment_id` DESC ").then(results => {
+    connection.query("SELECT * FROM `comments` JOIN `users` ON comments.user_id = users.user_id ORDER BY `comment_id` DESC ").then(results => {
         console.log(results)
         return res.send(results)
     }).catch(err=> {

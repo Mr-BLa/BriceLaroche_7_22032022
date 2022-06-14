@@ -7,9 +7,10 @@ import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
 import { Link, Navigate } from "react-router-dom"
+import { DateTime } from "luxon";
 
 export default function Accueil() {
-
+    const date = DateTime.fromISO()
 
     // Définition variables éléments du localStorage
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
@@ -34,13 +35,8 @@ export default function Accueil() {
         /** Tableau des posts **/
     const [allPosts, setAllPosts] = useState([])
 
-        // Retrouver les username et les user_id présent dans allPosts
-        // Création d'un tableau qui listera les user_id en fonction des username
-    const [findUsername, setFindUsername] = useState([ {user_id : "", username: ""} ])
-
         /** Tableau des commentaires**/
     const [allComments, setAllComments] = useState([])
-
 
 
         /**  POSTS: Au chargement de la page, récupération dans la BDD des posts **/
@@ -52,14 +48,13 @@ export default function Accueil() {
                 .then((res) => {
                     const postsData = res.data
                     setAllPosts(postsData)
-                    console.log(allPosts)
+                    
                 })
                 .catch((err) => {
                     console.log(err)
                 })
     }, []);
     console.log(allPosts)
-
 
 
             /** COMMENTS: Au chargement de la page, récupération dans la BDD des commentaires **/
@@ -71,6 +66,7 @@ export default function Accueil() {
                 .then((res) => {
                     const commentsData = res.data
                     setAllComments(commentsData)
+                    
                 })
                 .catch((err) => {
                     console.log(err)
@@ -78,7 +74,8 @@ export default function Accueil() {
     }, []);
     console.log(allComments)
 
-    // Trier les commentaires en fonctions des post_id, pour joindre les commentaires aux bons posts
+    // 
+    
     
 
 
