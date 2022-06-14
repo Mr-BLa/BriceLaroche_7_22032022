@@ -12,7 +12,7 @@ export default function Accueil() {
 
 
     // Définition variables éléments du localStorage
-    let tokenInLocalStorage
+    let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
 
 
@@ -20,7 +20,6 @@ export default function Accueil() {
         /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = useState(()=>{
-        tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
 
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
         // Sinon on retourne false 
@@ -41,33 +40,6 @@ export default function Accueil() {
 
         /** Tableau des commentaires**/
     const [allComments, setAllComments] = useState([])
-
-
-        /**  Au chargement de la page, récupération dans la BDD des posts **/
-    // Récupérer la data au backend via Get/user/all/
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/user/all/`, {
-            headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
-        })
-            .then((res) => {
-                const userData = res.data
-
-                userData.forEach(element => {
-                    setFindUsername(prevFindUsername => [
-                        ...prevFindUsername,
-                        {
-                        user_id: element.user_id,
-                        username: element.username,
-                        },
-                    ])
-                console.log(userData)
-                console.log(findUsername)
-                })
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, []);
 
 
 
@@ -99,7 +71,6 @@ export default function Accueil() {
                 .then((res) => {
                     const commentsData = res.data
                     setAllComments(commentsData)
-                    console.log(allComments)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -119,7 +90,7 @@ export default function Accueil() {
                     <div 
                         key={`${post.post_id}`}
                         className="post--container">
-                            <h1 className="post__title">{post.user_id} - le {post.createdat}<br/> {post.title}</h1>
+                            <h1 className="post__title">{post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}</h1>
                             <div className="postContent--container">
                                 <p className="post__content">{post.content}</p>
                                 <div className="post__attachement">{post.attachement}</div>

@@ -14,10 +14,10 @@ export default function Signup() {
     // Fonction qui nous permettra de programmer des changements de page
     const navigate = useNavigate()
 
+    let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = useState(()=>{
-        let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
 
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
         //  Sinon on retourne false 

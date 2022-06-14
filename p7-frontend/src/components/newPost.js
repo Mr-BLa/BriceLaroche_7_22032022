@@ -14,7 +14,7 @@ export default function NewPost() {
     const navigate = useNavigate()
 
     // Définition variables éléments du localStorage
-    let tokenInLocalStorage
+    let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     //let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
 
 
@@ -22,7 +22,6 @@ export default function NewPost() {
         /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = useState(()=>{
-        tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
 
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
         // Sinon on retourne false 

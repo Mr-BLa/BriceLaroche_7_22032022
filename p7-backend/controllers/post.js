@@ -50,7 +50,7 @@ exports.deletePost = (req, res, next) => {
 // Récupérer tous les posts
 exports.getAllPosts = (req, res, next) => {
     // Connection BDD MySql
-    connection.query("SELECT * FROM post ORDER BY `post_id` DESC ").then(results => {
+    connection.query("SELECT * FROM `users` JOIN `post` ON users.user_id = post.user_id ORDER BY `post_id` DESC").then(results => {
         return res.send(results)
     }).catch(err=> {
         return res.sendStatus(400)
@@ -61,7 +61,7 @@ exports.getAllPosts = (req, res, next) => {
 exports.getPostById = (req, res, next) => {
     // Connection BDD MySql
     const post_id = parseInt(req.params.id)
-    connection.query(`SELECT * FROM post WHERE post_id=?`,[post_id]).then(results => {
+    connection.query(`SELECT * FROM post WHERE post_id=?`, post_id).then(results => {
         return res.send(results[0])
     }).catch(err=> {
         return res.sendStatus(400)
