@@ -14,9 +14,9 @@ export default function HeaderApp() {
 
 
     /** Bouton Nouvelle Publication **/
-    function newPost() {
-        navigate('/accueil/new')
-    }
+    // function newPost() {
+    //     navigate('/accueil/new')
+    // }
 
     /** DropDown **/
     /* Quand l'user clique sur le bouton, toggle entre: "hide" et "show" le dropdown*/
@@ -43,7 +43,7 @@ export default function HeaderApp() {
     function logOff() {
         localStorage.removeItem('token')
         localStorage.removeItem('user_id')
-        navigate('/')
+        return (navigate('/'))
     }
 
 

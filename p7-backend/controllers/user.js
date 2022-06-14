@@ -141,7 +141,7 @@ exports.modifyUser = (req, res, next) => {
     const id = parseInt(req.params.id)
 
     // On passe la commande sql pour enregistrer les modifications dans la bdd
-    connection.execute(`UPDATE users SET 'username' = '?', 'firstname' = '?', 'lastname' = '?', 'role' = '?', 'bio' = '?' WHERE user_id='?'`,[req.body.username, req.body.firstname, req.body.lastname, req.body.role, req.body.bio, [id]]).then(modifications => {
+    connection.execute(`UPDATE users SET username = ?, firstname = ?, lastname = ?, role = ?, bio = ? WHERE user_id=?`,[req.body.username, req.body.firstname, req.body.lastname, req.body.role, req.body.bio, id]).then(modifications => {
         console.log(modifications)
         return res.send(modifications)
     }).catch(err=> {

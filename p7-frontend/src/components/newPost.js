@@ -61,12 +61,12 @@ export default function NewPost() {
 
 
         /** SOUMISSION ET RECEPTION REQUETE **/
-    // Fonction au Submit/Signup (bouton login):
+    // Fonction au Submit Nouvelle requête:
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
         console.log(formNewPost)
-        // Submit la data au backend via PUT
+        // Submit la data au backend via POST
         axios.post(`http://localhost:5000/api/post/`, formNewPost, {
             headers: {
                 'Authorization': `Bearer ${tokenInLocalStorage}`

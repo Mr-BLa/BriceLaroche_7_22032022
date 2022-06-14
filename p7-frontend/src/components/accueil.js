@@ -32,16 +32,17 @@ export default function Accueil() {
     })
 
 
-
         /** Tableau des posts **/
     const [allPosts, setAllPosts] = useState([])
 
-            // Retrouver les username et les user_id présent dans allPosts
-
-    // Création d'un tableau qui listera les user_id en fonction des username
-
+        // Retrouver les username et les user_id présent dans allPosts
+        // Création d'un tableau qui listera les user_id en fonction des username
     const [findUsername, setFindUsername] = useState([ {user_id : "", username: ""} ])
-    
+
+        /** Tableau des commentaires**/
+    const [allComments, setAllComments] = useState([])
+
+
         /**  Au chargement de la page, récupération dans la BDD des posts **/
     // Récupérer la data au backend via Get/user/all/
     useEffect(() => {
@@ -69,7 +70,8 @@ export default function Accueil() {
     }, []);
 
 
-        /**  Au chargement de la page, récupération dans la BDD des posts **/
+
+        /**  POSTS: Au chargement de la page, récupération dans la BDD des posts **/
     // Récupérer la data au backend via Get/post/all/
     useEffect(() => {
         axios.get(`http://localhost:5000/api/post/all/`, {
@@ -88,8 +90,25 @@ export default function Accueil() {
 
 
 
+            /** COMMENTS: Au chargement de la page, récupération dans la BDD des commentaires **/
+    // Récupérer la data au backend via Get/comments/all/
+    useEffect(() => {
+        axios.get(`http://localhost:5000/api/comments/all/`, {
+                headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+            })
+                .then((res) => {
+                    const commentsData = res.data
+                    setAllComments(commentsData)
+                    console.log(allComments)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+    }, []);
+    console.log(allComments)
 
-    /** Tableau des posts **/
+    // Trier les commentaires en fonctions des post_id, pour joindre les commentaires aux bons posts
+    
 
 
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
@@ -100,7 +119,7 @@ export default function Accueil() {
                     <div 
                         key={`${post.post_id}`}
                         className="post--container">
-                            <h1 className="post__title">{post.user_id} - le {post.createdAt}<br/> {post.title}</h1>
+                            <h1 className="post__title">{post.user_id} - le {post.createdat}<br/> {post.title}</h1>
                             <div className="postContent--container">
                                 <p className="post__content">{post.content}</p>
                                 <div className="post__attachement">{post.attachement}</div>
@@ -108,7 +127,6 @@ export default function Accueil() {
                             <div className="comments--container">
                                 <p className="post__comments"></p>
                             </div>
-                            
                     </div>
                 ))}
                 <div className="imgAccueil__container">
