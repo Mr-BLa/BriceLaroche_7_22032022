@@ -7,10 +7,9 @@ import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
 import { Link, Navigate } from "react-router-dom"
-import { DateTime } from "luxon";
+import { DateTime } from "luxon"
 
 export default function Accueil() {
-    const date = DateTime.fromISO()
 
     // Définition variables éléments du localStorage
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
@@ -55,7 +54,11 @@ export default function Accueil() {
                 })
     }, []);
     console.log(allPosts)
-
+    console.log(allPosts.createdat)
+    let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
+    let jsDate = DateTime.fromJSDate(allPosts.createdat)
+    console.log(parseDate)
+    console.log(jsDate)
 
             /** COMMENTS: Au chargement de la page, récupération dans la BDD des commentaires **/
     // Récupérer la data au backend via Get/comments/all/
