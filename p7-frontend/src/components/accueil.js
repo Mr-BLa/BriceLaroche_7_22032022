@@ -47,18 +47,18 @@ export default function Accueil() {
                 .then((res) => {
                     const postsData = res.data
                     setAllPosts(postsData)
-                    
                 })
                 .catch((err) => {
                     console.log(err)
                 })
     }, []);
+    
     console.log(allPosts)
-    console.log(allPosts.createdat)
-    let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
-    let jsDate = DateTime.fromJSDate(allPosts.createdat)
-    console.log(parseDate)
-    console.log(jsDate)
+    // console.log(allPosts.createdat)
+    // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
+    // let jsDate = DateTime.fromJSDate(allPosts.createdat)
+    // console.log(parseDate)
+    // console.log(jsDate)
 
             /** COMMENTS: Au chargement de la page, récupération dans la BDD des commentaires **/
     // Récupérer la data au backend via Get/comments/all/

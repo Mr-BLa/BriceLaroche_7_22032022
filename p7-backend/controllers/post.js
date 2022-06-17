@@ -11,9 +11,7 @@ const connection = require('../services/database')
 
 // Création d'un post
 exports.createPost = (req, res, next) => {
-    const id = parseInt(req.auth.user_id)
-    console.log("CONST ID:", id)
-    connection.execute("INSERT INTO `post` (`user_id`, `title`, `content`, `attachement`) VALUES "([id], req.body.title, req.body.content, req.body.attachement)).then(results => {
+    connection.execute('INSERT INTO `post` (`user_id`, `title`, `content`, `attachement`) VALUES (?, ?, ?, ?)', [req.body.user_id, req.body.title, req.body.content, req.body.attachement]).then(results => {
         return res.send(results)
     }).catch(err=> {
         console.log("error:", err)

@@ -15,7 +15,7 @@ export default function NewPost() {
 
     // Définition variables éléments du localStorage
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
-    //let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
+    let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
 
 
 
@@ -36,6 +36,7 @@ export default function NewPost() {
             /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant: Nom d'utilisateur, prénom, nom, role et bio:
     const [formNewPost, setFormNewPost] = useState({
+        user_id: idInLocalStorage,
         title: "",
         content: "",
         attachement: "",
