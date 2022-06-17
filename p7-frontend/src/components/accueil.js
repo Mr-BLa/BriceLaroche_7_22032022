@@ -80,7 +80,13 @@ export default function Accueil() {
     // 
     
     
-
+    /*j'ai allPosts. J'ai allComments. Je veux dans allPosts.map, que pour chaque post, si il y a un comment.post_id = post.post_id : on affiche le commentaire en question*/
+    const [commentCount, setcommentCount] = useState(0)
+    function anyComments() {
+        
+    }
+    
+    
 
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
@@ -95,11 +101,22 @@ export default function Accueil() {
                                 <p className="post__content">{post.content}</p>
                                 <div className="post__attachement">{post.attachement}</div>
                             </div>
+
                             <div className="comments--container">
-                                <p className="post__comments"></p>
+                                <p className="post__comments">
+                                    {allComments.forEach(comment => {
+                                        if (comment.post_id === post.post_id) {
+                                            setcommentCount(commentCount + 1)
+                                            console.log(commentCount)
+                                        }
+                                    })}
+                                </p>
                             </div>
+                            
                     </div>
+                    
                 ))}
+                
                 <div className="imgAccueil__container">
                     <img 
                         src={logo}
