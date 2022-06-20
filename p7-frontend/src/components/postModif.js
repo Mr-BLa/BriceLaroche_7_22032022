@@ -1,5 +1,5 @@
 /*
-*              NEW POST
+*              POST MODIF
 */
 
 import React from "react"
@@ -8,15 +8,14 @@ import logo from "../logos/icon.svg"
 import axios from "axios"
 import { Navigate, useNavigate } from "react-router-dom"
 
-
-export default function NewPost() {
+export default function PostModif() {
     // Fonction qui nous permettra de programmer des changements de page
     const navigate = useNavigate()
 
     // Définition variables éléments du localStorage
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
-
+    let isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
 
 
         /** VERIFICATION STATUT CONNEXION **/
@@ -31,29 +30,49 @@ export default function NewPost() {
             return false
         }
     })
+    
 
-
-            /** OBJET FORMULAIRE **/
+                /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant: user_id, titre, content, attachement:
-    const [formNewPost, setFormNewPost] = useState({
+    const [formPostModif, setFormPostModif] = useState({
         user_id: idInLocalStorage,
         title: "",
         content: "",
         attachement: "",
     })
-    console.log(formNewPost)
+    console.log(formPostModif)
 
 
+        /**  Au chargement de la page, récupération dans la BDD des éléments liés au profil **/
+    // Récupérer la data au backend via Get/:id
+    useEffect(() => {
+        axios.get(`http://localhost:5000/api/post/all/${IDDUPOST}`, {
+                headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+            })
+                .then((res) => {
+                    const data = res.data
+                    console.log(res.data)
+                    setFormPostModif({
+                        title: data.title,
+                        content: data.content,
+                        attachement: data.attachement,
+                    })
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+    }, []);
 
-            /** GESTION/ACTUALISATION DU FORMULAIRE **/
+
+                /** GESTION/ACTUALISATION DU FORMULAIRE **/
     // On récupère notre objet avec tous ses composants et on actualise en fonction des éléments qui sont modifiés (via target.name):
     function handleChange(event) {
         // Déstructuration d'event.target pour sortir les éléments dont on a besoin
         const {name, value} = event.target
         // Actualisation de l'objet en fonction des changements de value effectués
-        setFormNewPost(prevformNewPost => {
+        setFormPostModif(prevFormPostModif => {
             return {
-                ...prevformNewPost,
+                ...prevFormPostModif,
                 [name]: value
             }
         })
@@ -65,31 +84,29 @@ export default function NewPost() {
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        console.log(formNewPost)
+        console.log(formPostModif)
         // Submit la data au backend via POST
-        axios.post(`http://localhost:5000/api/post/`, formNewPost, {
+        axios.put(`http://localhost:5000/api/post/${IDDUPOST}`, formPostModif, {
             headers: {
                 'Authorization': `Bearer ${tokenInLocalStorage}`
             },
         })
             .then((res) => {
                 // retour page accueil
-                    navigate('/accueil')
+                alert("Votre post a été modifié")
+                navigate('/accueil')
                 
             }).catch(err => {
                 console.log(err)
             })
     }
 
-    //`user_id`, `title`, `content`, `attachement
-
-
-    /** AFFICHAGE PAGE NOUVELLE PUBLICATION SI USER CONNECTE. Si pas connécté => redirection page login **/
+    /** AFFICHAGE PAGE POST MODIF SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
             <main id="mainContent" className="accueil--main">
                 <div className="post--container postForm--container">
-                    <h1 className="post__title">Créer une Nouvelle Publication :</h1>
+                    <h1 className="post__title">Modifier la Publication :</h1>
                     <form id="post__form" onSubmit={handleSubmit}>
                         <h2 className="input__title">Titre de la publication:</h2>
                         <div className="input__container">
@@ -99,7 +116,7 @@ export default function NewPost() {
                                 className="inputForm" 
                                 onChange={handleChange}
                                 name="title"
-                                value={formNewPost.title}/>
+                                value={formPostModif.title}/>
                         </div>
                         <h2 className="input__title">Que souhaitez-vous partager? :</h2>
                         <div className="input__container">
@@ -109,7 +126,7 @@ export default function NewPost() {
                                 className="inputForm" 
                                 onChange={handleChange}
                                 name="content"
-                                value={formNewPost.content}/>
+                                value={formPostModif.content}/>
                         </div>
                         <h2 className="input__title">Lien URL de la pièce jointe:</h2>
                         <div className="input__container">
@@ -119,11 +136,11 @@ export default function NewPost() {
                                 className="inputForm" 
                                 onChange={handleChange}
                                 name="attachement"
-                                value={formNewPost.attachement}/>
+                                value={formPostModif.attachement}/>
                         </div>
                         <button 
                         className="submitButton newPostSubmitButton">
-                        Poster Nouvelle Publication
+                        Modifier la Publication
                     </button>
                     </form>
                 </div>

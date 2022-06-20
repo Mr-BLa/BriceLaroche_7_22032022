@@ -93,7 +93,14 @@ export default function Accueil() {
     /*j'ai allPosts. J'ai allComments. Je veux dans allPosts.map, que pour chaque post, si il y a un comment.post_id = post.post_id : on affiche le commentaire en question*/
     const [commentArray, setCommentArray] = useState([])
     
-    
+
+
+    /**MODIFICATION POST**/
+    function postModif() {
+        
+    }
+
+    /**SUPPRESSION POST**/
     
 
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
@@ -108,12 +115,12 @@ export default function Accueil() {
                                 {post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}
 
                                 {/* {if (gotAuthorization === true) {
-                                    return (
+                                    return (*/}
                                         <span className="title__btn--container">
-                                            <button className="btn__modif">Modifier</button>
-                                            <button className="btn__suppr">Supprimer</button>
+                                            <button className="btn__modif" OnClick={postModif}>Modifier</button>
+                                            <button className="btn__suppr" OnClick={postDelete}>Supprimer</button>
                                         </span>
-                                    )
+                                    {/*)
                                 }} */}
 
                             </h1>

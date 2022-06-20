@@ -23,7 +23,7 @@ exports.createPost = (req, res, next) => {
 exports.modifyPost = (req, res, next) => {
     // Connection BDD MySql
     const post_id = parseInt(req.params.id)
-    connection.execute(`UPDATE post SET title = '?', content = '?', attachement = '?' WHERE post_id = '?'`, [req.body.title, req.body.content, req.body.attachement, post_id]).then(modifications => {
+    connection.execute(`UPDATE post SET title = ?, content = ?, attachement = ? WHERE post_id = ?`, [req.body.title, req.body.content, req.body.attachement, post_id]).then(modifications => {
         console.log(modifications)
         return res.send(modifications)
     }).catch(err=> {

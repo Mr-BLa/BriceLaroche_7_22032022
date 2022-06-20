@@ -15,6 +15,7 @@ import SignupPage from './signupPage'
 import App from './App'
 import ProfilPage from './profilPage'
 import NewPage from './newPostPage'
+import PostModif from './postModif'
 
 ReactDOM.render(
     <BrowserRouter>
@@ -24,6 +25,7 @@ ReactDOM.render(
             <Route path="/accueil" element={<App />}/>
             <Route path="/accueil/profil" element={<ProfilPage />}/>
             <Route path="/accueil/new" element={<NewPage />}/>
+            <Route path="/accueil/postmodif" element={<PostModif />}/>
         </Routes>
     </BrowserRouter>, 
     document.getElementById('root'))
