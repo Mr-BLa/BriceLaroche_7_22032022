@@ -6,10 +6,13 @@ import React from "react"
 import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
-import { Link, Navigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { DateTime } from "luxon"
 
 export default function Accueil() {
+    // Fonction qui nous permettra de programmer des changements de page
+    const navigate = useNavigate()
+
 
     // Définition variables éléments du localStorage
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
@@ -95,13 +98,28 @@ export default function Accueil() {
     
 
 
-    /**MODIFICATION POST**/
-    function postModif() {
-        
+        /**MODIFICATION POST**/
+    function postModif(post_id) {
+        navigate(`/accueil/postmodif/${post_id}`)
     }
 
-    /**SUPPRESSION POST**/
-    
+        /**SUPPRESSION POST**/
+    function postDelete(post_id) {
+        // Submit la data au backend via PUT
+        axios.delete(`http://localhost:5000/api/post/${post_id}`, {
+            headers: {
+                'Authorization': `Bearer ${tokenInLocalStorage}`
+            },
+        })
+            .then((res) => {
+                // Message confirmation suppression + retour page accueil
+                    alert("Votre publication a été supprimé")
+                    navigate('/')
+                
+            }).catch(err => {
+                console.log(err)
+            })
+    }
 
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
@@ -117,8 +135,8 @@ export default function Accueil() {
                                 {/* {if (gotAuthorization === true) {
                                     return (*/}
                                         <span className="title__btn--container">
-                                            <button className="btn__modif" OnClick={postModif}>Modifier</button>
-                                            <button className="btn__suppr" OnClick={postDelete}>Supprimer</button>
+                                            <button className="btn__modif" OnClick={postModif(post.post_id)}>Modifier</button>
+                                            <button className="btn__suppr" OnClick={postDelete(post.post_id)}>Supprimer</button>
                                         </span>
                                     {/*)
                                 }} */}

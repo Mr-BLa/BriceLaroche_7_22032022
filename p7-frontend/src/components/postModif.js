@@ -102,7 +102,7 @@ export default function PostModif() {
     }
 
     /** AFFICHAGE PAGE POST MODIF SI USER CONNECTE. Si pas connécté => redirection page login **/
-    if( isLoggedIn === true) {
+    if( isLoggedIn === true ) {
         return (
             <main id="mainContent" className="accueil--main">
                 <div className="post--container postForm--container">

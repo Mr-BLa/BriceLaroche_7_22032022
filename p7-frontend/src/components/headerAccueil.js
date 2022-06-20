@@ -9,6 +9,7 @@ import ProfilLogo from "../logos/iconmonstr-user-20.svg"
 import { Link, useNavigate } from "react-router-dom"
 
 export default function HeaderApp() {
+    
     // Fonction qui nous permettra de programmer des changements de page
     const navigate = useNavigate()
 
@@ -43,7 +44,7 @@ export default function HeaderApp() {
     function logOff() {
         localStorage.removeItem('token')
         localStorage.removeItem('user_id')
-        return (navigate('/'))
+        navigate('/')
     }
 
 
