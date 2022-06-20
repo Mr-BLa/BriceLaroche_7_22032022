@@ -70,6 +70,7 @@ useEffect(()=>{console.log("login")},[])
                     const token = res.data
                     localStorage.setItem('token', JSON.stringify(token.token))
                     localStorage.setItem('user_id', JSON.stringify(token.user_id))
+                    localStorage.setItem('isAdmin', JSON.stringify(token.isAdmin))
                     navigate('/accueil')
                 }
             }).catch(err => {

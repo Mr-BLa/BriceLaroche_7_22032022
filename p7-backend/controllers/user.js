@@ -60,10 +60,14 @@ exports.login = (req, res, next) => {
                             return res.sendStatus(401)
                         } else {
                             // Si Mdp correct, renvoyer un user_id + un token
-                            connection.query("SELECT user_id FROM users WHERE email= ?", req.body.email).then(function(userId){
-                                let { user_id } = userId[0]
+                            connection.query("SELECT user_id, isadmin FROM users WHERE email= ?", req.body.email).then(function(userData){
+                                console.log(userData)
+                                let user_id  = userData[0].user_id
+                                let isAdmin  = userData[0].isadmin
                                 res.status(200).json({
                                     user_id: user_id,
+
+                                    isAdmin: isAdmin,
                                     // Utilisation jwt: création et vérification de token
                                     token: jwt.sign(
                                     // Payload: données que l'on veut encoder à l'intérieur du token:

@@ -44,7 +44,6 @@ left: -1rem;
     background-color: #f17e66;
     border-radius: 5px;
     border: none;
-    
     background-size: 300% 100%;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
@@ -172,26 +171,45 @@ left: -1rem;
     border-bottom: 1px dotted rgba(253,45,1,0.43);
 }
 
+/* Box des boutons  */
+.title__btn--container{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+/* Bouton Modifier  */
+.btn__modif{
+    height: 2.3rem;
+    margin:  0rem 0.5rem 0rem 0rem;
+    padding: 0 1.3rem;
+    color: white;
+    background-color: #f17e66;
+    border-radius: 5px;
+    border: none;
+    background-size: 300% 100%;
+}
+
+/* Bouton Supprimer */
+.btn__suppr{
+    height: 2.3rem;
+    margin:  0rem 0rem 0rem 0.5rem;
+    padding: 0 1.3rem;
+    color: white;
+    background-color: #fea347 ;
+    border-radius: 5px;
+    border: none;
+    background-size: 300% 100%;
+    
+}
+
+
 /* Container du content */
 .postContent--container{
     background-color: #fdfdfd;
     padding: .3rem 1rem;
     border-radius: 0 0 20px 20px;
 }
-/* Contenu */
-.post__content{
-    /* background-color: #fdfdfd;
-    padding: 0.3rem 1.6rem;
-    margin: 0; */
-}
-
-/* Attachement */
-.post__attachement{
-    /* background-color: #fdfdfd;
-    padding: 0.3rem 1.6rem;
-    margin: 0; */
-}
-
 
 
 

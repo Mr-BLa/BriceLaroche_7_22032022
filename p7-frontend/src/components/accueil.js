@@ -14,6 +14,8 @@ export default function Accueil() {
     // Définition variables éléments du localStorage
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
+    let isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
+
 
 
 
@@ -29,7 +31,6 @@ export default function Accueil() {
             return false
         }
     })
-
 
         /** Tableau des posts **/
     const [allPosts, setAllPosts] = useState([])
@@ -54,6 +55,8 @@ export default function Accueil() {
     }, []);
     
     console.log(allPosts)
+
+    /** /!\ LUXON MARCHE PAS /!\ **/
     // console.log(allPosts.createdat)
     // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
     // let jsDate = DateTime.fromJSDate(allPosts.createdat)
@@ -77,14 +80,19 @@ export default function Accueil() {
     }, []);
     console.log(allComments)
 
-    // 
-    
+    /** /!\ En lien avec IF /!\ **/
+        /** Vérification Authorization pour modification/suppression des posts **/
+        // const [gotAuthorization, setGotAuthorization] = useState(()=>{
+        //     if (post.user_id === idInLocalStorage || isAdmin === 1){
+        //         return true 
+        //     } else {
+        //         return false
+        //     }
+        // })
     
     /*j'ai allPosts. J'ai allComments. Je veux dans allPosts.map, que pour chaque post, si il y a un comment.post_id = post.post_id : on affiche le commentaire en question*/
-    const [commentCount, setcommentCount] = useState(0)
-    function anyComments() {
-        
-    }
+    const [commentArray, setCommentArray] = useState([])
+    
     
     
 
@@ -96,7 +104,19 @@ export default function Accueil() {
                     <div 
                         key={`${post.post_id}`}
                         className="post--container">
-                            <h1 className="post__title">{post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}</h1>
+                            <h1 className="post__title">
+                                {post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}
+
+                                {/* {if (gotAuthorization === true) {
+                                    return (
+                                        <span className="title__btn--container">
+                                            <button className="btn__modif">Modifier</button>
+                                            <button className="btn__suppr">Supprimer</button>
+                                        </span>
+                                    )
+                                }} */}
+
+                            </h1>
                             <div className="postContent--container">
                                 <p className="post__content">{post.content}</p>
                                 <div className="post__attachement">{post.attachement}</div>
@@ -104,14 +124,22 @@ export default function Accueil() {
 
                             <div className="comments--container">
                                 <p className="post__comments">
-                                    {allComments.forEach(comment => {
+
+                                    {/* {allComments.forEach(comment => {
                                         if (comment.post_id === post.post_id) {
-                                            setcommentCount(commentCount + 1)
-                                            console.log(commentCount)
+                                            setCommentArray(prevCommentArray => {
+                                                return {
+                                                    ...prevCommentArray, 
+                                                    comment
+                                                }
+                                            })
+                                            console.log(commentArray)
                                         }
                                     })}
+                                    {commentArray.firstname} {commentArray.lastname} - le {commentArray.createdat} <br /> {commentArray.text} */}
+
                                 </p>
-                            </div>
+                            </div> 
                             
                     </div>
                     
