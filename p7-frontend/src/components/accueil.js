@@ -49,6 +49,7 @@ export default function Accueil() {
             })
                 .then((res) => {
                     const postsData = res.data
+                    console.log(postsData)
                     setAllPosts(postsData)
                 })
                 .catch((err) => {

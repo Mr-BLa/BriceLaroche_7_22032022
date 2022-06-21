@@ -21,8 +21,9 @@ exports.createPost = (req, res, next) => {
 
 // Modification d'un post
 exports.modifyPost = (req, res, next) => {
+    const post_id = req.params.id
     // Connection BDD MySql
-    connection.execute(`UPDATE post SET title = ?, content = ?, attachement = ? WHERE post_id = ?`, [req.body.title, req.body.content, req.body.attachement, req.body.post_id]).then(modifications => {
+    connection.execute(`UPDATE post SET title = ?, content = ?, attachement = ? WHERE post_id = ?`, [req.body.title, req.body.content, req.body.attachement, post_id]).then(modifications => {
         console.log(modifications)
         return res.send(modifications)
     }).catch(err=> {
@@ -47,7 +48,7 @@ exports.deletePost = (req, res, next) => {
 // Récupérer tous les posts
 exports.getAllPosts = (req, res, next) => {
     // Connection BDD MySql
-    connection.query("SELECT * FROM `users` JOIN `post` ON users.user_id = post.user_id ORDER BY `post_id` DESC").then(results => {
+    connection.query("SELECT users.user_id, users.firstname, users.lastname, users.isadmin, post.post_id, post.user_id, post.title, post.content, post.attachement, post.createdat FROM users JOIN post ON users.user_id = post.user_id ORDER BY post_id DESC").then(results => {
         return res.send(results)
     }).catch(err=> {
         return res.sendStatus(400)
