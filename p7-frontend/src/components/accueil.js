@@ -21,7 +21,6 @@ export default function Accueil() {
 
 
 
-
         /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = useState(()=>{
@@ -56,15 +55,8 @@ export default function Accueil() {
                     console.log(err)
                 })
     }, []);
-    
     console.log(allPosts)
 
-    /** /!\ LUXON MARCHE PAS /!\ **/
-    // console.log(allPosts.createdat)
-    // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
-    // let jsDate = DateTime.fromJSDate(allPosts.createdat)
-    // console.log(parseDate)
-    // console.log(jsDate)
 
             /** COMMENTS: Au chargement de la page, récupération dans la BDD des commentaires **/
     // Récupérer la data au backend via Get/comments/all/
@@ -83,14 +75,12 @@ export default function Accueil() {
     }, []);
     console.log(allComments)
 
-    /** /!\ En lien avec IF /!\ **/
-        /** Vérification Authorization pour modification/suppression des posts **/
-
-    
-    /*j'ai allPosts. J'ai allComments. Je veux dans allPosts.map, que pour chaque post, si il y a un comment.post_id = post.post_id : on affiche le commentaire en question*/
-    const [commentArray, setCommentArray] = useState([])
-    
-
+        /** /!\ LUXON MARCHE PAS /!\ **/
+    // console.log(allPosts.createdat)
+    // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
+    // let jsDate = DateTime.fromJSDate(allPosts.createdat)
+    // console.log(parseDate)
+    // console.log(jsDate)
 
         /**MODIFICATION POST**/
     function postModif(post_id) {
@@ -132,7 +122,7 @@ export default function Accueil() {
                                 {post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}
 
                                 {  
-                                    isAdmin===1 || idInLocalStorage===post.user_id? (<span className="title__btn--container">
+                                    isAdmin === 1 || idInLocalStorage === post.user_id ? (<span className="title__btn--container">
                                         <button className="btn__modif" onClick={()=>postModif(post.post_id)}>Modifier</button>
                                         <button className="btn__suppr" onClick={()=>postDelete(post.post_id)}>Supprimer</button>
                                     </span>):null
@@ -147,19 +137,6 @@ export default function Accueil() {
 
                             <div className="comments--container">
                                 <p className="post__comments">
-
-                                    {/* {allComments.forEach(comment => {
-                                        if (comment.post_id === post.post_id) {
-                                            setCommentArray(prevCommentArray => {
-                                                return {
-                                                    ...prevCommentArray, 
-                                                    comment
-                                                }
-                                            })
-                                            console.log(commentArray)
-                                        }
-                                    })}
-                                    {commentArray.firstname} {commentArray.lastname} - le {commentArray.createdat} <br /> {commentArray.text} */}
 
                                 </p>
                             </div> 

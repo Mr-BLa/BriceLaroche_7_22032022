@@ -14,11 +14,6 @@ export default function HeaderApp() {
     const navigate = useNavigate()
 
 
-    /** Bouton Nouvelle Publication **/
-    // function newPost() {
-    //     navigate('/accueil/new')
-    // }
-
     /** DropDown **/
     /* Quand l'user clique sur le bouton, toggle entre: "hide" et "show" le dropdown*/
     function dropDown() {

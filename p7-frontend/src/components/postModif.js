@@ -53,7 +53,6 @@ export default function PostModif() {
             })
                 .then((res) => {
                     const data = res.data
-                    console.log(res.data)
                     setFormPostModif({
                         title: data.title,
                         content: data.content,

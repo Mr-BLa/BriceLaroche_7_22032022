@@ -44,7 +44,6 @@ export default function ModifProfil() {
         role: "",
         bio: "",
     })
-    console.log(formModify)
 
 
         /**  Au chargement de la page, récupération dans la BDD des éléments liés au profil **/
@@ -55,7 +54,6 @@ export default function ModifProfil() {
             })
                 .then((res) => {
                     const data = res.data
-                    console.log(res.data)
                     setFormModify({
                         username: data.username,
                         firstname: data.firstname,

@@ -41,7 +41,6 @@ export default function NewPost() {
         content: "",
         attachement: "",
     })
-    console.log(formNewPost)
 
 
 
