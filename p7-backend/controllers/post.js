@@ -33,9 +33,9 @@ exports.modifyPost = (req, res, next) => {
 
 // Suppression d'un post
 exports.deletePost = (req, res, next) => {
-    const post_id = parseInt(req.params.id)
-    connection.execute(`DELETE FROM post WHERE post_id = ?`, post_id).then(suppr => {
-        console.log(suppr)
+    const post_id = req.params.id
+    connection.execute(`DELETE FROM post WHERE post_id = ?`, [post_id]).then(suppr => {
+        // console.log(suppr)
         return res.send(suppr)
     })
     .catch(err => {

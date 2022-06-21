@@ -188,7 +188,20 @@ left: -1rem;
     border-radius: 5px;
     border: none;
     background-size: 300% 100%;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
 }
+
+.btn__modif:hover{
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(54deg, #f17e66 15%, rgba(252,237,237,1) 20%, rgba(253,45,1,1) 100%);
+    box-shadow: 0 4px 15px 0 rgba(253,45,1,1);
+}
+
 
 /* Bouton Supprimer */
 .btn__suppr{
@@ -196,12 +209,25 @@ left: -1rem;
     margin:  0rem 0rem 0rem 0.5rem;
     padding: 0 1.3rem;
     color: white;
-    background-color: #fea347 ;
+    background-color: #ffc769 ;
     border-radius: 5px;
     border: none;
     background-size: 300% 100%;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
     
 }
+
+.btn__suppr:hover{
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(54deg, #ffc769 15%, rgba(252,237,237,1) 20%, #ff7f00 100%);
+    box-shadow: 0 4px 15px 0 #ff7f00;
+}
+
 
 
 /* Container du content */

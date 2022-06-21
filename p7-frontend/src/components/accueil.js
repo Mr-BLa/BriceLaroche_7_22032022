@@ -85,13 +85,7 @@ export default function Accueil() {
 
     /** /!\ En lien avec IF /!\ **/
         /** Vérification Authorization pour modification/suppression des posts **/
-        // const [gotAuthorization, setGotAuthorization] = useState(()=>{
-        //     if (post.user_id === idInLocalStorage || isAdmin === 1){
-        //         return true 
-        //     } else {
-        //         return false
-        //     }
-        // })
+
     
     /*j'ai allPosts. J'ai allComments. Je veux dans allPosts.map, que pour chaque post, si il y a un comment.post_id = post.post_id : on affiche le commentaire en question*/
     const [commentArray, setCommentArray] = useState([])
@@ -100,29 +94,29 @@ export default function Accueil() {
 
         /**MODIFICATION POST**/
     function postModif(post_id) {
-        // localStorage.setItem('post_id', JSON.stringify(post_id))
-        // navigate(`/accueil/postmodif`)
+        localStorage.setItem('post_id', JSON.stringify(post_id))
+        navigate(`/accueil/postmodif`)
     }
 
         /**SUPPRESSION POST**/
     function postDelete(post_id) {
-        // if (window.confirm("Voulez vous supprimer le post?") === true ){
-        //         // Submit la data au backend via PUT
-        //     axios.delete(`http://localhost:5000/api/post/${post_id}`, {
-        //         headers: {
-        //             'Authorization': `Bearer ${tokenInLocalStorage}`
-        //         },
-        //     })
-        //         .then((res) => {
-        //             // Message confirmation suppression + retour page accueil
-        //                 localStorage.removeItem('post_id')
-        //                 alert("Votre publication a été supprimé")
-        //                 navigate('/')
+        if (window.confirm("Voulez vous supprimer le post?") === true ){
+                // Submit la data au backend via PUT
+            axios.delete(`http://localhost:5000/api/post/${post_id}`, {
+                headers: {
+                    'Authorization': `Bearer ${tokenInLocalStorage}`
+                },
+            })
+                .then((res) => {
+                    // Message confirmation suppression + retour page accueil
+                        localStorage.removeItem('post_id')
+                        alert("Votre publication a été supprimé")
+                        navigate('/')
                     
-        //         }).catch(err => {
-        //             console.log(err)
-        //         })
-        // }
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
         
     }
 
@@ -137,14 +131,13 @@ export default function Accueil() {
                             <h1 className="post__title">
                                 {post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}
 
-                                {/* {if (gotAuthorization === true) {
-                                    return (*/}
-                                        <span className="title__btn--container">
-                                            <button className="btn__modif" OnClick={postModif(post.post_id)}>Modifier</button>
-                                            <button className="btn__suppr" OnClick={postDelete(post.post_id)}>Supprimer</button>
-                                        </span>
-                                    {/*)
-                                }} */}
+                                {  
+                                    isAdmin===1 || idInLocalStorage===post.user_id? (<span className="title__btn--container">
+                                        <button className="btn__modif" onClick={()=>postModif(post.post_id)}>Modifier</button>
+                                        <button className="btn__suppr" onClick={()=>postDelete(post.post_id)}>Supprimer</button>
+                                    </span>):null
+                                }
+
 
                             </h1>
                             <div className="postContent--container">
