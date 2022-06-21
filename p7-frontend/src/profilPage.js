@@ -14,7 +14,6 @@ function ProfilPage() {
             <Header />
             <Profil />
         </div>
-
     )
 }
 
