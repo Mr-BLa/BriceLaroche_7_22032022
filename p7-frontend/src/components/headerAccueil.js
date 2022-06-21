@@ -44,6 +44,8 @@ export default function HeaderApp() {
     function logOff() {
         localStorage.removeItem('token')
         localStorage.removeItem('user_id')
+        localStorage.removeItem('isAdmin')
+        localStorage.removeItem('post_id')
         navigate('/')
     }
 

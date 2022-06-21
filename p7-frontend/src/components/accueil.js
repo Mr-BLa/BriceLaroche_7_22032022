@@ -100,25 +100,30 @@ export default function Accueil() {
 
         /**MODIFICATION POST**/
     function postModif(post_id) {
-        navigate(`/accueil/postmodif/${post_id}`)
+        // localStorage.setItem('post_id', JSON.stringify(post_id))
+        // navigate(`/accueil/postmodif`)
     }
 
         /**SUPPRESSION POST**/
     function postDelete(post_id) {
-        // Submit la data au backend via PUT
-        axios.delete(`http://localhost:5000/api/post/${post_id}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenInLocalStorage}`
-            },
-        })
-            .then((res) => {
-                // Message confirmation suppression + retour page accueil
-                    alert("Votre publication a été supprimé")
-                    navigate('/')
-                
-            }).catch(err => {
-                console.log(err)
-            })
+        // if (window.confirm("Voulez vous supprimer le post?") === true ){
+        //         // Submit la data au backend via PUT
+        //     axios.delete(`http://localhost:5000/api/post/${post_id}`, {
+        //         headers: {
+        //             'Authorization': `Bearer ${tokenInLocalStorage}`
+        //         },
+        //     })
+        //         .then((res) => {
+        //             // Message confirmation suppression + retour page accueil
+        //                 localStorage.removeItem('post_id')
+        //                 alert("Votre publication a été supprimé")
+        //                 navigate('/')
+                    
+        //         }).catch(err => {
+        //             console.log(err)
+        //         })
+        // }
+        
     }
 
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/

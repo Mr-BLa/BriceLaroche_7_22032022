@@ -16,6 +16,7 @@ export default function PostModif() {
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
     let isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
+    let post_id = JSON.parse(localStorage.getItem('post_id'))
 
 
         /** VERIFICATION STATUT CONNEXION **/
@@ -36,6 +37,7 @@ export default function PostModif() {
     // Création d'un composant-objet, contenant: user_id, titre, content, attachement:
     const [formPostModif, setFormPostModif] = useState({
         user_id: idInLocalStorage,
+        post_id: post_id,
         title: "",
         content: "",
         attachement: "",
@@ -46,7 +48,7 @@ export default function PostModif() {
         /**  Au chargement de la page, récupération dans la BDD des éléments liés au profil **/
     // Récupérer la data au backend via Get/:id
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/post/all/${IDDUPOST}`, {
+        axios.get(`http://localhost:5000/api/post/all/${post_id}`, {
                 headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
             })
                 .then((res) => {
@@ -86,7 +88,7 @@ export default function PostModif() {
         event.preventDefault()
         console.log(formPostModif)
         // Submit la data au backend via POST
-        axios.put(`http://localhost:5000/api/post/${IDDUPOST}`, formPostModif, {
+        axios.put(`http://localhost:5000/api/post/${post_id}`, formPostModif, {
             headers: {
                 'Authorization': `Bearer ${tokenInLocalStorage}`
             },
