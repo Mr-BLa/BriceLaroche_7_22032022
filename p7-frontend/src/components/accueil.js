@@ -121,29 +121,18 @@ export default function Accueil() {
                         className="post--container">
                             <h1 className="post__title">
                                 {post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}
-
                                 {  
                                     isAdmin === 1 || idInLocalStorage === post.user_id ? (<span className="title__btn--container">
                                         <button className="btn__modif" onClick={()=>postModif(post.post_id)}>Modifier</button>
                                         <button className="btn__suppr" onClick={()=>postDelete(post.post_id)}>Supprimer</button>
                                     </span>):null
                                 }
-
-
                             </h1>
                             <div className="postContent--container">
                                 <p className="post__content">{post.content}</p>
                                 <div className="post__attachement">{post.attachement}</div>
-                            </div>
-
-                            <div className="comments--container">
-                                <p className="post__comments">
-
-                                </p>
-                            </div> 
-                            
+                            </div>                
                     </div>
-                    
                 ))}
                 
                 <div className="imgAccueil__container">

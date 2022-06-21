@@ -94,6 +94,7 @@ export default function PostModif() {
         })
             .then((res) => {
                 // retour page accueil
+                localStorage.removeItem('post_id')
                 alert("Votre post a été modifié")
                 navigate('/accueil')
                 
