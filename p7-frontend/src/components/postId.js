@@ -133,6 +133,35 @@ export default function PostId() {
     // console.log(parseDate)
     // console.log(jsDate)
 
+    /**MODIFICATION POST**/
+    function commentModif(comment_id) {
+        // localStorage.setItem('post_id', JSON.stringify(post_id))
+        // navigate(`/accueil/postmodif`)
+    }
+
+        /**SUPPRESSION POST**/
+    function commentDelete(comment_id) {
+        if (window.confirm("Voulez vous supprimer le post?") === true ){
+                // Submit la data au backend via PUT
+            axios.delete(`http://localhost:5000/api/comments/${comment_id}`, {
+                headers: {
+                    'Authorization': `Bearer ${tokenInLocalStorage}`
+                },
+            })
+                .then((res) => {
+                    // Message confirmation suppression + retour page accueil
+                        alert("Votre publication a été supprimé")
+                        navigate('/')
+                    
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
+        
+    }
+
+
+
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
@@ -158,6 +187,12 @@ export default function PostId() {
                                 {comment.firstname} {comment.lastname} - le {comment.createdat}
                             </h2>
                             <p className="comment__text"> {comment.text} </p>
+                            {  
+                                isAdmin === 1 || idInLocalStorage === comment.user_id ? (<span className="comment__btn--container">
+                                    <button className="btn__modif" onClick={()=>commentModif(comment.comment_id)}>Modifier</button>
+                                    <button className="btn__suppr" onClick={()=>commentDelete(comment.comment_id)}>Supprimer</button>
+                                </span>):null
+                            }
                     </div>
                 ))}
                 <form id="comment__form" onSubmit={handleSubmit}>
