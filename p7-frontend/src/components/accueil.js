@@ -6,7 +6,7 @@ import React from "react"
 import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import { DateTime } from "luxon"
 
 export default function Accueil() {
@@ -111,12 +111,13 @@ export default function Accueil() {
         
     }
 
+    /**  **/
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
             <main id="mainContent" className="accueil--main">
                 {allPosts.map((post) => (
-                    <Link to={post.post_id}>
+                    <Link to={`/accueil/${post.post_id}`} className="post--link">
                         <div 
                             key={`${post.post_id}`}
                             className="post--container">

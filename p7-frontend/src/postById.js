@@ -4,7 +4,7 @@
 
 
 import Header from "./components/headerAccueil"
-import PostId from "./components/postById"
+import PostId from "./components/postId"
 
 function PostById() {
     

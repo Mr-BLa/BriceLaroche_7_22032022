@@ -11,7 +11,7 @@ import { DateTime } from "luxon"
 
 export default function PostId() {
       // Get the userId param from the URL.
-    let { userId } = useParams()
+    let { post_id } = useParams()
 
     // Fonction qui nous permettra de programmer des changements de page
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ export default function PostId() {
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
     let isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
-    let post_id = JSON.parse(localStorage.getItem('post_id'))
+    let post_idInLocalStorage = JSON.parse(localStorage.getItem('post_id'))
 
 
             /** VERIFICATION STATUT CONNEXION **/
@@ -77,7 +77,7 @@ export default function PostId() {
     if( isLoggedIn === true) {
         return (
             <main id="mainContent" className="accueil--main">
-                {allPosts.map((post) => (
+                {postById.map((post) => (
                     <div 
                         key={`${post.post_id}`}
                         className="post--container">

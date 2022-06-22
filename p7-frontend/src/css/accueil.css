@@ -152,6 +152,14 @@ left: -1rem;
     background-color: #f5f6fa;
 }
 
+/* Link */
+.post--link{
+    text-decoration: none;
+    display: block;
+    color: black;
+    min-width: 60%;
+}
+
 /* Div Post  */
 .post--container{
     background-color: white;
@@ -233,7 +241,7 @@ left: -1rem;
 /* Container du content */
 .postContent--container{
     background-color: #fdfdfd;
-    padding: .3rem 1rem;
+    padding: .3rem 1rem 1rem 1rem;
     border-radius: 0 0 20px 20px;
 }
 
