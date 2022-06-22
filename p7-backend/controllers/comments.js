@@ -48,7 +48,7 @@ exports.deleteComment = (req, res, next) => {
 // Récupérer tous les commentaires
 exports.getAllComments = (req, res, next) => {
     // Connection BDD MySql
-    connection.query("SELECT * FROM `comments` JOIN `users` ON comments.user_id = users.user_id ORDER BY `comment_id` DESC ").then(results => {
+    connection.query("SELECT comments.comment_id, comments.user_id, comments.post_id, comments.text, comments.createdat, comments.updateat, users.user_id, users.firstname, users.lastname, users.isadmin FROM comments JOIN users ON comments.user_id = users.user_id ORDER BY comment_id DESC ").then(results => {
         console.log(results)
         return res.send(results)
     }).catch(err=> {
@@ -60,10 +60,10 @@ exports.getAllComments = (req, res, next) => {
 // Recherche d'un commentaire par son Id
 exports.getCommentById = (req, res, next) => {
     // Connection BDD MySql
-    const id = parseInt(req.params.id)
-    connection.execute(`SELECT * FROM comments WHERE comment_id =?`,[id]).then(results => {
+    const post_id = parseInt(req.params.id)
+    connection.execute(`SELECT comments.comment_id, comments.user_id, comments.post_id, comments.text, comments.createdat, comments.updateat, users.user_id, users.firstname, users.lastname, users.isadmin FROM comments JOIN users ON comments.user_id = users.user_id WHERE comments.post_id = ?`, post_id).then(results => {
         console.log(results)
-        return res.send(results[0])
+        return res.send(results)
     }).catch(err=> {
         console.log(err)
         return res.sendStatus(400)
