@@ -61,7 +61,7 @@ exports.getAllComments = (req, res, next) => {
 exports.getCommentById = (req, res, next) => {
     // Connection BDD MySql
     const post_id = parseInt(req.params.id)
-    connection.execute(`SELECT comments.comment_id, comments.user_id, comments.post_id, comments.text, comments.createdat, comments.updateat, users.user_id, users.firstname, users.lastname, users.isadmin FROM comments JOIN users ON comments.user_id = users.user_id WHERE comments.post_id = ?`, post_id).then(results => {
+    connection.query(`SELECT comments.comment_id, comments.user_id, comments.post_id, comments.text, comments.createdat, comments.updateat, users.user_id, users.firstname, users.lastname, users.isadmin FROM comments JOIN users ON comments.user_id = users.user_id WHERE comments.post_id = ?`, post_id).then(results => {
         console.log(results)
         return res.send(results)
     }).catch(err=> {
