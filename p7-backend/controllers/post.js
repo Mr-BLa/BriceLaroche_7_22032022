@@ -60,7 +60,7 @@ exports.getPostById = (req, res, next) => {
     // Connection BDD MySql
     const post_id = parseInt(req.params.id)
     connection.query(`SELECT * FROM post WHERE post_id=?`, post_id).then(results => {
-        return res.send(results[0])
+        return res.send(results)
     }).catch(err=> {
         return res.sendStatus(400)
     })
