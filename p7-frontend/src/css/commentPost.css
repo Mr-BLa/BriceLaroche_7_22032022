@@ -1,0 +1,48 @@
+/*
+*           CSS COMMENT POST
+*/
+
+/** Commentaires **/
+    /*Container des commentaires*/
+.comment--container{
+    background-color: white;
+    min-width: 50%;
+    border-radius: 20px;
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
+    margin: 0 0 1rem 0;
+}
+
+    /*Titre*/
+.comment__title{
+    margin: 0;
+    padding: 0.75rem 0.5rem 0.5rem 1rem;
+    border-bottom: 1px dotted #0153fd;
+}
+
+    /*Text*/
+.comment__text{
+    background-color: #fdfdfd;
+    padding: 1rem;
+    margin: 0;
+    border-radius: 0 0 20px 20px;
+}
+
+
+/*Formulaire nouveau commentaire*/
+#comment__form{
+    background-color: #fdfdfd;
+    min-width: 50%;
+    border-radius: 20px;
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
+}
+
+.input__title{
+    padding: 0.75rem 0.5rem 0.5rem 1rem;
+    margin: 0;
+}
+
+/*Bouton Commentaire*/
+.postIdSubmitButton{
+    margin: 0.5rem 1rem 1rem 25%;
+    width: 50%;
+}

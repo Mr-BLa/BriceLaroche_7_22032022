@@ -12,9 +12,7 @@ const connection = require('../services/database')
 
 // Création d'un commentaire
 exports.createComment = (req, res, next) => {
-    const id = parseInt(req.params.id)
-    const post_id = parseInt(req.body.post_id)
-    connection.execute("INSERT INTO `comments` (`user_id`, `post_id`, `text`) VALUES "([id], [post_id], req.body.text)).then(results => {
+    connection.execute('INSERT INTO `comments` (`user_id`, `post_id`, `text`) VALUES (?, ?, ?)', [req.body.user_id, req.body.post_id, req.body.text]).then(results => {
         return res.send(results)
     }).catch(err=> {
         return res.sendStatus(400)

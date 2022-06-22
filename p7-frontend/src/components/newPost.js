@@ -80,7 +80,6 @@ export default function NewPost() {
             })
     }
 
-    //`user_id`, `title`, `content`, `attachement
 
 
     /** AFFICHAGE PAGE NOUVELLE PUBLICATION SI USER CONNECTE. Si pas connécté => redirection page login **/

@@ -37,7 +37,30 @@ export default function PostId() {
         }
     })
 
-    
+
+                /** OBJET FORMULAIRE **/
+    // Création d'un composant-objet, contenant: user_id, titre, content, attachement:
+    const [formNewComment, setFormNewComment] = useState({
+        user_id: idInLocalStorage,
+        post_id: post_id,
+        text: "",
+    })
+
+                /** GESTION/ACTUALISATION DU FORMULAIRE **/
+    // On récupère notre objet avec tous ses composants et on actualise en fonction des éléments qui sont modifiés (via target.name):
+    function handleChange(event) {
+        // Déstructuration d'event.target pour sortir les éléments dont on a besoin
+        const {name, value} = event.target
+        // Actualisation de l'objet en fonction des changements de value effectués
+        setFormNewComment(prevformNewComment => {
+            return {
+                ...prevformNewComment,
+                [name]: value
+            }
+        })
+    }
+
+
     /** Tableau du post **/
     const [postById, setPostById] = useState([])
 
@@ -62,10 +85,47 @@ export default function PostId() {
     }, []);
     console.log(postById)
 
-            /** COMMENTAIRES: Au chargement, récupération dans la BDD des commentaires liés à ce post**/
-        //Récupérer la data au backend, via get/comments/all
+
+        /** COMMENTAIRES: Au chargement, récupération dans la BDD des commentaires liés à ce post**/
+    //Récupérer la data au backend, via get/comments/all
+    useEffect(() => {
+        axios.get(`http://localhost:5000/api/comments/all/${post_id}`, {
+            headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+        })
+            .then((res) => {
+                const commentData = res.data
+                console.log(commentData)
+                setAllComments(commentData)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, []);
+    console.log(allComments)
 
 
+
+            /** SOUMISSION ET RECEPTION REQUETE **/
+    // Fonction au Submit Nouvelle requête:
+    function handleSubmit(event) {
+        //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
+        event.preventDefault()
+        console.log(formNewComment)
+        // Submit la data au backend via POST
+        axios.post(`http://localhost:5000/api/comments/`, formNewComment, {
+            headers: {
+                'Authorization': `Bearer ${tokenInLocalStorage}`
+            },
+        })
+            .then((res) => {
+                // retour page accueil
+                    localStorage.removeItem('post_id')
+                    navigate('/accueil')
+                
+            }).catch(err => {
+                console.log(err)
+            })
+    }
     /** /!\ LUXON MARCHE PAS /!\ **/
     // console.log(allPosts.createdat)
     // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
@@ -90,7 +150,32 @@ export default function PostId() {
                             </div>                
                     </div>
                 ))}
-                
+                {allComments.map((comment) => (
+                    <div
+                        key={`${comment.comment_id}`}
+                        className="comment--container">
+                            <h2 className="comment__title">
+                                {comment.firstname} {comment.lastname} - le {comment.createdat}
+                            </h2>
+                            <p className="comment__text"> {comment.text} </p>
+                    </div>
+                ))}
+                <form id="comment__form" onSubmit={handleSubmit}>
+                    <h3 className="input__title ">Commenter la Publication:</h3>
+                        <div className="input__container">
+                            <input 
+                                placeholder="Votre commentaire"
+                                type="texte" 
+                                className="inputForm" 
+                                onChange={handleChange}
+                                name="text"
+                                value={formNewComment.text}/>
+                        </div>
+                        <button 
+                        className="submitButton postIdSubmitButton">
+                        Commenter
+                        </button>
+                </form>
                 <div className="imgAccueil__container">
                     <img 
                         src={logo}
