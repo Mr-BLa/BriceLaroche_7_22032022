@@ -150,8 +150,7 @@ export default function PostId() {
             })
                 .then((res) => {
                     // Message confirmation suppression + retour page accueil
-                        alert("Votre publication a été supprimé")
-                        navigate('/')
+                        alert("Votre commentaire a été supprimé")
                     
                 }).catch(err => {
                     console.log(err)
