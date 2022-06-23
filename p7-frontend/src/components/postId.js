@@ -61,7 +61,7 @@ export default function PostId() {
     }
 
 
-    /** Tableau du post **/
+        /** Tableau du post **/
     const [postById, setPostById] = useState([])
 
         /** Tableau des commentaires**/
@@ -106,6 +106,8 @@ export default function PostId() {
 
 
             /** SOUMISSION ET RECEPTION REQUETE **/
+
+    /* CREATION Commentaire */
     // Fonction au Submit Nouvelle requête:
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
@@ -126,6 +128,43 @@ export default function PostId() {
                 console.log(err)
             })
     }
+
+        
+        
+
+
+        /* MODIFICATION Commentaire */
+    // Fonction au Submit Nouvelle requête:
+    function handleModify(event) {
+        //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
+        event.preventDefault()
+
+        // Définition variables DOM
+        // let formCreateComment = document.getElementsByClassName(comment__form__create)
+        // let formModifyComment = document.getElementsByClassName(comment__form__modify)
+
+        // Définition comment_id (que l'on sauvegarde dans le localStorage)
+        let comment_idInLocalStorage = JSON.parse(localStorage.getItem('comment_id'))
+
+        console.log(formNewComment)
+
+        // Submit la data au backend via POST
+        axios.put(`http://localhost:5000/api/comments/${comment_idInLocalStorage}`, formNewComment, {
+            headers: {
+                'Authorization': `Bearer ${tokenInLocalStorage}`
+            },
+        })
+            .then((res) => {
+                // retour page accueil
+                    // formCreateComment.style.display = "block"
+                    // formModifyComment.style.display = "none"
+                    localStorage.removeItem('comment_id')
+                    navigate('/accueil')
+                
+            }).catch(err => {
+                console.log(err)
+            })
+    }
     /** /!\ LUXON MARCHE PAS /!\ **/
     // console.log(allPosts.createdat)
     // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
@@ -135,8 +174,13 @@ export default function PostId() {
 
     /**MODIFICATION POST**/
     function commentModif(comment_id) {
-        // localStorage.setItem('post_id', JSON.stringify(post_id))
-        // navigate(`/accueil`)
+        localStorage.setItem('comment_id', JSON.stringify(comment_id))
+
+        // Définition variables DOM
+        // let formCreateComment = document.getElementsByClassName(comment__form__create)
+        // let formModifyComment = document.getElementsByClassName(comment__form__modify)
+        // formCreateComment.style.display = "none"
+        // formModifyComment.style.display = "block"
     }
 
         /**SUPPRESSION POST**/
@@ -195,7 +239,7 @@ export default function PostId() {
                             }
                     </div>
                 ))}
-                <form id="comment__form" onSubmit={handleSubmit}>
+                <form className="comment__form comment__form__create" onSubmit={handleSubmit}>
                     <h3 className="input__title ">Commenter la Publication:</h3>
                         <div className="input__container">
                             <input 
@@ -209,6 +253,22 @@ export default function PostId() {
                         <button 
                         className="submitButton postIdSubmitButton">
                         Commenter
+                        </button>
+                </form>
+                <form className="comment__form comment__form__modify" onSubmit={handleModify}>
+                    <h3 className="input__title ">Modifier le Commentaire:</h3>
+                        <div className="input__container">
+                            <input 
+                                placeholder="Votre commentaire"
+                                type="texte" 
+                                className="inputForm" 
+                                onChange={handleChange}
+                                name="text"
+                                value={formNewComment.text}/>
+                        </div>
+                        <button 
+                        className="submitButton postIdSubmitButton">
+                        Modifier
                         </button>
                 </form>
                 <div className="imgAccueil__container">

@@ -43,21 +43,32 @@
     margin: 0 0 1rem -1rem;
 }
 
-/*Formulaire nouveau commentaire*/
-#comment__form{
+/*Formulaire commentaire commun (créer et modifier)*/
+.comment__form{
     background-color: #fdfdfd;
     min-width: 50%;
     border-radius: 20px;
     box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
 }
 
+/*Formulaire Créer Commentaire*/
+.comment__form__create{
+    display: block;
+}
+
+/*Formulaire Modifier Commentaire*/
+.comment__form__modify{
+    display: none;
+}
+/*Titre formulaire commentaire*/
 .input__title{
     padding: 0.75rem 0.5rem 0.5rem 1rem;
     margin: 0;
 }
 
-/*Bouton Commentaire*/
+/*Bouton Créer Commentaire*/
 .postIdSubmitButton{
     margin: 0.5rem 1rem 1rem 25%;
     width: 50%;
 }
+
