@@ -85,7 +85,7 @@ export default function NewPost() {
     /** AFFICHAGE PAGE NOUVELLE PUBLICATION SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
-            <main id="mainContent" className="accueil--main">
+            <main className="mainContent accueil--main">
                 <div className="post--container postForm--container">
                     <h1 className="post__title">Créer une Nouvelle Publication :</h1>
                     <form id="post__form" onSubmit={handleSubmit}>

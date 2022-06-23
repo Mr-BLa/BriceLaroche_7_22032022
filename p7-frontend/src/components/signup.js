@@ -33,7 +33,7 @@ export default function Signup() {
     /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant email, password, Nom d'utilisateur, prénom, nom, role et bio:
     const [formSignup, setFormSignup] = useState(
-        {email: "", password: "", username: "", firstname: "", lastname: "", role: "", bio: ""}
+        {email: "", password: "", firstname: "", lastname: "", role: "", bio: ""}
     )
 
 
@@ -79,7 +79,6 @@ export default function Signup() {
         - Form:
             Input Email 
             Input Password
-            Input Username
             Input Firstname
             Input Lastname
             Input Role
@@ -92,7 +91,7 @@ export default function Signup() {
     /** AFFICHAGE PAGE SIGN-IN, SI USER PAS ENCORE CONNECTE. Si déjà connécté => Redirection vers Page Accueil **/
     if( isLoggedIn === false ){
         return (
-            <main id="mainContent">
+            <main className="mainContent">
                 <div classname="title__container">
                     <h1 className="title__signup">Remplissez les champs suivants: </h1>
                 </div>
@@ -114,15 +113,6 @@ export default function Signup() {
                             onChange={handleChange}
                             name="password"
                             value={formSignup.password}/>
-                    </div>
-                    <div className="input__container">
-                        <input 
-                            placeholder="Pseudo"
-                            type="text" 
-                            className="inputForm" 
-                            onChange={handleChange}
-                            name="username"
-                            value={formSignup.username}/>
                     </div>
                     <div className="input__container">
                         <input 

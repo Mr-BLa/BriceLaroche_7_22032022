@@ -92,7 +92,7 @@ useEffect(()=>{console.log("login")},[])
     /** AFFICHAGE PAGE LOGIN SI USER PAS ENCORE CONNECTE. Si déjà connécté => Redirection vers Page Accueil **/
     if( isLoggedIn === false ){
         return (
-            <main id="mainContent">
+            <main className="mainContent">
                 <form id="mainContent__form" onSubmit={handleSubmit}>
                     <div className="input__container">
                         <input 

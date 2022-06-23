@@ -143,7 +143,7 @@ export default function ModifProfil() {
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
-            <main id="mainContent" className="accueil--main">
+            <main className="mainContent accueil--main">
                 <div classname="title__container">
                     <h1 className="title__signup">Modifiez votre Profil: </h1>
                 </div>

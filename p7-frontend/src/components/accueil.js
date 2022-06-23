@@ -115,7 +115,7 @@ export default function Accueil() {
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
-            <main id="mainContent" className="accueil--main">
+            <main className="mainContent accueil--main">
                 {allPosts.map((post) => (
                     <Link to={`/accueil/${post.post_id}`} className="post--link">
                         <div 

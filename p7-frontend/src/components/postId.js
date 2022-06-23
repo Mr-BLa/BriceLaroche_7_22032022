@@ -136,7 +136,7 @@ export default function PostId() {
     /**MODIFICATION POST**/
     function commentModif(comment_id) {
         // localStorage.setItem('post_id', JSON.stringify(post_id))
-        // navigate(`/accueil/postmodif`)
+        // navigate(`/accueil`)
     }
 
         /**SUPPRESSION POST**/
@@ -151,6 +151,7 @@ export default function PostId() {
                 .then((res) => {
                     // Message confirmation suppression + retour page accueil
                         alert("Votre commentaire a été supprimé")
+                        navigate(`/accueil`)
                     
                 }).catch(err => {
                     console.log(err)
@@ -164,7 +165,7 @@ export default function PostId() {
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
-            <main id="mainContent" className="accueil--main">
+            <main className="mainContent comment--main">
                 {postById.map((post) => (
                     <div 
                         key={`${post.post_id}`}

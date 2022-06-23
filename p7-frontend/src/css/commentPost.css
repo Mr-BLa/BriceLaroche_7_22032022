@@ -2,6 +2,14 @@
 *           CSS COMMENT POST
 */
 
+/** MAIN **/
+/* Main Container */
+.comment--main{
+    background-color: #f5f6fa;
+    align-items: flex-start;
+    padding: 2rem 0 0 20%;
+}
+
 /** Commentaires **/
     /*Container des commentaires*/
 .comment--container{

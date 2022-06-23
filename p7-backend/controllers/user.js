@@ -23,7 +23,7 @@ exports.signup = (req, res, next) => {
             console.log("mdp hashé")
             console.log(hash)
             // ... Qu'on enregistre dans un nouvel User...
-            connection.execute('INSERT INTO `users` (`email`, `password`, `username`, `firstname`, `lastname`, `role`, `bio`) VALUES (?, ?, ?, ?, ?, ?, ?)',[req.body.email, hash, req.body.username, req.body.firstname, req.body.lastname, req.body.role, req.body.bio])
+            connection.execute('INSERT INTO `users` (`email`, `password`, `firstname`, `lastname`, `role`, `bio`) VALUES (?, ?, ?, ?, ?, ?)',[req.body.email, hash, req.body.firstname, req.body.lastname, req.body.role, req.body.bio])
                 .then(newUser => {
                     return res.send(newUser)
                 }).catch(err => {
