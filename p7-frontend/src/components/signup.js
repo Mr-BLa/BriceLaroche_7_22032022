@@ -89,61 +89,69 @@ export default function Signup() {
         // Input Mail 
     let inputMail = document.querySelector('input[name="email"]')
 
-    inputMail.addEventListener("input", (e) =>{
-        if (!regexMail.test(e.target.value)) {
-            document.querySelector("#emailErrorMsg").textContent = "Adresse mail invalide"
-            //désactiver le bouton 
-            document.querySelector("#signIn").setAttribute("disabled", true)
-        }else{
-            document.querySelector("#emailErrorMsg").textContent = null
-            document.querySelector("#signIn").removeAttribute("disabled")
-        }
-    })
-
+    if (inputMail) {
+        inputMail.addEventListener("input", (e) =>{
+            if (!regexMail.test(e.target.value)) {
+                document.querySelector("#emailErrorMsg").textContent = "Adresse mail invalide"
+                //désactiver le bouton 
+                document.querySelector("#signIn").setAttribute("disabled", true)
+            }else{
+                document.querySelector("#emailErrorMsg").textContent = null
+                document.querySelector("#signIn").removeAttribute("disabled")
+            }
+        })
+    }
 
     // Input Mot De Passe  
     let inputPassword = document.querySelector('input[name="password"]')
 
-    inputPassword.addEventListener("input", (e) =>{
-        if (!regexPassword.test(e.target.value)) {
-            document.querySelector("#pwdErrorMsg").textContent = "Mot de Passe invalide. Doit contenir au moins huit caractères, une lettre et un chiffre"
-            //désactiver le bouton 
-            document.querySelector("#signIn").setAttribute("disabled", true)
-        }else{
-            document.querySelector("#pwdErrorMsg").textContent = null
-            document.querySelector("#signIn").removeAttribute("disabled")
-        }
-    })
-
+    if (inputPassword) {
+        inputPassword.addEventListener("input", (e) =>{
+            if (!regexPassword.test(e.target.value)) {
+                document.querySelector("#pwdErrorMsg").textContent = "Mot de Passe invalide. Doit contenir au moins huit caractères, une lettre et un chiffre"
+                //désactiver le bouton 
+                document.querySelector("#signIn").setAttribute("disabled", true)
+            }else{
+                document.querySelector("#pwdErrorMsg").textContent = null
+                document.querySelector("#signIn").removeAttribute("disabled")
+            }
+        })
+    }
+    
 
     // Input Prénom 
     let inputFirstname = document.querySelector('input[name="firstname"]')
 
-    inputFirstname.addEventListener("input", (e) =>{
-        if (regexName.test(e.target.value)) {
-            document.querySelector("#fnErrorMsg").textContent = "Le prénom doit uniquement contenir des lettres"
-            //désactiver le bouton 
-            document.querySelector("#signIn").setAttribute("disabled", true)
-        }else{
-            document.querySelector("#fnErrorMsg").textContent = null
-            document.querySelector("#signIn").removeAttribute("disabled")
-        }
-    })
+    if (inputFirstname) {
+        inputFirstname.addEventListener("input", (e) =>{
+            if (regexName.test(e.target.value)) {
+                document.querySelector("#fnErrorMsg").textContent = "Le prénom doit uniquement contenir des lettres"
+                //désactiver le bouton 
+                document.querySelector("#signIn").setAttribute("disabled", true)
+            }else{
+                document.querySelector("#fnErrorMsg").textContent = null
+                document.querySelector("#signIn").removeAttribute("disabled")
+            }
+        })
+    }
 
 
     // Input Nom 
     let inputLastname = document.querySelector('input[name="lastname"]')
 
-    inputLastname.addEventListener("input", (e) =>{
-        if (regexName.test(e.target.value)) {
-            document.querySelector("#lnErrorMsg").textContent = "Le nom doit uniquement contenir des lettres"
-            //désactiver le bouton 
-            document.querySelector("#signIn").setAttribute("disabled", true)
-        }else{
-            document.querySelector("#lnErrorMsg").textContent = null
-            document.querySelector("#signIn").removeAttribute("disabled")
-        }
-    })
+    if (inputLastname) {
+        inputLastname.addEventListener("input", (e) =>{
+            if (regexName.test(e.target.value)) {
+                document.querySelector("#lnErrorMsg").textContent = "Le nom doit uniquement contenir des lettres"
+                //désactiver le bouton 
+                document.querySelector("#signIn").setAttribute("disabled", true)
+            }else{
+                document.querySelector("#lnErrorMsg").textContent = null
+                document.querySelector("#signIn").removeAttribute("disabled")
+            }
+        })
+    }
+
 
 
     /* CI-DESSOUS:
