@@ -89,7 +89,7 @@ export default function Signup() {
         // Input Mail 
     let inputMail = document.querySelector('input[name="email"]')
 
-    if (inputMail) {
+    window.onload = function() {
         inputMail.addEventListener("input", (e) =>{
             if (!regexMail.test(e.target.value)) {
                 document.querySelector("#emailErrorMsg").textContent = "Adresse mail invalide"
@@ -105,7 +105,7 @@ export default function Signup() {
     // Input Mot De Passe  
     let inputPassword = document.querySelector('input[name="password"]')
 
-    if (inputPassword) {
+    window.onload = function() {
         inputPassword.addEventListener("input", (e) =>{
             if (!regexPassword.test(e.target.value)) {
                 document.querySelector("#pwdErrorMsg").textContent = "Mot de Passe invalide. Doit contenir au moins huit caractères, une lettre et un chiffre"
@@ -122,7 +122,7 @@ export default function Signup() {
     // Input Prénom 
     let inputFirstname = document.querySelector('input[name="firstname"]')
 
-    if (inputFirstname) {
+    window.onload = function() {
         inputFirstname.addEventListener("input", (e) =>{
             if (regexName.test(e.target.value)) {
                 document.querySelector("#fnErrorMsg").textContent = "Le prénom doit uniquement contenir des lettres"
@@ -139,7 +139,7 @@ export default function Signup() {
     // Input Nom 
     let inputLastname = document.querySelector('input[name="lastname"]')
 
-    if (inputLastname) {
+    window.onload = function() {
         inputLastname.addEventListener("input", (e) =>{
             if (regexName.test(e.target.value)) {
                 document.querySelector("#lnErrorMsg").textContent = "Le nom doit uniquement contenir des lettres"
