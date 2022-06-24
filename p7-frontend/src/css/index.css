@@ -53,20 +53,29 @@ code {
 }
 
 #mainContent__form{
-  max-width: 20rem;
-  width: 20rem;
+  max-width: 23rem;
+  width: 23rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
 .input__container{
-max-width: 100%; 
-width: 100%;
-display: flex;
-justify-content: center;
-padding: 0;
-margin-bottom: 1rem;
+  max-width: 100%; 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.input__container p {
+  margin: 0;
+  color: #ed5737;
+  font-size: 15px;
+  margin-left: 0.25rem;
+  max-width: 94%;
 }
 
 .inputForm{
@@ -86,7 +95,7 @@ margin-bottom: 1rem;
 
 .submitButton{
   margin-top: 2rem;
-  width: 100%;
+  width: 95%;
   font-size: 16px;
   font-weight: 600;
   color: #fff;

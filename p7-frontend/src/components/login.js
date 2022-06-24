@@ -4,7 +4,7 @@
 
 import React from "react"
 import { useState, useEffect } from 'react'
-import logo from "../logos/icon.svg"
+import logo from "../logos/icon-v.login.svg"
 import axios from "axios"
 import { Link, useNavigate, Navigate } from "react-router-dom"
 

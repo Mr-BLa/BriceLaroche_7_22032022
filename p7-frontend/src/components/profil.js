@@ -109,20 +109,22 @@ export default function ModifProfil() {
 
     /**SUPPRESSION PROFIL**/
     function deleteProfil() {
-        // Submit la data au backend via PUT
-        axios.delete(`http://localhost:5000/api/user/${idInLocalStorage}`, {
-            headers: {
-                'Authorization': `Bearer ${tokenInLocalStorage}`
-            },
-        })
-            .then((res) => {
-                // Message confirmation suppression + retour page accueil
-                    alert("Votre profil a été supprimé")
-                    navigate('/')
-                
-            }).catch(err => {
-                console.log(err)
+        if (window.confirm("Voulez vous supprimer le profil?") === true ){
+            // Submit la data au backend via PUT
+            axios.delete(`http://localhost:5000/api/user/${idInLocalStorage}`, {
+                headers: {
+                    'Authorization': `Bearer ${tokenInLocalStorage}`
+                },
             })
+                .then((res) => {
+                    // Message confirmation suppression + retour page accueil
+                        alert("Votre profil a été supprimé")
+                        navigate('/')
+                    
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
     }
 
 

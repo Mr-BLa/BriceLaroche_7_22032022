@@ -41,7 +41,9 @@ export default function HeaderApp() {
         localStorage.removeItem('user_id')
         localStorage.removeItem('isAdmin')
         localStorage.removeItem('post_id')
+        localStorage.removeItem('comment_id')
         navigate('/')
+        console.log(navigate('/'))
     }
 
 

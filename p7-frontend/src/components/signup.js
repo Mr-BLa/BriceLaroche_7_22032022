@@ -4,7 +4,7 @@
 
 import React from "react"
 import { useState, useEffect } from 'react'
-import logo from "../logos/icon.svg"
+import logo from "../logos/icon-v.login.svg"
 import axios from "axios"
 import { Link, useNavigate, Navigate } from "react-router-dom"
 
@@ -72,6 +72,78 @@ export default function Signup() {
     }
 
 
+        /*
+    *          SAISIE ET GESTION DES COORDONNéES
+    */
+    //Regex Name: trouve tous les caractères qui ne sont pas enregistrés comme: des lettres unicodes, des espaces et des "-"
+    const regexName = /[^\p{L}\s-]/giu
+
+    //Regex Mail 
+    const regexMail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    // Regex Mot de Passe
+    const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+        
+
+
+        // Input Mail 
+    let inputMail = document.querySelector('input[name="email"]')
+
+    inputMail.addEventListener("input", (e) =>{
+        if (!regexMail.test(e.target.value)) {
+            document.querySelector("#emailErrorMsg").textContent = "Adresse mail invalide"
+            //désactiver le bouton 
+            document.querySelector("#signIn").setAttribute("disabled", true)
+        }else{
+            document.querySelector("#emailErrorMsg").textContent = null
+            document.querySelector("#signIn").removeAttribute("disabled")
+        }
+    })
+
+
+    // Input Mot De Passe  
+    let inputPassword = document.querySelector('input[name="password"]')
+
+    inputPassword.addEventListener("input", (e) =>{
+        if (!regexPassword.test(e.target.value)) {
+            document.querySelector("#pwdErrorMsg").textContent = "Mot de Passe invalide. Doit contenir au moins huit caractères, une lettre et un chiffre"
+            //désactiver le bouton 
+            document.querySelector("#signIn").setAttribute("disabled", true)
+        }else{
+            document.querySelector("#pwdErrorMsg").textContent = null
+            document.querySelector("#signIn").removeAttribute("disabled")
+        }
+    })
+
+
+    // Input Prénom 
+    let inputFirstname = document.querySelector('input[name="firstname"]')
+
+    inputFirstname.addEventListener("input", (e) =>{
+        if (regexName.test(e.target.value)) {
+            document.querySelector("#fnErrorMsg").textContent = "Le prénom doit uniquement contenir des lettres"
+            //désactiver le bouton 
+            document.querySelector("#signIn").setAttribute("disabled", true)
+        }else{
+            document.querySelector("#fnErrorMsg").textContent = null
+            document.querySelector("#signIn").removeAttribute("disabled")
+        }
+    })
+
+
+    // Input Nom 
+    let inputLastname = document.querySelector('input[name="lastname"]')
+
+    inputLastname.addEventListener("input", (e) =>{
+        if (regexName.test(e.target.value)) {
+            document.querySelector("#lnErrorMsg").textContent = "Le nom doit uniquement contenir des lettres"
+            //désactiver le bouton 
+            document.querySelector("#signIn").setAttribute("disabled", true)
+        }else{
+            document.querySelector("#lnErrorMsg").textContent = null
+            document.querySelector("#signIn").removeAttribute("disabled")
+        }
+    })
 
 
     /* CI-DESSOUS:
@@ -104,6 +176,7 @@ export default function Signup() {
                             onChange={handleChange}
                             name="email"
                             value={formSignup.email}/>
+                        <p id="emailErrorMsg"></p>
                     </div>    
                     <div className="input__container">
                         <input 
@@ -113,6 +186,7 @@ export default function Signup() {
                             onChange={handleChange}
                             name="password"
                             value={formSignup.password}/>
+                        <p id="pwdErrorMsg"></p>
                     </div>
                     <div className="input__container">
                         <input 
@@ -122,6 +196,7 @@ export default function Signup() {
                             onChange={handleChange}
                             name="firstname"
                             value={formSignup.firstname}/>
+                        <p id="fnErrorMsg"></p>
                     </div>
                     <div className="input__container">
                         <input 
@@ -131,6 +206,7 @@ export default function Signup() {
                             onChange={handleChange}
                             name="lastname"
                             value={formSignup.lastname}/>
+                        <p id="lnErrorMsg"></p>
                     </div>
                     <div className="input__container">
                         <input 
@@ -151,6 +227,7 @@ export default function Signup() {
                             value={formSignup.bio}/>
                     </div>
                     <button 
+                        id="signIn"
                         className="submitButton">
                         S'inscrire
                     </button>
