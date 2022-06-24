@@ -130,8 +130,6 @@ export default function PostId() {
     }
 
         
-        
-
 
         /* MODIFICATION Commentaire */
     // Fonction au Submit Nouvelle requête:
@@ -140,8 +138,8 @@ export default function PostId() {
         event.preventDefault()
 
         // Définition variables DOM
-        // let formCreateComment = document.getElementsByClassName(comment__form__create)
-        // let formModifyComment = document.getElementsByClassName(comment__form__modify)
+        const formCreate = document.getElementById("form_create")
+        const formModify = document.getElementById("form_modify")
 
         // Définition comment_id (que l'on sauvegarde dans le localStorage)
         let comment_idInLocalStorage = JSON.parse(localStorage.getItem('comment_id'))
@@ -156,8 +154,8 @@ export default function PostId() {
         })
             .then((res) => {
                 // retour page accueil
-                    // formCreateComment.style.display = "block"
-                    // formModifyComment.style.display = "none"
+                    formCreate.style.display = "block"
+                    formModify.style.display = "none"
                     localStorage.removeItem('comment_id')
                     navigate('/accueil')
                 
@@ -177,10 +175,10 @@ export default function PostId() {
         localStorage.setItem('comment_id', JSON.stringify(comment_id))
 
         // Définition variables DOM
-        // let formCreateComment = document.getElementsByClassName(comment__form__create)
-        // let formModifyComment = document.getElementsByClassName(comment__form__modify)
-        // formCreateComment.style.display = "none"
-        // formModifyComment.style.display = "block"
+        const formCreate = document.getElementById("form_create")
+        const formModify = document.getElementById("form_modify")
+        formCreate.style.display = "none"
+        formModify.style.display = "block"
     }
 
         /**SUPPRESSION POST**/
@@ -239,7 +237,7 @@ export default function PostId() {
                             }
                     </div>
                 ))}
-                <form className="comment__form comment__form__create" onSubmit={handleSubmit}>
+                <form id="form_create" className="comment__form comment__form__create" onSubmit={handleSubmit}>
                     <h3 className="input__title ">Commenter la Publication:</h3>
                         <div className="input__container">
                             <input 
@@ -255,7 +253,7 @@ export default function PostId() {
                         Commenter
                         </button>
                 </form>
-                <form className="comment__form comment__form__modify" onSubmit={handleModify}>
+                <form id="form_modify" className="comment__form comment__form__modify" onSubmit={handleModify}>
                     <h3 className="input__title ">Modifier le Commentaire:</h3>
                         <div className="input__container">
                             <input 
