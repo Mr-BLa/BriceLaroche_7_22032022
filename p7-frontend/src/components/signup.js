@@ -188,7 +188,8 @@ export default function Signup() {
                             className="inputForm" 
                             onChange={handleChange}
                             name="email"
-                            value={formSignup.email}/>
+                            value={formSignup.email}
+                            required/>
                         <p id="emailErrorMsg"></p>
                     </div>    
                     <div className="input__container">
@@ -198,7 +199,8 @@ export default function Signup() {
                             className="inputForm" 
                             onChange={handleChange}
                             name="password"
-                            value={formSignup.password}/>
+                            value={formSignup.password}
+                            required/>
                         <p id="pwdErrorMsg"></p>
                     </div>
                     <div className="input__container">
@@ -208,7 +210,8 @@ export default function Signup() {
                             className="inputForm" 
                             onChange={handleChange}
                             name="firstname"
-                            value={formSignup.firstname}/>
+                            value={formSignup.firstname}
+                            required/>
                         <p id="fnErrorMsg"></p>
                     </div>
                     <div className="input__container">
@@ -218,7 +221,8 @@ export default function Signup() {
                             className="inputForm" 
                             onChange={handleChange}
                             name="lastname"
-                            value={formSignup.lastname}/>
+                            value={formSignup.lastname}
+                            required/>
                         <p id="lnErrorMsg"></p>
                     </div>
                     <div className="input__container">
@@ -228,7 +232,8 @@ export default function Signup() {
                             className="inputForm" 
                             onChange={handleChange}
                             name="role"
-                            value={formSignup.role}/>
+                            value={formSignup.role}
+                            required/>
                     </div>
                     <div className="input__container">
                         <input 
@@ -237,7 +242,8 @@ export default function Signup() {
                             className="inputForm" 
                             onChange={handleChange}
                             name="bio"
-                            value={formSignup.bio}/>
+                            value={formSignup.bio}
+                            required/>
                     </div>
                     <button 
                         id="signIn"
