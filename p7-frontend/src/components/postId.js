@@ -183,7 +183,7 @@ export default function PostId() {
 
         /**SUPPRESSION POST**/
     function commentDelete(comment_id) {
-        if (window.confirm("Voulez vous supprimer le post?") === true ){
+        if (window.confirm("Voulez vous supprimer le commentaire?") === true ){
                 // Submit la data au backend via PUT
             axios.delete(`http://localhost:5000/api/comments/${comment_id}`, {
                 headers: {
@@ -259,7 +259,7 @@ export default function PostId() {
                             <input 
                                 placeholder="Votre commentaire"
                                 type="texte" 
-                                className="inputForm" 
+                                className="inputForm inputComment" 
                                 onChange={handleChange}
                                 name="text"
                                 value={formNewComment.text}/>
