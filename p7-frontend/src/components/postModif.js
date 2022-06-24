@@ -42,7 +42,6 @@ export default function PostModif() {
         content: "",
         attachement: "",
     })
-    console.log(formPostModif)
 
 
         /**  Au chargement de la page, récupération dans la BDD des éléments liés au profil **/
@@ -85,7 +84,6 @@ export default function PostModif() {
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        console.log(formPostModif)
         // Submit la data au backend via POST
         axios.put(`http://localhost:5000/api/post/${post_id}`, formPostModif, {
             headers: {

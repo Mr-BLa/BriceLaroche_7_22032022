@@ -18,7 +18,6 @@ export default function NewPost() {
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
 
 
-
         /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = useState(()=>{
@@ -64,7 +63,6 @@ export default function NewPost() {
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        console.log(formNewPost)
         // Submit la data au backend via POST
         axios.post(`http://localhost:5000/api/post/`, formNewPost, {
             headers: {

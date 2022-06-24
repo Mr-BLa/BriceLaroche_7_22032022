@@ -58,12 +58,11 @@ export default function Signup() {
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        console.log(formSignup)
         // Submit la data au backend via POST
         axios.post('http://localhost:5000/api/user/signup', formSignup)
             .then(res => {
                 // Si la requête est réussie: redirection vers page login
-                if(res.status === 200){
+                if (res.status === 200) {
                     navigate('/')
                 }
             }).catch(err => {
@@ -95,7 +94,7 @@ export default function Signup() {
                 document.querySelector("#emailErrorMsg").textContent = "Adresse mail invalide"
                 //désactiver le bouton 
                 document.querySelector("#signIn").setAttribute("disabled", true)
-            }else{
+            } else {
                 document.querySelector("#emailErrorMsg").textContent = null
                 document.querySelector("#signIn").removeAttribute("disabled")
             }
@@ -113,7 +112,7 @@ export default function Signup() {
                 document.querySelector("#pwdErrorMsg").textContent = "Mot de Passe invalide. Doit contenir au moins huit caractères, une lettre et un chiffre"
                 //désactiver le bouton 
                 document.querySelector("#signIn").setAttribute("disabled", true)
-            }else{
+            } else {
                 document.querySelector("#pwdErrorMsg").textContent = null
                 document.querySelector("#signIn").removeAttribute("disabled")
             }
@@ -131,7 +130,7 @@ export default function Signup() {
                 document.querySelector("#fnErrorMsg").textContent = "Le prénom doit uniquement contenir des lettres"
                 //désactiver le bouton 
                 document.querySelector("#signIn").setAttribute("disabled", true)
-            }else{
+            } else {
                 document.querySelector("#fnErrorMsg").textContent = null
                 document.querySelector("#signIn").removeAttribute("disabled")
             }
@@ -149,7 +148,7 @@ export default function Signup() {
                 document.querySelector("#lnErrorMsg").textContent = "Le nom doit uniquement contenir des lettres"
                 //désactiver le bouton 
                 document.querySelector("#signIn").setAttribute("disabled", true)
-            }else{
+            } else {
                 document.querySelector("#lnErrorMsg").textContent = null
                 document.querySelector("#signIn").removeAttribute("disabled")
             }

@@ -43,7 +43,6 @@ export default function HeaderApp() {
         localStorage.removeItem('post_id')
         localStorage.removeItem('comment_id')
         navigate('/')
-        console.log(navigate('/'))
     }
 
 

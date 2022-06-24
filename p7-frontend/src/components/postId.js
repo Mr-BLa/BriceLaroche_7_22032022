@@ -10,7 +10,7 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import { DateTime } from "luxon"
 
 export default function PostId() {
-      // Get the userId param from the URL.
+    // Get the userId param from the URL.
     let { post_id } = useParams()
 
     // Fonction qui nous permettra de programmer des changements de page
@@ -21,7 +21,6 @@ export default function PostId() {
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
     let isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
-    let post_idInLocalStorage = JSON.parse(localStorage.getItem('post_id'))
 
 
             /** VERIFICATION STATUT CONNEXION **/
@@ -76,14 +75,12 @@ export default function PostId() {
             })
                 .then((res) => {
                     const postData = res.data
-                    console.log(postData)
                     setPostById(postData)
                 })
                 .catch((err) => {
                     console.log(err)
                 })
     }, []);
-    console.log(postById)
 
 
         /** COMMENTAIRES: Au chargement, récupération dans la BDD des commentaires liés à ce post**/
@@ -94,14 +91,12 @@ export default function PostId() {
         })
             .then((res) => {
                 const commentData = res.data
-                console.log(commentData)
                 setAllComments(commentData)
             })
             .catch((err) => {
                 console.log(err)
             })
     }, []);
-    console.log(allComments)
 
 
 
@@ -112,7 +107,6 @@ export default function PostId() {
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        console.log(formNewComment)
         // Submit la data au backend via POST
         axios.post(`http://localhost:5000/api/comments/`, formNewComment, {
             headers: {
@@ -143,8 +137,6 @@ export default function PostId() {
 
         // Définition comment_id (que l'on sauvegarde dans le localStorage)
         let comment_idInLocalStorage = JSON.parse(localStorage.getItem('comment_id'))
-
-        console.log(formNewComment)
 
         // Submit la data au backend via POST
         axios.put(`http://localhost:5000/api/comments/${comment_idInLocalStorage}`, formNewComment, {

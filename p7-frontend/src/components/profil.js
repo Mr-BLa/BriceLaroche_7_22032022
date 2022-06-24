@@ -89,7 +89,6 @@ export default function ModifProfil() {
     function handleSubmit(event) {
         //pour ne pas raffraichir la page (et donc le formulaire)(et éviter de passer les value du formulaire dans l'url) au clic sur le bouton 
         event.preventDefault()
-        console.log(formModify)
         // Submit la data au backend via PUT
         axios.put(`http://localhost:5000/api/user/${idInLocalStorage}`, formModify, {
             headers: {

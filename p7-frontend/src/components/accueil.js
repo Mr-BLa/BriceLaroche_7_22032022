@@ -49,14 +49,12 @@ export default function Accueil() {
             })
                 .then((res) => {
                     const postsData = res.data
-                    console.log(postsData)
                     setAllPosts(postsData)
                 })
                 .catch((err) => {
                     console.log(err)
                 })
     }, []);
-    console.log(allPosts)
 
 
             /** COMMENTS: Au chargement de la page, récupération dans la BDD des commentaires **/
@@ -74,7 +72,6 @@ export default function Accueil() {
                     console.log(err)
                 })
     }, []);
-    console.log(allComments)
 
         /** /!\ LUXON MARCHE PAS /!\ **/
     // console.log(allPosts.createdat)

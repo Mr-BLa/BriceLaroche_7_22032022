@@ -36,7 +36,6 @@ export default function Login() {
         {email: "", password: ""}
     )
 
-useEffect(()=>{console.log("login")},[])
 
     /** GESTION/ACTUALISATION DU FORMULAIRE **/
     // On récupère notre objet avec tous ses composants et on actualise en fonction des éléments qui sont modifiés (via target.name):
