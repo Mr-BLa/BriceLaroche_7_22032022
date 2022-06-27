@@ -162,7 +162,9 @@ left: -1rem;
 
 /* Div Post  */
 .post--container{
+    flex-direction: column;
     background-color: white;
+    justify-content: flex-start;
     min-width: 60%;
     margin: 1rem 0;
     padding: 0;
@@ -170,6 +172,22 @@ left: -1rem;
     border-left: 4px solid rgba(253,45,1,0.43);
     border-radius: 20px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+/* H1 Nom et Date */
+.h1__namesData{
+    display: flex;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: normal;
+    color:  #f17e66;
+    margin-bottom: .75rem;
+}
+
+
+/*H1 TITRE*/
+.h1__postTitle{
+    display: flex; 
 }
 
 /* Title */
@@ -241,7 +259,7 @@ left: -1rem;
 /* Container du content */
 .postContent--container{
     background-color: #fdfdfd;
-    padding: .3rem 1rem 1rem 1rem;
+    padding: .3rem 1rem 1.75rem 1rem;
     border-radius: 0 0 20px 20px;
 }
 

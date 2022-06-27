@@ -79,6 +79,7 @@ code {
 }
 
 .inputForm{
+  margin: auto;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-sizing: border-box;

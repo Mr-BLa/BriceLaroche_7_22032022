@@ -205,7 +205,8 @@ export default function PostId() {
                         key={`${post.post_id}`}
                         className="post--container">
                             <h1 className="post__title">
-                                <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat}</span><br/> {post.title}
+                                <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat}</span>
+                                <span className="h1__postTitle">{post.title}</span>
                             </h1>
                             <div className="postContent--container">
                                 <p className="post__content">{post.content}</p>
@@ -218,7 +219,7 @@ export default function PostId() {
                         key={`${comment.comment_id}`}
                         className="comment--container">
                             <h2 className="comment__title">
-                                {comment.firstname} {comment.lastname} - le {comment.createdat}
+                                <span className="h2__namesData">{comment.firstname} {comment.lastname} - le {comment.createdat}</span>
                             </h2>
                             <p className="comment__text"> {comment.text} </p>
                             {  
