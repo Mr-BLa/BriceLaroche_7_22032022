@@ -119,7 +119,7 @@ export default function Accueil() {
                             key={`${post.post_id}`}
                             className="post--container">
                                 <h1 className="post__title">
-                                    {post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}
+                                    <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat}</span><br/> {post.title}
                                     {  
                                         isAdmin === 1 || idInLocalStorage === post.user_id ? (<span className="title__btn--container">
                                             <button className="btn__modif" onClick={()=>postModif(post.post_id)}>Modifier</button>

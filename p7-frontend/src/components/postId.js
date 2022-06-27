@@ -205,7 +205,7 @@ export default function PostId() {
                         key={`${post.post_id}`}
                         className="post--container">
                             <h1 className="post__title">
-                                {post.firstname} {post.lastname} - le {post.createdat}<br/> {post.title}
+                                <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat}</span><br/> {post.title}
                             </h1>
                             <div className="postContent--container">
                                 <p className="post__content">{post.content}</p>
