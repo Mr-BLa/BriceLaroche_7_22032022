@@ -22,12 +22,6 @@ const connection = require("./services/database")
 // Création application express
 const app = express()
 
-// Middleware général, pour permettre à l'app, d'accéder à l'API sans problèmes
-/*const corsOptions ={
-    origin:'http://localhost:3306'
-}
-
-*/
 
 // Extraction corps json pour gérer la requête POST venant de l'application front-end
 app.use(express.json())
