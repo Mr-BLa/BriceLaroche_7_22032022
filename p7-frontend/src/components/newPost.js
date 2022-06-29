@@ -106,7 +106,7 @@ export default function NewPost() {
                                 name="content"
                                 value={formNewPost.content}/>
                         </div>
-                        <h2 className="input__title">Insérer ici le lien URL d'une image (JPG, GIF, etc):</h2>
+                        <h2 className="input__title">Insérer ici, le lien URL d'une image (JPG, GIF, etc):</h2>
                         <div className="input__container">
                             <input 
                                 placeholder="https://www.exemple.com"
