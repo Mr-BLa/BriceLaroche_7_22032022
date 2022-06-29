@@ -145,7 +145,7 @@ export default function ModifProfil() {
     if( isLoggedIn === true) {
         return (
             <main className="mainContent accueil--main">
-                <div classname="title__container">
+                <div className="title__container">
                     <h1 className="title__signup">Modifiez votre Profil: </h1>
                 </div>
                 <form id="mainContent__form" onSubmit={handleSubmit}>   

@@ -11,6 +11,7 @@ const router = express.Router()
 
 // Associer fonctions aux différentes routes
 const userCtrl = require('../controllers/user')
+
 // Import Middleware Authentification Token
 const auth = require("../middleware/auth")
 

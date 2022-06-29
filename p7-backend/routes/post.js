@@ -15,20 +15,17 @@ const postCtrl = require('../controllers/post')
 // Import Middleware Authentification Token
 const auth = require("../middleware/auth")
 
-// Import Middleware multer-config
-//const multer = require('../middleware/multer-config')
-
 
 // Recherche de tous les posts
 router.get('/all', auth, postCtrl.getAllPosts)
 // Création d'un post
-router.post('/', auth,/* multer,*/ postCtrl.createPost)
+router.post('/', auth, postCtrl.createPost)
 // Modification d'un post
-router.put('/:id', auth, /*multer,*/ postCtrl.modifyPost)
+router.put('/:id', auth, postCtrl.modifyPost)
 // Suppression d'un post
 router.delete('/:id', auth, postCtrl.deletePost)
 // Recherche d'un post par son Id
-router.get('/all/:id', postCtrl.getPostById)
+router.get('/all/:id', auth, postCtrl.getPostById)
 
 
 

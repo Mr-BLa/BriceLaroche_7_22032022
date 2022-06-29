@@ -12,7 +12,7 @@ import { DateTime } from "luxon"
 export default function PostId() {
     // Get the userId param from the URL.
     let { post_id } = useParams()
-
+    console.log("Commentaires post")
     // Fonction qui nous permettra de programmer des changements de page
     const navigate = useNavigate()
 

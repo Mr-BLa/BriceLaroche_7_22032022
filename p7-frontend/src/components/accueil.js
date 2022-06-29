@@ -6,7 +6,7 @@ import React from "react"
 import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
+import { Link, Navigate, useNavigate} from "react-router-dom"
 import { DateTime } from "luxon"
 
 export default function Accueil() {
@@ -114,26 +114,29 @@ export default function Accueil() {
         return (
             <main className="mainContent accueil--main">
                 {allPosts.map((post) => (
-                    <Link to={`/accueil/${post.post_id}`} className="post--link">
+                    
                         <div 
                             key={`${post.post_id}`}
                             className="post--container">
+                                <Link to={`/accueil/${post.post_id}`} className="post--link">
                                 <h1 className="post__title">
                                     <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat} :</span>
                                     <span className="h1__postTitle">{post.title}</span>
+                                    
+                                </h1>
+                                </Link>
                                     {  
                                         isAdmin === 1 || idInLocalStorage === post.user_id ? (<span className="title__btn--container">
-                                            <button className="btn__modif" onClick={()=>postModif(post.post_id)}>Modifier</button>
-                                            <button className="btn__suppr" onClick={()=>postDelete(post.post_id)}>Supprimer</button>
+                                            <button className="btn__modif" onClick={(e)=>{e.stopPropagation();postModif(post.post_id)}}>Modifier</button>
+                                            <button className="btn__suppr" onClick={(e)=>{e.stopPropagation();postDelete(post.post_id)}}>Supprimer</button>
                                         </span>):null
                                     }
-                                </h1>
                                 <div className="postContent--container">
                                     <p className="post__content">{post.content}</p>
-                                    <div className="post__attachement">{post.attachement}</div>
+                                    <img src={post.attachement} className="post__attachement"/>
                                 </div>                
                         </div>
-                    </Link>
+                    
                 ))}
                 
                 <div className="imgAccueil__container">
