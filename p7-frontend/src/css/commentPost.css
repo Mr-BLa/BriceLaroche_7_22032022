@@ -53,10 +53,11 @@
 
     /*Boutons Modifier, Supprimer*/
 .comment__btn--container{
-    display: flex;
+    display: inline-flex;
     width: 100%;
     justify-content: flex-end;
-    margin: 0 0 1rem -1rem;
+    background-color: #fdfdfd;
+    border-radius: 0 0 20px 20px;
 }
 
 /*Formulaire commentaire commun (créer et modifier)*/

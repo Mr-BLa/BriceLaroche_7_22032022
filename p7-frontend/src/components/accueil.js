@@ -37,9 +37,6 @@ export default function Accueil() {
         /** Tableau des posts **/
     const [allPosts, setAllPosts] = useState([])
 
-        /** Tableau des commentaires**/
-    const [allComments, setAllComments] = useState([])
-
 
         /**  POSTS: Au chargement de la page, récupération dans la BDD des posts **/
     // Récupérer la data au backend via Get/post/all/
@@ -50,6 +47,8 @@ export default function Accueil() {
                 .then((res) => {
                     const postsData = res.data
                     setAllPosts(postsData)
+                    console.log(postsData)
+                    console.log(allPosts)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -57,21 +56,7 @@ export default function Accueil() {
     }, []);
 
 
-            /** COMMENTS: Au chargement de la page, récupération dans la BDD des commentaires **/
-    // Récupérer la data au backend via Get/comments/all/
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/comments/all/`, {
-                headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
-            })
-                .then((res) => {
-                    const commentsData = res.data
-                    setAllComments(commentsData)
-                    
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-    }, []);
+
 
         /** /!\ LUXON MARCHE PAS /!\ **/
     // console.log(allPosts.createdat)
@@ -122,12 +107,11 @@ export default function Accueil() {
                                 <h1 className="post__title">
                                     <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat} :</span>
                                     <span className="h1__postTitle">{post.title}</span>
-                                    
                                 </h1>
                                 <div className="postContent--container">
                                     <p className="post__content">{post.content}</p>
                                     {
-                                        post.attachement !== undefined ? (<img src={post.attachement} alt={`Image posté par ${post.firstname} ${post.lastname}`} className="post__attachement"/>): null
+                                        post.attachement !== "" ? (<img src={post.attachement} alt={`Image posté par ${post.firstname} ${post.lastname}`} className="post__attachement"/>): null
                                     }
                                 </div>  
                                 </Link>

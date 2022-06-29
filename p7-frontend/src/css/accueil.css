@@ -239,7 +239,6 @@ left: -1rem;
 /* Bouton Supprimer */
 .btn__suppr{
     height: 2.3rem;
-    margin:  0rem 0rem 0rem 0.5rem;
     padding: 0 1.3rem;
     color: white;
     background-color: #fea347 ;
@@ -250,6 +249,7 @@ left: -1rem;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
     
+    margin: 0 2rem 1.75rem 0.4rem;
 }
 
 .btn__suppr:hover{

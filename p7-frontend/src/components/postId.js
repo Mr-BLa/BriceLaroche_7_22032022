@@ -12,7 +12,6 @@ import { DateTime } from "luxon"
 export default function PostId() {
     // Get the userId param from the URL.
     let { post_id } = useParams()
-    console.log("Commentaires post")
     // Fonction qui nous permettra de programmer des changements de page
     const navigate = useNavigate()
 
@@ -209,7 +208,9 @@ export default function PostId() {
                             </h1>
                             <div className="postContent--container postContent--container__commentPost">
                                 <p className="post__content">{post.content}</p>
-                                <img src={post.attachement} alt={`Image posté par ${post.firstname} ${post.lastname}`} className="post__attachement"/>
+                                {
+                                    post.attachement !== "" ? (<img src={post.attachement} alt={`Image posté par ${post.firstname} ${post.lastname}`} className="post__attachement"/>): null
+                                }
                             </div>                
                     </div>
                 ))}

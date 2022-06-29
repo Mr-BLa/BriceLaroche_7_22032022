@@ -11,7 +11,6 @@ import { Navigate, useNavigate } from "react-router-dom"
 export default function PostModif() {
     // Fonction qui nous permettra de programmer des changements de page
     const navigate = useNavigate()
-    console.log("Modifier post")
     // Définition variables éléments du localStorage
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
@@ -59,8 +58,6 @@ export default function PostModif() {
                         content: data.content,
                         attachement: data.attachement,
                     })
-                    console.log(data)
-                    console.log(formPostModif)
                 })
                 .catch((err) => {
                     console.log(err)
