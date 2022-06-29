@@ -124,17 +124,19 @@ export default function Accueil() {
                                     <span className="h1__postTitle">{post.title}</span>
                                     
                                 </h1>
-                                </Link>
-                                    {  
-                                        isAdmin === 1 || idInLocalStorage === post.user_id ? (<span className="title__btn--container">
-                                            <button className="btn__modif" onClick={(e)=>{e.stopPropagation();postModif(post.post_id)}}>Modifier</button>
-                                            <button className="btn__suppr" onClick={(e)=>{e.stopPropagation();postDelete(post.post_id)}}>Supprimer</button>
-                                        </span>):null
-                                    }
                                 <div className="postContent--container">
                                     <p className="post__content">{post.content}</p>
-                                    <img src={post.attachement} className="post__attachement"/>
-                                </div>                
+                                    {
+                                        post.attachement !== undefined ? (<img src={post.attachement} alt={`Image posté par ${post.firstname} ${post.lastname}`} className="post__attachement"/>): null
+                                    }
+                                </div>  
+                                </Link>
+                                {  
+                                    isAdmin === 1 || idInLocalStorage === post.user_id ? (<span className="title__btn--container">
+                                        <button className="btn__modif" onClick={(e)=>{e.stopPropagation();postModif(post.post_id)}}>Modifier</button>
+                                        <button className="btn__suppr" onClick={(e)=>{e.stopPropagation();postDelete(post.post_id)}}>Supprimer</button>
+                                    </span>):null
+                                }
                         </div>
                     
                 ))}

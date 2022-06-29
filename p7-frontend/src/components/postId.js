@@ -6,7 +6,7 @@ import React from "react"
 import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams } from "react-router-dom"
 import { DateTime } from "luxon"
 
 export default function PostId() {
@@ -26,7 +26,6 @@ export default function PostId() {
             /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = useState(()=>{
-
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
         // Sinon on retourne false 
         if (tokenInLocalStorage !== null ){
@@ -208,9 +207,9 @@ export default function PostId() {
                                 <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat}</span>
                                 <span className="h1__postTitle">{post.title}</span>
                             </h1>
-                            <div className="postContent--container">
+                            <div className="postContent--container postContent--container__commentPost">
                                 <p className="post__content">{post.content}</p>
-                                <div className="post__attachement">{post.attachement}</div>
+                                <img src={post.attachement} alt={`Image posté par ${post.firstname} ${post.lastname}`} className="post__attachement"/>
                             </div>                
                     </div>
                 ))}

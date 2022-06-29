@@ -51,12 +51,16 @@ export default function PostModif() {
                 headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
             })
                 .then((res) => {
-                    const data = res.data
+                    const [data] = res.data
                     setFormPostModif({
+                        user_id: data.user_id,
+                        post_id: data.post_id,
                         title: data.title,
                         content: data.content,
                         attachement: data.attachement,
                     })
+                    console.log(data)
+                    console.log(formPostModif)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -128,7 +132,7 @@ export default function PostModif() {
                                 name="content"
                                 value={formPostModif.content}/>
                         </div>
-                        <h2 className="input__title">Lien URL de la pièce jointe:</h2>
+                        <h2 className="input__title">Insérer ici le lien URL d'une image (JPG, GIF, etc):</h2>
                         <div className="input__container">
                             <input 
                                 placeholder="https://www.exemple.com"
@@ -138,10 +142,12 @@ export default function PostModif() {
                                 name="attachement"
                                 value={formPostModif.attachement}/>
                         </div>
-                        <button 
-                        className="submitButton newPostSubmitButton">
-                        Modifier la Publication
-                    </button>
+                        <div className="buttonContainer">
+                            <button 
+                            className="submitButton newPostSubmitButton">
+                            Modifier la Publication
+                            </button>
+                        </div>
                     </form>
                 </div>
                 <div className="imgAccueil__container">

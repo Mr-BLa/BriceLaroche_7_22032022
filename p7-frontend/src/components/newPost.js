@@ -21,7 +21,6 @@ export default function NewPost() {
         /** VERIFICATION STATUT CONNEXION **/
     // Statut Login de l'utilisateur ("non connecté" par défaut)
     const [isLoggedIn, setIsLoggedIn] = useState(()=>{
-
         // Si Token présent dans LocalStorage, alors on fait passer le statut "isLoggedIn", à true ("connecté");
         // Sinon on retourne false 
         if (tokenInLocalStorage !== null ){
@@ -107,7 +106,7 @@ export default function NewPost() {
                                 name="content"
                                 value={formNewPost.content}/>
                         </div>
-                        <h2 className="input__title">Lien URL de la pièce jointe:</h2>
+                        <h2 className="input__title">Insérer ici le lien URL d'une image (JPG, GIF, etc):</h2>
                         <div className="input__container">
                             <input 
                                 placeholder="https://www.exemple.com"
@@ -117,10 +116,12 @@ export default function NewPost() {
                                 name="attachement"
                                 value={formNewPost.attachement}/>
                         </div>
-                        <button 
-                        className="submitButton newPostSubmitButton">
-                        Poster Nouvelle Publication
-                    </button>
+                        <div className="buttonContainer">
+                            <button 
+                            className="submitButton newPostSubmitButton">
+                            Poster Nouvelle Publication
+                            </button>
+                        </div>
                     </form>
                 </div>
                 <div className="imgAccueil__container">

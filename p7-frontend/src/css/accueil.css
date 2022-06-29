@@ -157,7 +157,7 @@ left: -1rem;
     text-decoration: none;
     display: block;
     color: black;
-    width: 60%;
+    width: 100%;
 }
 
 /* Div Post  */
@@ -165,7 +165,7 @@ left: -1rem;
     flex-direction: column;
     background-color: white;
     justify-content: flex-start;
-    min-width: 60%;
+    width: 60%;
     margin: 1rem 0;
     padding: 0;
     border-radius: 20px;
@@ -197,17 +197,24 @@ left: -1rem;
     border-bottom: 1px dotted rgba(253,45,1,0.43);
 }
 
+/* Image (via Lien URL) */
+.post__attachement{
+    width: 100%
+}
+
 /* Box des boutons  */
 .title__btn--container{
-    display: flex;
+    display: inline-flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    background-color: #fdfdfd;
+    border-radius: 0 0 20px 20px;
 }
 
 /* Bouton Modifier  */
 .btn__modif{
     height: 2.3rem;
-    margin:  0rem 0.5rem 0rem 0rem;
+    margin:  0 0.4rem 1.75rem 2rem;
     padding: 0 1.3rem;
     color: white;
     background-color: #f17e66;
@@ -259,7 +266,7 @@ left: -1rem;
 /* Container du content */
 .postContent--container{
     background-color: #fdfdfd;
-    padding: .3rem 1rem 1.75rem 1rem;
+    padding: 0.3rem 2rem 1.75rem 2rem;
     border-radius: 0 0 20px 20px;
 }
 

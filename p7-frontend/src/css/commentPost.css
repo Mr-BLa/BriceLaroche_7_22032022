@@ -10,6 +10,13 @@
     padding: 2rem 0 0 20%;
 }
 
+/** Post **/
+    /*Container des Post*/
+.postContent--container__commentPost{
+    border-radius: 0 0 20px 20px;
+    padding: 0.3rem 2rem 1.75rem 2rem;
+}
+
 /** Commentaires **/
     /*Container des commentaires*/
 .comment--container{
