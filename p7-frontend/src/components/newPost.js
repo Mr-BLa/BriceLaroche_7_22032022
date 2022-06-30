@@ -118,8 +118,8 @@ export default function NewPost() {
                         </div>
                         <div className="buttonContainer">
                             <button 
-                            className="submitButton newPostSubmitButton">
-                            Poster Nouvelle Publication
+                                className="submitButton newPostSubmitButton">
+                                Poster Nouvelle Publication
                             </button>
                         </div>
                     </form>

@@ -182,16 +182,20 @@ export default function ModifProfil() {
                             name="bio"
                             value={formModify.bio}/>
                     </div>
-                    <button 
-                        className="submitButton">
-                        Modifier
-                    </button>
+                    <div className="buttonContainer">
+                        <button 
+                            className="submitButton">
+                            Modifier
+                        </button>
+                    </div>
                 </form>
-                <button 
-                    onClick={deleteProfil}
-                    className="deleteButton">
-                    Supprimer le Profil
-                </button>
+                <div className="buttonContainer">
+                    <button 
+                        onClick={deleteProfil}
+                        className="deleteButton">
+                        Supprimer le Profil
+                    </button>
+                </div>
                 <div className="img__container">
                     <img 
                         src={logo}

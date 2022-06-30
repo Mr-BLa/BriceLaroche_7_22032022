@@ -244,11 +244,13 @@ export default function Signup() {
                             value={formSignup.bio}
                             required/>
                     </div>
-                    <button 
-                        id="signIn"
-                        className="submitButton">
-                        S'inscrire
-                    </button>
+                    <div className="buttonContainer">
+                        <button 
+                            id="signIn"
+                            className="submitButton">
+                            S'inscrire
+                        </button>
+                    </div>
                 </form>
                 <div className="img__container">
                     <img 

@@ -111,10 +111,12 @@ export default function Login() {
                             name="password"
                             value={formLogin.password}/>
                     </div>
-                    <button 
-                        className="submitButton">
-                        Login
-                    </button>
+                    <div className="buttonContainer">
+                        <button 
+                            className="submitButton">
+                            Login
+                        </button>
+                    </div>
                 </form>
                 <div className="signup__container">
                     <Link to="/signup" className="signup__link">Créer un compte</Link>
