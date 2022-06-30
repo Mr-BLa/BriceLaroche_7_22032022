@@ -35,6 +35,11 @@ export default function HeaderApp() {
     }
     
 
+    /**NOUVEAU POST**/
+    function newPost() {
+        navigate('/accueil/new')
+    }
+//<Link to='/accueil/new' className="new--link"></Link>
     /**DECONNEXION**/
     function logOff() {
         localStorage.removeItem('token')
@@ -53,36 +58,37 @@ export default function HeaderApp() {
 
 //onClick={(e)=>{e.stopPropagation(); backToAccueil()}}>     //onClick={backToAccueil}
     return (
-        <Link to='/accueil'>
+        
             <header id="headerAccueilContainer" >
-                <nav id="navBarAccueil">
-                    <div className="navBar__Logo">
-                        <img 
-                            src={HeaderAppLogo}
-                            className="headerAccueil--logo"
-                            alt="Groupomania Logo"/>
-                    </div>   
-                    <div className="navBar__Btns">
-                        <Link to='/accueil/new' className="new--link">
-                            <button
-                            className="newPostButton">
-                            Nouvelle Publication
-                            </button>
-                        </Link>
-                        <div className="dropdown">
-                            <img
-                                src={ProfilLogo}
-                                className="headerAccueil--profilLogo dropbtn"
-                                alt="Profil Logo"
-                                onClick={dropDown}/>
-                                    <div id="myDropdown" className="dropdown-content">
-                                        <Link to="/accueil/profil" className="profil--link">Profil</Link>
-                                        <button onClick={logOff}>Déconnexion</button>
-                                    </div>
+                <Link to='/accueil' className="link--HeaderAccueil">
+                    <nav id="navBarAccueil">
+                        <div className="navBar__Logo">
+                            <img 
+                                src={HeaderAppLogo}
+                                className="headerAccueil--logo"
+                                alt="Groupomania Logo"/>
+                        </div>   
+                        <div className="navBar__Btns">
+                            <div className="BtnNewPost--Container">
+                                <button className="newPostButton" OnClick={newPost}>
+                                Nouvelle Publication
+                                </button>
+                            </div>
+                            <div className="dropdown">
+                                <img
+                                    src={ProfilLogo}
+                                    className="headerAccueil--profilLogo dropbtn"
+                                    alt="Profil Logo"
+                                    onClick={dropDown}/>
+                                        <div id="myDropdown" className="dropdown-content">
+                                            <Link to="/accueil/profil" className="profil--link">Profil</Link>
+                                            <button onClick={logOff}>Déconnexion</button>
+                                        </div>
+                            </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                </Link>
             </header>
-        </Link>
+        
     )
 }

@@ -55,7 +55,6 @@ export default function Accueil() {
 
 
 
-
         /** /!\ LUXON MARCHE PAS /!\ **/
     // console.log(allPosts.createdat)
     // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
