@@ -47,8 +47,6 @@ export default function Accueil() {
                 .then((res) => {
                     const postsData = res.data
                     setAllPosts(postsData)
-                    console.log(postsData)
-                    console.log(allPosts)
                 })
                 .catch((err) => {
                     console.log(err)
