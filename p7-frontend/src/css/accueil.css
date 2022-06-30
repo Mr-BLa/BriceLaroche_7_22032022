@@ -4,6 +4,7 @@
 
 
 
+
 /*****************/
 /* HEADER ACCUEIL*/
 
@@ -280,4 +281,25 @@ width: 32rem;
 
 .imgAccueil__container{
 margin: 0 0 0 98%;
+}
+
+
+
+
+
+/*****************/
+/* MEDIA-QUERIES */
+
+@media (max-width: 1024px) {
+    /* Appareils avec une résolution de 1024 pixels ou moins */
+    .post--container{
+        width: 85%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Appareils avec une résolution de 768 pixels ou moins */
+    .post--container{
+        width: 95%;
+    }
 }

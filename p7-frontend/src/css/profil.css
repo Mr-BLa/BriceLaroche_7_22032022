@@ -36,3 +36,15 @@
 .deleteButton:focus {
     outline: none;
 }
+
+
+/*****************/
+/* MEDIA-QUERIES */
+
+
+@media (max-width: 400px) {
+    /* Appareils avec une résolution de 400 pixels ou moins */
+    .buttonContainer__suppr{
+        width: 95%;
+    }
+}

@@ -189,7 +189,7 @@ export default function ModifProfil() {
                         </button>
                     </div>
                 </form>
-                <div className="buttonContainer">
+                <div className="buttonContainer buttonContainer__suppr">
                     <button 
                         onClick={deleteProfil}
                         className="deleteButton">

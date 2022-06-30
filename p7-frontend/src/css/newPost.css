@@ -14,3 +14,19 @@
 .newPostSubmitButton{
     margin-bottom: 2rem;
 }
+
+
+/*****************/
+/* MEDIA-QUERIES */
+
+@media (max-width: 1024px) {
+    /* Appareils avec une résolution de 1024 pixels ou moins */
+    .postForm--container {
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Appareils avec une résolution de 768 pixels ou moins */
+    
+}

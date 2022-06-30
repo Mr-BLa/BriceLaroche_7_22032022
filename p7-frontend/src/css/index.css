@@ -177,3 +177,26 @@ code {
   font-family: 'Arial';
   font-size: 1.618rem;
 }
+
+
+/*****************/
+/* MEDIA-QUERIES */
+
+@media (max-width: 400px) {
+  /* Appareils avec une résolution de 400 pixels ou moins */
+  #mainContent__form{
+    max-width: none;
+    width: 95%;
+  }
+
+  .title__container{
+    width: 90%;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 426px) {
+  .title__container{
+    width: 89%;
+    margin: auto;
+  }
+}
