@@ -276,11 +276,11 @@ left: -1rem;
 /*LOGO MAIN*/
 
 .mainAccueil--logo{
-width: 32rem;
+    width: 32rem;
 }
 
 .imgAccueil__container{
-margin: 0 0 0 98%;
+    margin: 5px 0 0 98%;
 }
 
 
@@ -301,5 +301,13 @@ margin: 0 0 0 98%;
     /* Appareils avec une résolution de 768 pixels ou moins */
     .post--container{
         width: 95%;
+    }
+}
+
+@media (max-width: 608px) {
+    /* Appareils avec une résolution de 608 pixels ou moins */
+    #navBarAccueil{
+        display: flex;
+        flex-direction: column;
     }
 }

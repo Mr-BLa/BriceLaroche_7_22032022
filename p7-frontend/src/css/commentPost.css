@@ -95,3 +95,43 @@
     width: 50%;
 }
 
+
+/*****************/
+/* MEDIA-QUERIES */
+
+@media (max-width: 1024px) {
+    /* Appareils avec une résolution de 1024 pixels ou moins */
+    .post--container{
+        width: 85%;
+    }
+
+    .comment--main {
+        padding: 2rem 0 0 0;
+        align-items: center;
+    }
+
+    .comment--container {
+        width: 85%;
+    }
+
+    .comment__form {
+        width: 85%;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    /* Appareils avec une résolution de 768 pixels ou moins */
+    .post--container{
+        width: 95%;
+    }
+
+    .comment--container {
+        width: 95%;
+    }
+
+    .comment__form {
+        width: 95%;
+    }
+}

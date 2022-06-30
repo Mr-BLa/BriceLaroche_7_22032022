@@ -55,18 +55,20 @@ export default function HeaderApp() {
     return (
         <Link to='/accueil'>
             <header id="headerAccueilContainer" >
-                    <nav id="navBarAccueil">
+                <nav id="navBarAccueil">
+                    <div className="navBar__Logo">
                         <img 
                             src={HeaderAppLogo}
                             className="headerAccueil--logo"
                             alt="Groupomania Logo"/>
+                    </div>   
+                    <div className="navBar__Btns">
                         <Link to='/accueil/new' className="new--link">
                             <button
                             className="newPostButton">
                             Nouvelle Publication
                             </button>
                         </Link>
-                    </nav>
                         <div className="dropdown">
                             <img
                                 src={ProfilLogo}
@@ -78,6 +80,8 @@ export default function HeaderApp() {
                                         <button onClick={logOff}>Déconnexion</button>
                                     </div>
                         </div>
+                    </div>
+                </nav>
             </header>
         </Link>
     )
