@@ -129,7 +129,6 @@ export default function ModifProfil() {
     *   - H1
         - Form:
             Input Email
-            Input Username
             Input Firstname
             Input Lastname
             Input Role

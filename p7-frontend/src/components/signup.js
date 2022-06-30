@@ -71,7 +71,7 @@ export default function Signup() {
     }
 
 
-        /*
+    /*
     *          SAISIE ET GESTION DES COORDONNéES
     */
     //Regex Name: trouve tous les caractères qui ne sont pas enregistrés comme: des lettres unicodes, des espaces et des "-"

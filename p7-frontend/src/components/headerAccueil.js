@@ -46,10 +46,10 @@ export default function HeaderApp() {
     }
 
     /** Retour Page Accueil **/
-    function backToAccueil(e) {
-        navigate('/accueil')
+    // function backToAccueil(e) {
+    //     navigate('/accueil')
         
-    }
+    // }
 
 //onClick={(e)=>{e.stopPropagation(); backToAccueil()}}>     //onClick={backToAccueil}
     return (
