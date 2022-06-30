@@ -51,34 +51,34 @@ export default function HeaderApp() {
         
     }
 
-//onClick={(e)=>{e.stopPropagation(); backToAccueil()}}>
+//onClick={(e)=>{e.stopPropagation(); backToAccueil()}}>     //onClick={backToAccueil}
     return (
-
-        <header id="headerAccueilContainer" onClick={backToAccueil}>
-                <nav id="navBarAccueil">
-                    <img 
-                        src={HeaderAppLogo}
-                        className="headerAccueil--logo"
-                        alt="Groupomania Logo"/>
-                    <Link to='/accueil/new' className="new--link">
-                        <button
-                        className="newPostButton">
-                        Nouvelle Publication
-                        </button>
-                    </Link>
-                </nav>
-                    <div className="dropdown">
-                        <img
-                            src={ProfilLogo}
-                            className="headerAccueil--profilLogo dropbtn"
-                            alt="Profil Logo"
-                            onClick={dropDown}/>
-                                <div id="myDropdown" className="dropdown-content">
-                                    <Link to="/accueil/profil" className="profil--link">Profil</Link>
-                                    <button onClick={logOff}>Déconnexion</button>
-                                </div>
-                    </div>
-                    
-        </header>
+        <Link to='/accueil'>
+            <header id="headerAccueilContainer" >
+                    <nav id="navBarAccueil">
+                        <img 
+                            src={HeaderAppLogo}
+                            className="headerAccueil--logo"
+                            alt="Groupomania Logo"/>
+                        <Link to='/accueil/new' className="new--link">
+                            <button
+                            className="newPostButton">
+                            Nouvelle Publication
+                            </button>
+                        </Link>
+                    </nav>
+                        <div className="dropdown">
+                            <img
+                                src={ProfilLogo}
+                                className="headerAccueil--profilLogo dropbtn"
+                                alt="Profil Logo"
+                                onClick={dropDown}/>
+                                    <div id="myDropdown" className="dropdown-content">
+                                        <Link to="/accueil/profil" className="profil--link">Profil</Link>
+                                        <button onClick={logOff}>Déconnexion</button>
+                                    </div>
+                        </div>
+            </header>
+        </Link>
     )
 }

@@ -38,7 +38,6 @@ export default function ModifProfil() {
         /** OBJET FORMULAIRE **/
     // Création d'un composant-objet, contenant: Nom d'utilisateur, prénom, nom, role et bio:
     const [formModify, setFormModify] = useState({
-        username: "",
         firstname: "",
         lastname: "",
         role: "",
@@ -55,7 +54,6 @@ export default function ModifProfil() {
                 .then((res) => {
                     const data = res.data
                     setFormModify({
-                        username: data.username,
                         firstname: data.firstname,
                         lastname: data.lastname,
                         role: data.role,
@@ -149,15 +147,6 @@ export default function ModifProfil() {
                     <h1 className="title__signup">Modifiez votre Profil: </h1>
                 </div>
                 <form id="mainContent__form" onSubmit={handleSubmit}>   
-                    <div className="input__container">
-                        <input 
-                            placeholder="Pseudo"
-                            type="text" 
-                            className="inputForm" 
-                            onChange={handleChange}
-                            name="username"
-                            value={formModify.username}/>
-                    </div>
                     <div className="input__container">
                         <input 
                             placeholder="Prénom"
