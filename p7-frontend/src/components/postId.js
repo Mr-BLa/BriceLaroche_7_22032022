@@ -194,7 +194,7 @@ export default function PostId() {
 
 
 
-    /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
+    /** AFFICHAGE PAGE COMMENTAIRES SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
             <main className="mainContent comment--main">

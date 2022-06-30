@@ -138,7 +138,7 @@ export default function ModifProfil() {
     */
 
 
-    /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
+    /** AFFICHAGE PAGE MODIF PROFIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
             <main className="mainContent accueil--main">

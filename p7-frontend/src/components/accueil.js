@@ -90,7 +90,7 @@ export default function Accueil() {
         
     }
 
-    /**  **/
+    
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (

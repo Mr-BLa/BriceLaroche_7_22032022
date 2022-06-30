@@ -70,8 +70,10 @@ export default function HeaderApp() {
                         </div>   
                         <div className="navBar__Btns">
                             <div className="BtnNewPost--Container">
-                                <button className="newPostButton" OnClick={newPost}>
-                                Nouvelle Publication
+                                <button className="newPostButton" >
+                                    <Link to="/accueil/new" className="newPost--link">
+                                        Nouvelle Publication
+                                    </Link>
                                 </button>
                             </div>
                             <div className="dropdown">
@@ -82,7 +84,9 @@ export default function HeaderApp() {
                                     onClick={dropDown}/>
                                         <div id="myDropdown" className="dropdown-content">
                                             <Link to="/accueil/profil" className="profil--link">Profil</Link>
-                                            <button onClick={logOff}>Déconnexion</button>
+                                            <button onClick={logOff}>
+                                                Déconnexion
+                                            </button>
                                         </div>
                             </div>
                         </div>
