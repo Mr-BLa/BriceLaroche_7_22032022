@@ -330,7 +330,34 @@ top: 0px;
 
 @media (max-width: 608px) {
     /* Appareils avec une résolution de 608 pixels ou moins */
-    #navBarAccueil{
-        flex-wrap: wrap;
+    #headerAccueilContainer {
+        max-height: 10rem ;
+        height: 10rem;
     }
+
+    #navBarAccueil{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navBar__Logo {
+        display: flex;
+        margin: -7.3rem 0 0 -1.4rem;
+        height: 20rem;
+    }
+
+    .headerAccueil--logo{
+        width: 100%;
+    }
+
+    .navBar__Btns {
+        display: flex;
+        margin: -8.3rem 1.4rem 0 1.4rem;
+        justify-content: space-between;
+    }
+
+    .dropdown-content {
+        top: 9.15rem;
+    }
+    
 }
