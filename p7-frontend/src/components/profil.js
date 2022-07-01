@@ -61,7 +61,7 @@ export default function ModifProfil() {
                     })
                 })
                 .catch((err) => {
-                    console.log(err)
+                    return res.sendStatus(400)
                 })
     }, []);
 
@@ -99,7 +99,7 @@ export default function ModifProfil() {
                     navigate('/accueil')
                 
             }).catch(err => {
-                console.log(err)
+                return res.sendStatus(400)
             })
     }
 
@@ -119,7 +119,7 @@ export default function ModifProfil() {
                         navigate('/')
                     
                 }).catch(err => {
-                    console.log(err)
+                    return res.sendStatus(400)
                 })
         }
     }

@@ -84,8 +84,10 @@ export default function HeaderApp() {
                                     onClick={dropDown}/>
                                         <div id="myDropdown" className="dropdown-content">
                                             <Link to="/accueil/profil" className="profil--link">Profil</Link>
-                                            <button onClick={logOff}>
-                                                Déconnexion
+                                            <button>
+                                                <Link to="/" className="logOff--link" onClick={logOff}>
+                                                    Déconnexion
+                                                </Link>
                                             </button>
                                         </div>
                             </div>

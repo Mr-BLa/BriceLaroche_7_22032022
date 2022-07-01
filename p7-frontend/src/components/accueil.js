@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
 import { Link, Navigate, useNavigate} from "react-router-dom"
-import { DateTime } from "luxon"
+import formatDate from "../utils/formatdate"
 
 export default function Accueil() {
     // Fonction qui nous permettra de programmer des changements de page
@@ -49,18 +49,10 @@ export default function Accueil() {
                     setAllPosts(postsData)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    return res.sendStatus(400)
                 })
     }, []);
 
-
-
-        /** /!\ LUXON MARCHE PAS /!\ **/
-    // console.log(allPosts.createdat)
-    // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
-    // let jsDate = DateTime.fromJSDate(allPosts.createdat)
-    // console.log(parseDate)
-    // console.log(jsDate)
 
         /**MODIFICATION POST**/
     function postModif(post_id) {
@@ -84,7 +76,7 @@ export default function Accueil() {
                         navigate('/')
                     
                 }).catch(err => {
-                    console.log(err)
+                    return res.sendStatus(400)
                 })
         }
         
@@ -102,7 +94,7 @@ export default function Accueil() {
                             className="post--container">
                                 <Link to={`/accueil/${post.post_id}`} className="post--link">
                                 <h1 className="post__title">
-                                    <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat} :</span>
+                                    <span className="h1__namesData">{post.firstname} {post.lastname} - le {formatDate(post.createdat)} :</span>
                                     <span className="h1__postTitle">{post.title}</span>
                                 </h1>
                                 <div className="postContent--container">

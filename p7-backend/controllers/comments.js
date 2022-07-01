@@ -34,11 +34,9 @@ exports.modifyComment = (req, res, next) => {
 exports.deleteComment = (req, res, next) => {
     const comment_id = parseInt(req.params.id)
     connection.execute(`DELETE FROM comments WHERE comment_id = ?`, [comment_id] ).then(suppr => {
-        console.log(suppr)
         return res.send(suppr)
     })
     .catch(err => {
-        console.log(err)
         return res.sendStatus(400)
     })
 }
@@ -47,10 +45,8 @@ exports.deleteComment = (req, res, next) => {
 exports.getAllComments = (req, res, next) => {
     // Connection BDD MySql
     connection.query("SELECT comments.comment_id, comments.user_id, comments.post_id, comments.text, comments.createdat, comments.updateat, users.user_id, users.firstname, users.lastname, users.isadmin FROM comments JOIN users ON comments.user_id = users.user_id ORDER BY comment_id DESC ").then(results => {
-        console.log(results)
         return res.send(results)
     }).catch(err=> {
-        console.log(err)
         return res.sendStatus(400)
     })
 }
@@ -60,10 +56,8 @@ exports.getCommentById = (req, res, next) => {
     // Connection BDD MySql
     const post_id = parseInt(req.params.id)
     connection.query(`SELECT comments.comment_id, comments.user_id, comments.post_id, comments.text, comments.createdat, comments.updateat, users.user_id, users.firstname, users.lastname, users.isadmin FROM comments JOIN users ON comments.user_id = users.user_id WHERE comments.post_id = ?`, post_id).then(results => {
-        console.log(results)
         return res.send(results)
     }).catch(err=> {
-        console.log(err)
         return res.sendStatus(400)
     })
 }

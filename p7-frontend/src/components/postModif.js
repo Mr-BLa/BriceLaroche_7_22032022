@@ -60,7 +60,7 @@ export default function PostModif() {
                     })
                 })
                 .catch((err) => {
-                    console.log(err)
+                    return res.sendStatus(400)
                 })
     }, []);
 
@@ -98,7 +98,7 @@ export default function PostModif() {
                 navigate('/accueil')
                 
             }).catch(err => {
-                console.log(err)
+                return res.sendStatus(400)
             })
     }
 

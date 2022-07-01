@@ -15,26 +15,19 @@ const connection = require('../services/database')
 // POST: SIGN-UP
 exports.signup = (req, res, next) => {
     const password = req.body.password
-    console.log(password)
     // Hacher le mdp
     bcrypt.hash(password, 10)
         // On récupère le hash...
         .then(function(hash){
-            console.log("mdp hashé")
-            console.log(hash)
             // ... Qu'on enregistre dans un nouvel User...
             connection.execute('INSERT INTO `users` (`email`, `password`, `firstname`, `lastname`, `role`, `bio`) VALUES (?, ?, ?, ?, ?, ?)',[req.body.email, hash, req.body.firstname, req.body.lastname, req.body.role, req.body.bio])
                 .then(newUser => {
                     return res.send(newUser)
                 }).catch(err => {
-                    console.log(err)
-                    console.log("hash passé, mais pas enregistré dans bdd")
                     return res.sendStatus(400)
                 })
         })
         .catch(err => {
-            console.log(err)
-            console.log("mdp hashé: mais ERREUR")
             return res.sendStatus(500)
         })
 }
@@ -43,7 +36,6 @@ exports.signup = (req, res, next) => {
 
 // POST: LOGIN
 exports.login = (req, res, next) => {
-    console.log(req.body)
     // Retrouver le mail dans la BDD
     connection.query("SELECT email FROM users WHERE email = ?", req.body.email).then(function(email){
         // Si email introuvable
@@ -61,7 +53,6 @@ exports.login = (req, res, next) => {
                         } else {
                             // Si Mdp correct, renvoyer un user_id + un token
                             connection.query("SELECT user_id, isadmin FROM users WHERE email= ?", req.body.email).then(function(userData){
-                                console.log(userData)
                                 let user_id  = userData[0].user_id
                                 let isAdmin  = userData[0].isadmin
                                 res.status(200).json({
@@ -81,28 +72,20 @@ exports.login = (req, res, next) => {
                                 })
                             })
                             .catch(err => {
-                                console.log("1")
-                                console.log(err)
                                 return res.sendStatus(500)
                             })
                         }
                     })
                     .catch(err => {
-                        console.log("2")
-                        console.log(err)
                         return res.sendStatus(500)
                     })
             })
             .catch(err => {
-                console.log("3")
-                console.log(err)
                 return res.sendStatus(500)
             })
         }
     })
     .catch(err => {
-        console.log("4")
-        console.log(err)
         return res.sendStatus(500)
     })
 }
@@ -124,7 +107,6 @@ exports.getAllUsers = (req, res, next) => {
 exports.getUserById = (req, res, next) => {
     // Connexion BDD MySql + verification présence id
     const id = parseInt(req.params.id)
-    console.log(id)
     connection.execute(`SELECT * FROM users WHERE user_id=?`,[id]).then(results => {
         if (results.length === 0) {
             return res.sendStatus(404)
@@ -146,10 +128,8 @@ exports.modifyUser = (req, res, next) => {
 
     // On passe la commande sql pour enregistrer les modifications dans la bdd
     connection.execute(`UPDATE users SET firstname = ?, lastname = ?, role = ?, bio = ? WHERE user_id=?`,[req.body.firstname, req.body.lastname, req.body.role, req.body.bio, id]).then(modifications => {
-        console.log(modifications)
         return res.send(modifications)
     }).catch(err=> {
-        console.log(err)
         return res.sendStatus(400)
     })
 }

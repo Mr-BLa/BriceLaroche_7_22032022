@@ -126,7 +126,7 @@ top: 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
     z-index: 1;
-    top: 4.25rem;
+    top: 4.2rem;
     right: 1.4rem;
 }
 
@@ -144,10 +144,11 @@ top: 0px;
     border-radius: 5px;
 }
 
+
 /* Bouton à l'intérieur du Dropdown */
 .dropdown-content button {
     color: black;
-    padding: 1.2rem 1rem;
+    padding: 1.2rem 0rem;
     display: block;
     background-color:white;
     border: none;
@@ -161,6 +162,15 @@ top: 0px;
 .dropdown-content button:hover {
     background-color: #ddd;
     border-radius: 5px;
+}
+
+/* Lien Déconnexion */
+.logOff--link{
+    text-decoration: none;
+    color: black;
+    height: 3.3rem;
+    padding: 1.2rem 3.1rem 1.3rem 1.1rem;
+    align-items: baseline;
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */

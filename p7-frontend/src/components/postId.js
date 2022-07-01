@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import axios from "axios"
 import { Navigate, useNavigate, useParams } from "react-router-dom"
-import { DateTime } from "luxon"
+import formatDate from "../utils/formatdate"
 
 export default function PostId() {
     // Get the userId param from the URL.
@@ -76,7 +76,7 @@ export default function PostId() {
                     setPostById(postData)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    return res.sendStatus(400)
                 })
     }, []);
 
@@ -92,7 +92,7 @@ export default function PostId() {
                 setAllComments(commentData)
             })
             .catch((err) => {
-                console.log(err)
+                return res.sendStatus(400)
             })
     }, []);
 
@@ -117,7 +117,7 @@ export default function PostId() {
                     navigate('/accueil')
                 
             }).catch(err => {
-                console.log(err)
+                return res.sendStatus(400)
             })
     }
 
@@ -150,15 +150,10 @@ export default function PostId() {
                     navigate('/accueil')
                 
             }).catch(err => {
-                console.log(err)
+                return res.sendStatus(400)
             })
     }
-    /** /!\ LUXON MARCHE PAS /!\ **/
-    // console.log(allPosts.createdat)
-    // let parseDate =  DateTime.fromISO("2022-04-11T22:00:00.000Z")
-    // let jsDate = DateTime.fromJSDate(allPosts.createdat)
-    // console.log(parseDate)
-    // console.log(jsDate)
+
 
     /**MODIFICATION POST**/
     function commentModif(comment_id) {
@@ -186,7 +181,7 @@ export default function PostId() {
                         navigate(`/accueil`)
                     
                 }).catch(err => {
-                    console.log(err)
+                    return res.sendStatus(400)
                 })
         }
         
@@ -203,7 +198,7 @@ export default function PostId() {
                         key={`${post.post_id}`}
                         className="post--container">
                             <h1 className="post__title">
-                                <span className="h1__namesData">{post.firstname} {post.lastname} - le {post.createdat}</span>
+                                <span className="h1__namesData">{post.firstname} {post.lastname} - le {formatDate(post.createdat)}</span>
                                 <span className="h1__postTitle">{post.title}</span>
                             </h1>
                             <div className="postContent--container postContent--container__commentPost">
@@ -219,7 +214,7 @@ export default function PostId() {
                         key={`${comment.comment_id}`}
                         className="comment--container">
                             <h2 className="comment__title">
-                                <span className="h2__namesData">{comment.firstname} {comment.lastname} - le {comment.createdat}</span>
+                                <span className="h2__namesData">{comment.firstname} {comment.lastname} - le {formatDate(comment.createdat)}</span>
                             </h2>
                             <p className="comment__text"> {comment.text} </p>
                             {  

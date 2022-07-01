@@ -14,7 +14,6 @@ exports.createPost = (req, res, next) => {
     connection.execute('INSERT INTO `post` (`user_id`, `title`, `content`, `attachement`) VALUES (?, ?, ?, ?)', [req.body.user_id, req.body.title, req.body.content, req.body.attachement]).then(results => {
         return res.send(results)
     }).catch(err=> {
-        console.log("error:", err)
         return res.sendStatus(400)
     })
 }
@@ -24,10 +23,8 @@ exports.modifyPost = (req, res, next) => {
     const post_id = req.params.id
     // Connection BDD MySql
     connection.execute(`UPDATE post SET title = ?, content = ?, attachement = ? WHERE post_id = ?`, [req.body.title, req.body.content, req.body.attachement, post_id]).then(modifications => {
-        console.log(modifications)
         return res.send(modifications)
     }).catch(err=> {
-        console.log(err)
         return res.sendStatus(400)
     })
 }
@@ -36,11 +33,9 @@ exports.modifyPost = (req, res, next) => {
 exports.deletePost = (req, res, next) => {
     const post_id = req.params.id
     connection.execute(`DELETE FROM post WHERE post_id = ?`, [post_id]).then(suppr => {
-        // console.log(suppr)
         return res.send(suppr)
     })
     .catch(err => {
-        console.log(err)
         return res.sendStatus(400)
     })
 }
