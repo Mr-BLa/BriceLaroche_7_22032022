@@ -76,7 +76,7 @@ export default function PostId() {
                     setPostById(postData)
                 })
                 .catch((err) => {
-                    return res.sendStatus(400)
+                    console.log(err)
                 })
     }, []);
 
@@ -92,7 +92,7 @@ export default function PostId() {
                 setAllComments(commentData)
             })
             .catch((err) => {
-                return res.sendStatus(400)
+                console.log(err)
             })
     }, []);
 
@@ -117,7 +117,7 @@ export default function PostId() {
                     navigate('/accueil')
                 
             }).catch(err => {
-                return res.sendStatus(400)
+                console.log(err)
             })
     }
 
@@ -150,7 +150,7 @@ export default function PostId() {
                     navigate('/accueil')
                 
             }).catch(err => {
-                return res.sendStatus(400)
+                console.log(err)
             })
     }
 
@@ -181,7 +181,7 @@ export default function PostId() {
                         navigate(`/accueil`)
                     
                 }).catch(err => {
-                    return res.sendStatus(400)
+                    console.log(err)
                 })
         }
         

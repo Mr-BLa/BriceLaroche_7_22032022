@@ -49,7 +49,7 @@ export default function Accueil() {
                     setAllPosts(postsData)
                 })
                 .catch((err) => {
-                    return res.sendStatus(400)
+                    console.log(err)
                 })
     }, []);
 
@@ -76,7 +76,7 @@ export default function Accueil() {
                         navigate('/')
                     
                 }).catch(err => {
-                    return res.sendStatus(400)
+                    console.log(err)
                 })
         }
         

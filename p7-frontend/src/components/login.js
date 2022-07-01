@@ -73,7 +73,7 @@ export default function Login() {
                     navigate('/accueil')
                 }
             }).catch(err => {
-                return res.sendStatus(400)
+                console.log(err)
             })
     }
 

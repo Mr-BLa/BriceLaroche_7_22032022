@@ -73,7 +73,7 @@ export default function NewPost() {
                     navigate('/accueil')
                 
             }).catch(err => {
-                return res.sendStatus(400)
+                console.log(err)
             })
     }
 

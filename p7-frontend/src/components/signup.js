@@ -66,7 +66,7 @@ export default function Signup() {
                     navigate('/')
                 }
             }).catch(err => {
-                return res.sendStatus(400)
+                console.log(err)
             })
     }
 
