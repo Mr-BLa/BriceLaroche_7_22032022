@@ -17,7 +17,7 @@ const postRoutes = require('./routes/post')
 const commentsRoutes = require('./routes/comments')
 
 // Connexion BDD MySql
-const connection = require("./services/database")
+require("./services/database")
 
 // Création application express
 const app = express()

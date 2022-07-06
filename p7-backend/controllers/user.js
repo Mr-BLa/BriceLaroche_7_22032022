@@ -13,7 +13,7 @@ const connection = require('../services/database')
 
 
 // POST: SIGN-UP
-exports.signup = (req, res, next) => {
+exports.signup = (req, res) => {
     const password = req.body.password
     // Hacher le mdp
     bcrypt.hash(password, 10)
@@ -24,10 +24,12 @@ exports.signup = (req, res, next) => {
                 .then(newUser => {
                     return res.send(newUser)
                 }).catch(err => {
+                    console.log(err)
                     return res.sendStatus(400)
                 })
         })
         .catch(err => {
+            console.log(err)
             return res.sendStatus(500)
         })
 }
@@ -35,7 +37,7 @@ exports.signup = (req, res, next) => {
 
 
 // POST: LOGIN
-exports.login = (req, res, next) => {
+exports.login = (req, res) => {
     // Retrouver le mail dans la BDD
     connection.query("SELECT email FROM users WHERE email = ?", req.body.email).then(function(email){
         // Si email introuvable
@@ -72,77 +74,107 @@ exports.login = (req, res, next) => {
                                 })
                             })
                             .catch(err => {
+                                console.log(err)
                                 return res.sendStatus(500)
                             })
                         }
                     })
                     .catch(err => {
+                        console.log(err)
                         return res.sendStatus(500)
                     })
             })
             .catch(err => {
+                console.log(err)
                 return res.sendStatus(500)
             })
         }
     })
     .catch(err => {
+        console.log(err)
         return res.sendStatus(500)
     })
 }
 
 
 // GET ALL
-exports.getAllUsers = (req, res, next) => {
+exports.getAllUsers = (req, res) => {
     // Connection BDD MySql
     connection.query("SELECT * FROM users ORDER BY `username` ASC").then(results => {
         return res.send(results)
     }).catch(err=> {
+        console.log(err)
         return res.sendStatus(400)
     })
 }
 
 
-
 // GET By ID
-exports.getUserById = (req, res, next) => {
-    // Connexion BDD MySql + verification présence id
+exports.getUserById = (req, res) => {
     const id = parseInt(req.params.id)
-    connection.execute(`SELECT * FROM users WHERE user_id=?`,[id]).then(results => {
-        if (results.length === 0) {
-            return res.sendStatus(404)
-        } else {
-            return res.send(results[0])
-        }
-    }).catch(err=> {
+
+    // tester si l'id qui est envoyé est un nombre. 
+    // si c'est un nombre: requete -> BDD
+    // si ce n'est pas un nombre: retourner erreur
+    if (typeof id == 'number') {
+        connection.execute(`SELECT * FROM users WHERE user_id=?`,[id]).then(results => {
+            // Connexion BDD MySql + verification présence id
+            if (results.length === 0) {
+                return res.sendStatus(404)
+            } else {
+                return res.send(results[0])
+            }
+        }).catch(err=> {
+            console.log(err)
+            return res.sendStatus(400)
+        })
+    } else {
         return res.sendStatus(400)
-    })
+    }
 }
 
 
 
 // UPDATE: Modification d'un utilisateur
-exports.modifyUser = (req, res, next) => {
+exports.modifyUser = (req, res) => {
     // Connection BDD MySql
-    //const user_id = parseInt(req.user.user_id)
     const id = parseInt(req.params.id)
 
-    // On passe la commande sql pour enregistrer les modifications dans la bdd
-    connection.execute(`UPDATE users SET firstname = ?, lastname = ?, role = ?, bio = ? WHERE user_id=?`,[req.body.firstname, req.body.lastname, req.body.role, req.body.bio, id]).then(modifications => {
-        return res.send(modifications)
-    }).catch(err=> {
+    // tester si l'id qui est envoyé est un nombre. 
+    // si c'est un nombre: requete -> BDD
+    // si ce n'est pas un nombre: retourner erreur
+    if (typeof id == 'number') {
+        // On passe la commande sql pour enregistrer les modifications dans la bdd
+        connection.execute(`UPDATE users SET firstname = ?, lastname = ?, role = ?, bio = ? WHERE user_id=?`,[req.body.firstname, req.body.lastname, req.body.role, req.body.bio, id]).then(modifications => {
+            return res.send(modifications)
+        }).catch(err=> {
+            console.log(err)
+            return res.sendStatus(400)
+        })
+    } else {
         return res.sendStatus(400)
-    })
+    }
+    
 }
 
 
 
 // DELETE: Suppression d'un utilisateur
-exports.deleteUser = (req, res, next) => {
+exports.deleteUser = (req, res) => {
     const id = parseInt(req.params.id)
-    connection.execute(`DELETE FROM users WHERE user_id = ?`,[id]).then(suppr => {
-        return res.send(suppr)
-    })
-    .catch(err => {
+    // tester si l'id qui est envoyé est un nombre. 
+    // si c'est un nombre: requete -> BDD
+    // si ce n'est pas un nombre: retourner erreur
+    if (typeof id == 'number') {
+        connection.execute(`DELETE FROM users WHERE user_id = ?`,[id]).then(suppr => {
+            return res.send(suppr)
+        })
+        .catch(err => {
+            console.log(err)
+            return res.sendStatus(400)
+        })
+    } else {
         return res.sendStatus(400)
-    })
+    }
+    
 }
