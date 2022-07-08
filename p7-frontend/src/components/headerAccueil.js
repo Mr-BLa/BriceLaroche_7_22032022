@@ -37,7 +37,7 @@ export default function HeaderApp() {
 
     /**NOUVEAU POST**/
     function newPost() {
-        navigate('/accueil/new')
+        navigate('/new')
     }
 //<Link to='/accueil/new' className="new--link"></Link>
     /**DECONNEXION**/
@@ -71,7 +71,7 @@ export default function HeaderApp() {
                         <div className="navBar__Btns">
                             <div className="BtnNewPost--Container">
                                 <button className="newPostButton" >
-                                    <Link to="/accueil/new" className="newPost--link">
+                                    <Link to="/new" className="newPost--link">
                                         Nouvelle Publication
                                     </Link>
                                 </button>
@@ -83,7 +83,7 @@ export default function HeaderApp() {
                                     alt="Profil Logo"
                                     onClick={dropDown}/>
                                         <div id="myDropdown" className="dropdown-content">
-                                            <Link to="/accueil/profil" className="profil--link">Profil</Link>
+                                            <Link to="/profil" className="profil--link">Profil</Link>
                                             <button>
                                                 <Link to="/" className="logOff--link" onClick={logOff}>
                                                     Déconnexion

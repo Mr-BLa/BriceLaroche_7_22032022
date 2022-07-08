@@ -31,10 +31,10 @@ ReactDOM.render(
             <Route path="/" element={<LoginPage />}/>
             <Route path="/signup" element={<SignupPage />}/>
             <Route path="/accueil" element={<App />} />
-            <Route path="/accueil/profil" element={<ProfilPage />}/>
-            <Route path="/accueil/new" element={<NewPage />}/>
-            <Route path="/accueil/postmodif" element={<PostModification />}/>
-            <Route path="/accueil/:post_id" element={<PostById />} />
+            <Route path="/profil" element={<ProfilPage />}/>
+            <Route path="/new" element={<NewPage />}/>
+            <Route path="/postmodif" element={<PostModification />}/>
+            <Route path="/:post_id" element={<PostById />} />
         </Routes>
     </BrowserRouter>, 
     document.getElementById('root'))

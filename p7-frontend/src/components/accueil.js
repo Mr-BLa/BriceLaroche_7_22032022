@@ -57,7 +57,7 @@ export default function Accueil() {
         /**MODIFICATION POST**/
     function postModif(post_id) {
         localStorage.setItem('post_id', JSON.stringify(post_id))
-        navigate(`/accueil/postmodif`)
+        navigate(`/postmodif`)
     }
 
         /**SUPPRESSION POST**/
@@ -92,7 +92,7 @@ export default function Accueil() {
                         <div 
                             key={`${post.post_id}`}
                             className="post--container">
-                                <Link to={`/accueil/${post.post_id}`} className="post--link">
+                                <Link to={`/${post.post_id}`} className="post--link">
                                 <h1 className="post__title">
                                     <span className="h1__namesData">{post.firstname} {post.lastname} - le {formatDate(post.createdat)} :</span>
                                     <span className="h1__postTitle">{post.title}</span>
