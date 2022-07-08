@@ -26,8 +26,6 @@ const app = express()
 // Extraction corps json pour gérer la requête POST venant de l'application front-end
 app.use(express.json())
 app.use(cors())
-// Lors de requête /images, servir le dossier images
-app.use('/images', express.static(path.join(__dirname, 'images')))
 
 // CHEMINS + ROUTES
 app.use('/api/user', userRoutes)

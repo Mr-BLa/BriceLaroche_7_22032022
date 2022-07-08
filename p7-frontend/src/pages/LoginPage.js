@@ -2,8 +2,8 @@
 *           LOGIN
 */
 
-import Header from "./components/headerStart"
-import Login from "./components/login"
+import Header from "../components/headerStart"
+import Login from "../components/login"
 
 function LoginPage() {
     return(

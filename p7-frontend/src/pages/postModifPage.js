@@ -3,8 +3,8 @@
 */
 
 
-import Header from "./components/headerAccueil"
-import PostModif from "./components/postModif"
+import Header from "../components/headerAccueil"
+import PostModif from "../components/postModif"
 
 function PostModification() {
     

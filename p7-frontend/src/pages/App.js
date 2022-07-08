@@ -3,8 +3,8 @@
 */
 
 
-import Header from "./components/headerAccueil"
-import Accueil from "./components/accueil"
+import Header from "../components/headerAccueil"
+import Accueil from "../components/accueil"
 
 function App() {
     return(

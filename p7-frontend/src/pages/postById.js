@@ -3,8 +3,8 @@
 */
 
 
-import Header from "./components/headerAccueil"
-import PostId from "./components/postId"
+import Header from "../components/headerAccueil"
+import PostId from "../components/postId"
 
 function PostById() {
     
