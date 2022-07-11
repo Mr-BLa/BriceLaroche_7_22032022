@@ -6,6 +6,7 @@ import React from "react"
 import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
 import likeLogo from "../logos/icon-thumbs-up-solid.svg"
+import likeLogoRed from "../logos/icon-thumbs-up-solid - red.svg" 
 import axios from "axios"
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import formatDate from "../utils/formatdate"
@@ -202,7 +203,11 @@ export default function PostId() {
                                 <span className="h1__namesData">{post.firstname} {post.lastname} - le {formatDate(post.createdat)}</span>
                                 <div className="h1__titleContainer">
                                     <span className="h1__postTitle">{post.title}</span>
-                                    <img src={likeLogo} alt="like logo" className="h1__icon"></img>
+                                    <div>
+                                        <img src={likeLogo} alt="like logo" className="h1__icon icon__notLiked"/>
+                                        <img src={likeLogoRed} alt="like logo" className="h1__icon icon__liked"/>
+                                        <p className="likesNumber"></p>
+                                    </div>
                                 </div>
                             </h1>
                             <div className="postContent--container postContent--container__commentPost">

@@ -100,8 +100,9 @@ export default function Accueil() {
                                     <div className="h1__titleContainer">
                                         <span className="h1__postTitle">{post.title}</span>
                                         <div>
-                                            <img src={likeLogo} alt="like logo" className="h1__icon"/>
-                                            <img src={likeLogoRed} alt="like logo" className="h1__icon"/>
+                                            <img src={likeLogo} alt="like logo" className="h1__icon icon__notLiked"/>
+                                            <img src={likeLogoRed} alt="like logo" className="h1__icon icon__liked"/>
+                                            <p className="likesNumber"></p>
                                         </div>
                                     </div>
                                 </h1>
