@@ -6,15 +6,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-// index.css
+
+// page login et signup
 import '../src/css/index.css'
-// accueil.css
+// page accueil
 import '../src/css/accueil.css'
-// profil.css
+// page modifier profil
 import '../src/css/profil.css'
-// newPost.css
+// page nouvelle publication
 import '../src/css/newPost.css'
-// commentPost.css
+// page commentaires
 import '../src/css/commentPost.css'
 
 import LoginPage from './pages/LoginPage'

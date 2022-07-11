@@ -5,7 +5,6 @@
 
 import Header from "../components/headerAccueil"
 import NewPost from "../components/newPost"
-//import NewPost from "./components/newPost"
 
 function NewPostPage() {
     

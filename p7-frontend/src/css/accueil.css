@@ -37,9 +37,6 @@ top: 0px;
 
 .headerAccueil--logo { 
     width: 20rem;
-    /* position: absolute;
-    top: -7.3rem;
-    left: -1rem; */
 }
 
 .navBar__Btns{
@@ -47,9 +44,6 @@ top: 0px;
     margin: 0 1.4rem 0 0;
 }
 
-.BtnNewPost--Container{
-
-}
 
 /**********/
 /*Button New Post*/ 
@@ -219,16 +213,27 @@ top: 0px;
     margin-bottom: .75rem;
 }
 
+/* H1 Container TITRE ET LOGO */ 
+.h1__titleContainer{
+    display:flex;
+    justify-content: space-between;
+}
 
 /*H1 TITRE*/
 .h1__postTitle{
     display: flex; 
 }
 
+/* H1 Like LOGO */ 
+.h1__icon{
+    width: 2rem;
+    color: #f5f6fa;
+}
+
 /* Title */
 .post__title{
     margin: 0;
-    padding: 1.5rem 1rem 1rem 1rem;
+    padding: 1.5rem 2rem 1rem 1rem;
     border-bottom: 1px dotted rgba(253,45,1,0.43);
 }
 

@@ -5,6 +5,8 @@
 import React from "react"
 import { useState, useEffect } from 'react'
 import logo from "../logos/icon.svg"
+import likeLogo from  "../logos/icon-thumbs-up-solid.svg"
+import likeLogoRed from "../logos/icon-thumbs-up-solid - red.svg" 
 import axios from "axios"
 import { Link, Navigate, useNavigate} from "react-router-dom"
 import formatDate from "../utils/formatdate"
@@ -95,7 +97,13 @@ export default function Accueil() {
                                 <Link to={`/${post.post_id}`} className="post--link">
                                 <h1 className="post__title">
                                     <span className="h1__namesData">{post.firstname} {post.lastname} - le {formatDate(post.createdat)} :</span>
-                                    <span className="h1__postTitle">{post.title}</span>
+                                    <div className="h1__titleContainer">
+                                        <span className="h1__postTitle">{post.title}</span>
+                                        <div>
+                                            <img src={likeLogo} alt="like logo" className="h1__icon"/>
+                                            <img src={likeLogoRed} alt="like logo" className="h1__icon"/>
+                                        </div>
+                                    </div>
                                 </h1>
                                 <div className="postContent--container">
                                     <p className="post__content">{post.content}</p>
