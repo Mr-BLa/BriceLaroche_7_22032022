@@ -147,6 +147,14 @@ export default function Accueil() {
         iconNotLiked.style.display = "block"
     }
 
+    // désactiver le link sur les icones likes
+    function disableLink() {
+        const link = document.getElementsByClassName("disabled-link")
+        link.style = "pointers-events: none"
+    }
+    
+
+    
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
@@ -156,12 +164,13 @@ export default function Accueil() {
                         <div 
                             key={`${post.post_id}`}
                             className="post--container">
-                                <Link to={`/${post.post_id}`} className="post--link">
+                                <Link to={`/${post.post_id}`} className="post--link disabled-link">
                                 <h1 className="post__title">
                                     <span className="h1__namesData">{post.firstname} {post.lastname} - le {formatDate(post.createdat)} :</span>
                                     <div className="h1__titleContainer">
                                         <span className="h1__postTitle">{post.title}</span>
-                                        <div>
+                                        <div className="h1_Icons_Container" >
+                                            {disableLink}
                                             <img src={likeLogo} alt="like logo" id="icon__notLiked" className="h1__icon"
                                             onClick={(e)=>{e.stopPropagation(); liked(post.post_id)}}/>
 

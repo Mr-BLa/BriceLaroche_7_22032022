@@ -224,10 +224,20 @@ top: 0px;
     display: flex; 
 }
 
+/*Container des icons*/
+.h1_Icons_Container{
+    position: relative;
+}
+
 /* H1 Like LOGO */ 
 .h1__icon{
     width: 2rem;
     color: #f5f6fa;
+    position: absolute;
+    bottom: 0; 
+    right: 0;
+    top: 0;
+    z-index: 1;
 }
 
 /* H1 icon__liked */ 

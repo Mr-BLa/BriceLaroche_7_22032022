@@ -251,7 +251,7 @@ export default function PostId() {
                                 <span className="h1__namesData">{post.firstname} {post.lastname} - le {formatDate(post.createdat)}</span>
                                 <div className="h1__titleContainer">
                                     <span className="h1__postTitle">{post.title}</span>
-                                    <div>
+                                    <div className="h1_Icons_Container">
                                         <img src={likeLogo} alt="like logo" id="icon__notLiked" className="h1__icon"
                                             onClick={(e)=>{e.stopPropagation(); liked(post.post_id)}}/>
 
