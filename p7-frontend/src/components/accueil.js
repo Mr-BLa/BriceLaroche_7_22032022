@@ -56,6 +56,7 @@ export default function Accueil() {
     }, []);
 
 
+
         /**MODIFICATION POST**/
     function postModif(post_id) {
         localStorage.setItem('post_id', JSON.stringify(post_id))
@@ -84,7 +85,68 @@ export default function Accueil() {
         
     }
 
+
+        /** GESTION LIKES **/
+
+    // /** Tableau des posts **/
+    // const [likesByPost, setLikesByPost] = useState([])
+    // /**  LIKES: Au chargement de la page, récupération dans la BDD du nombre de likes **/
+    // // Récupérer la data au backend via Get/post/all/
+    // function numberOfLikes(post_id){
+        
+    //     axios.get(`http://localhost:5000/api/likes_users_post/all/${post_id}`, {
+    //             headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+    //         })
+    //             .then((res) => {
+    //                 const likesData = res.data
+    //                 setLikesByPost(likesData)
+    //                 console.log(likesByPost)
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err)
+    //             })
+    // }
+    /* Like d'un post */
+    function liked(post_id) {
+        // Envoie requete post à la BDD
+        axios.post(`http://localhost:5000/api/likes_users_post/`, {user_id: idInLocalStorage, post_id: post_id}, {
+            headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+        })
+            .then((res) => {
+                const likedData = res.data
+                console.log(likedData)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     
+        // Définition variables DOM et passage de l'icône "non-liké" à l'icone "liké"
+        const iconNotLiked = document.getElementById("icon__notLiked")
+        const iconLiked = document.getElementById("icon__liked")
+        iconLiked.style.display = "block"
+        iconNotLiked.style.display = "none"
+    }
+
+    /* Délike d'un post */
+    function notLiked(post_id) {
+        // Envoie requete delete à la BDD
+        axios.delete(`http://localhost:5000/api/likes_users_post/${post_id}`, {data: {user_id: idInLocalStorage} }, {
+            headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+        })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+        // Définition variables DOM et passage de l'icône "liké" à l'icone "non-liké"
+        const iconNotLiked = document.getElementById("icon__notLiked")
+        const iconLiked = document.getElementById("icon__liked")
+        iconLiked.style.display = "none"
+        iconNotLiked.style.display = "block"
+    }
+
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
@@ -100,9 +162,13 @@ export default function Accueil() {
                                     <div className="h1__titleContainer">
                                         <span className="h1__postTitle">{post.title}</span>
                                         <div>
-                                            <img src={likeLogo} alt="like logo" className="h1__icon icon__notLiked"/>
-                                            <img src={likeLogoRed} alt="like logo" className="h1__icon icon__liked"/>
-                                            <p className="likesNumber"></p>
+                                            <img src={likeLogo} alt="like logo" id="icon__notLiked" className="h1__icon"
+                                            onClick={(e)=>{e.stopPropagation(); liked(post.post_id)}}/>
+
+                                            <img src={likeLogoRed} alt="like logo" id="icon__liked" className="h1__icon"
+                                            onClick={(e)=>{e.stopPropagation(); notLiked(post.post_id)}}/>
+
+                                            {/* <p className="likesNumber">{numberOfLikes(post.post_id)} {likesByPost.Likes}</p> */}
                                         </div>
                                     </div>
                                 </h1>

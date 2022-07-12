@@ -5,9 +5,6 @@
 // Import express
 const express = require("express")
 
-// Import de path (chemin de notre systeme de fichier)
-const path = require('path')
-
 // Import CORS
 const cors = require('cors')
 
@@ -15,6 +12,7 @@ const cors = require('cors')
 const userRoutes = require('./routes/user')
 const postRoutes = require('./routes/post')
 const commentsRoutes = require('./routes/comments')
+const likes_users_postRoutes = require('./routes/likes_users_post')
 
 // Connexion BDD MySql
 require("./services/database")
@@ -31,6 +29,7 @@ app.use(cors())
 app.use('/api/user', userRoutes)
 app.use('/api/post', postRoutes)
 app.use('/api/comments', commentsRoutes)
+app.use('/api/likes_users_post', likes_users_postRoutes)
 
 // Exportation app
 module.exports = app

@@ -230,6 +230,11 @@ top: 0px;
     color: #f5f6fa;
 }
 
+/* H1 icon__liked */ 
+#icon__liked{
+    display:none;
+}
+
 /* Title */
 .post__title{
     margin: 0;
