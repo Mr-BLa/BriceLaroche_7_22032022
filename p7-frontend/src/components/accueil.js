@@ -87,25 +87,32 @@ export default function Accueil() {
 
 
         /** GESTION LIKES **/
+    
 
-    // /** Tableau des posts **/
-    // const [likesByPost, setLikesByPost] = useState([])
-    // /**  LIKES: Au chargement de la page, récupération dans la BDD du nombre de likes **/
-    // // Récupérer la data au backend via Get/post/all/
-    // function numberOfLikes(post_id){
-        
-    //     axios.get(`http://localhost:5000/api/likes_users_post/all/${post_id}`, {
-    //             headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
-    //         })
-    //             .then((res) => {
-    //                 const likesData = res.data
-    //                 setLikesByPost(likesData)
-    //                 console.log(likesByPost)
-    //             })
-    //             .catch((err) => {
-    //                 console.log(err)
-    //             })
-    // }
+    /* Recherche présence like par post */
+    function searchForLike(post_id) {
+        const [likeOnThisPost, setLikeOnThisPost] = useState(0)
+
+        /**  LIKES: Au chargement de la page, récupération dans la BDD du nombre de likes **/
+        // // Récupérer la data au backend via Get/post/all/
+        useEffect(() => {
+            axios.get(`http://localhost:5000/api/likes_users_post/all/${post_id}`, {
+                headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+            })
+                .then((res) => {
+                    const likesData = res.data
+                    console.log(likesData)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }, []);
+    }
+    
+    
+
+
+
     /* Like d'un post */
     function liked(post_id) {
         // Envoie requete post à la BDD
@@ -129,10 +136,10 @@ export default function Accueil() {
 
     /* Délike d'un post */
     function notLiked(post_id) {
+        console.log("Envoyer dislike")
         // Envoie requete delete à la BDD
-        axios.delete(`http://localhost:5000/api/likes_users_post/${post_id}`, {data: {user_id: idInLocalStorage} }, {
-            headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
-        })
+        axios.delete(`http://localhost:5000/api/likes_users_post/${post_id}`, {data: {user_id: idInLocalStorage}, 
+        headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` } })
             .then((res) => {
                 console.log(res)
             })
@@ -154,7 +161,7 @@ export default function Accueil() {
     }
     
 
-    
+
     /** AFFICHAGE PAGE ACCUEIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {
         return (
@@ -169,7 +176,8 @@ export default function Accueil() {
                                     <span className="h1__namesData">{post.firstname} {post.lastname} - le {formatDate(post.createdat)} :</span>
                                     <div className="h1__titleContainer">
                                         <span className="h1__postTitle">{post.title}</span>
-                                        <div className="h1_Icons_Container" >
+                                        <div className="h1_Icons_Container">
+                                            {searchForLike(post.post_id)}
                                             {disableLink}
                                             <img src={likeLogo} alt="like logo" id="icon__notLiked" className="h1__icon"
                                             onClick={(e)=>{e.stopPropagation(); liked(post.post_id)}}/>

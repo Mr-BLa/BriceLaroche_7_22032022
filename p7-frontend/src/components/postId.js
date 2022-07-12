@@ -218,9 +218,9 @@ export default function PostId() {
     /* Délike d'un post */
     function notLiked(post_id) {
         // Envoie requete delete à la BDD
-        axios.delete(`http://localhost:5000/api/likes_users_post/${post_id}`, {data: {user_id: idInLocalStorage} }, {
-            headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
-        })
+        console.log("envoyer dislike")
+        axios.delete(`http://localhost:5000/api/likes_users_post/${post_id}`, {data: {user_id: idInLocalStorage}, 
+        headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` } })
             .then((res) => {
                 console.log(res)
             })
