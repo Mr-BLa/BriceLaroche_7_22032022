@@ -79,14 +79,6 @@ export default function Login() {
 
 
 
-    /* CI-DESSOUS:
-    *   - Form:
-            Input Email 
-            Input Password
-            Bouton Login (submit)
-        - Img-Logo
-    */
-
 
     /** AFFICHAGE PAGE LOGIN SI USER PAS ENCORE CONNECTE. Si déjà connécté => Redirection vers Page Accueil **/
     if( isLoggedIn === false ){

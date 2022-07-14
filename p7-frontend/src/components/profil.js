@@ -125,18 +125,6 @@ export default function ModifProfil() {
     }
 
 
-        /* CI-DESSOUS:
-    *   - H1
-        - Form:
-            Input Email
-            Input Firstname
-            Input Lastname
-            Input Role
-            Input Bio
-            Bouton Inscription (submit)
-        - Img-Logo
-    */
-
 
     /** AFFICHAGE PAGE MODIF PROFIL SI USER CONNECTE. Si pas connécté => redirection page login **/
     if( isLoggedIn === true) {

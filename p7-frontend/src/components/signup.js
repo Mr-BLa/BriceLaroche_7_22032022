@@ -3,10 +3,10 @@
 */
 
 import React from "react"
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import logo from "../logos/icon-v.login.svg"
 import axios from "axios"
-import { Link, useNavigate, Navigate } from "react-router-dom"
+import { useNavigate, Navigate } from "react-router-dom"
 
 
 
@@ -156,20 +156,6 @@ export default function Signup() {
     }
     
 
-
-
-    /* CI-DESSOUS:
-    *   - H1
-        - Form:
-            Input Email 
-            Input Password
-            Input Firstname
-            Input Lastname
-            Input Role
-            Input Bio
-            Bouton Inscription (submit)
-        - Img-Logo
-    */
 
 
     /** AFFICHAGE PAGE SIGN-IN, SI USER PAS ENCORE CONNECTE. Si déjà connécté => Redirection vers Page Accueil **/

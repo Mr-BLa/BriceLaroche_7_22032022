@@ -99,25 +99,25 @@ export default function Accueil() {
   /* Like d'un post */
   function liked(userLikeId, post_id) {
   
-      // On récupère le tableau (sous forme de string, que l'on parse), on y push l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
-      const likesTable = userLikeId
-      likesTable.push(idInLocalStorage)
-      const newUserLikeId = JSON.stringify(likesTable)
+    // On récupère le tableau (sous forme de string, que l'on parse), on y push l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
+    const likesTable = userLikeId
+    likesTable.push(idInLocalStorage)
+    const newUserLikeId = JSON.stringify(likesTable)
 
-      // Requete put => BDD
-      axios.put(`http://localhost:5000/api/post/userLikeId/${post_id}`, 
-        { userLikeId: newUserLikeId },
-        {headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` }}
-      )
-        .then((res) => {
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+    // Requete put => BDD
+    axios.put(`http://localhost:5000/api/post/userLikeId/${post_id}`, 
+      { userLikeId: newUserLikeId },
+      { headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` }}
+    )
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
-      // Rechargement des posts après modification
-      setPostRequest(tokenInLocalStorage)
+    // Rechargement des posts après modification
+    setPostRequest(tokenInLocalStorage)
   }
 
 
@@ -129,15 +129,15 @@ export default function Accueil() {
     const newUserLikeId = JSON.stringify(likesTable.filter(id => id !== idInLocalStorage))
     // Requete put => BDD
     axios.put(`http://localhost:5000/api/post/userLikeId/${post_id}`, 
-    { userLikeId: newUserLikeId },
-    { headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` }}
+      { userLikeId: newUserLikeId },
+      { headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` }}
     )
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
     // Rechargement des posts après modification
     setPostRequest(tokenInLocalStorage)
