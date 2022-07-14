@@ -42,7 +42,6 @@ exports.modifyPost = (req, res) => {
 // Suppression d'un post
 exports.deletePost = (req, res) => {
     const post_id = parseInt(req.params.id)
-
     // tester si l'id qui est envoyé est un nombre. 
     // si c'est un nombre: requete -> BDD
     // si ce n'est pas un nombre: retourner erreur
@@ -94,7 +93,6 @@ exports.getPostById = (req, res) => {
 // Modification userLikedId 
 exports.modifyUserLikeId = (req, res) => {
     const post_id = parseInt(req.params.id)
-    console.log(req.body)
     // Connection BDD MySql
     // tester si l'id qui est envoyé est un nombre. 
     // si c'est un nombre: requete -> BDD

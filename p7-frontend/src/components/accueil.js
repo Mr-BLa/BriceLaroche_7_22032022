@@ -131,7 +131,7 @@ export default function Accueil() {
     axios.put(`http://localhost:5000/api/post/userLikeId/${post_id}`, 
     { userLikeId: newUserLikeId },
     { headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` }}
-  )
+    )
     .then((res) => {
       console.log(res)
     })

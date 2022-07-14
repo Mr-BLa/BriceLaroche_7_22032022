@@ -66,22 +66,30 @@ export default function PostId() {
         /** Tableau des commentaires**/
     const [allComments, setAllComments] = useState([])
 
+    /** Déclaration fonction requête get/post/all/:id **/
+    function setPostRequest(token) {
 
+      axios.get(`http://localhost:5000/api/post/all/${post_id}`, {
+        headers: { 'Authorization': `Bearer ${token}` },
+      })
+        .then((res) => {
+          setPostById(res.data.map(post=>{
+            return {
+              ...post,
+              userLikeId: JSON.parse(post.userLikeId)
+            }
+          }))
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+
+    
             /**  POST: Au chargement de la page, récupération dans la BDD du post **/
     // Récupérer la data au backend via Get/post/all/:id
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/post/all/${post_id}`, {
-                headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
-            })
-                .then((res) => {
-                    const postData = res.data
-                    setPostById(postData)
-                    console.log(postData)
-                    console.log(postById)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+        setPostRequest(tokenInLocalStorage)
     }, []);
 
 
@@ -196,45 +204,50 @@ export default function PostId() {
 
 
     /* Like d'un post */
-    function liked(post_id) {
-        // // Envoie requete post à la BDD
-        // axios.post(`http://localhost:5000/api/likes_users_post/`, {user_id: idInLocalStorage, post_id: post_id}, {
-        //     headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
-        // })
-        //     .then((res) => {
-        //         const likedData = res.data
-        //         console.log(likedData)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
-    
-        // // Définition variables DOM et passage de l'icône "non-liké" à l'icone "liké"
-        // const iconNotLiked = document.getElementById("icon__notLiked")
-        // const iconLiked = document.getElementById("icon__liked")
-        // iconLiked.style.display = "block"
-        // iconNotLiked.style.display = "none"
+    function liked(userLikeId, post_id) {
+        
+      // On récupère le tableau (sous forme de string, que l'on parse), on y push l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
+      const likesTable = userLikeId
+      likesTable.push(idInLocalStorage)
+      const newUserLikeId = JSON.stringify(likesTable)
+
+      // Requete put => BDD
+      axios.put(`http://localhost:5000/api/post/userLikeId/${post_id}`, 
+        { userLikeId: newUserLikeId },
+        {headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` }}
+      )
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+      // Rechargement des posts après modification
+      setPostRequest(tokenInLocalStorage)
     }
 
 
     /* Délike d'un post */
-    function notLiked(post_id) {
-        // // Envoie requete delete à la BDD
-        // console.log("envoyer dislike")
-        // axios.delete(`http://localhost:5000/api/likes_users_post/${post_id}`, {data: {user_id: idInLocalStorage}, 
-        // headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` } })
-        //     .then((res) => {
-        //         console.log(res)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
+    function notLiked(userLikeId, post_id) {
+        
+      // On récupère le tableau (sous forme de string, que l'on parse), on ENLEVE l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
+      const likesTable = userLikeId
+      const newUserLikeId = JSON.stringify(likesTable.filter(id => id !== idInLocalStorage))
+      // Requete put => BDD
+      axios.put(`http://localhost:5000/api/post/userLikeId/${post_id}`, 
+      { userLikeId: newUserLikeId },
+      { headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` }}
+      )
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
-        // // Définition variables DOM et passage de l'icône "liké" à l'icone "non-liké"
-        // const iconNotLiked = document.getElementById("icon__notLiked")
-        // const iconLiked = document.getElementById("icon__liked")
-        // iconLiked.style.display = "none"
-        // iconNotLiked.style.display = "block"
+      // Rechargement des posts après modification
+      setPostRequest(tokenInLocalStorage)
     }
 
 
@@ -261,16 +274,23 @@ export default function PostId() {
                                 {
                                     post.attachement !== "" ? (<img src={post.attachement} alt={`Posté par ${post.firstname} ${post.lastname}`} className="post__attachement"/>): null
                                 }
-                            </div>    
+                            </div>
+
+                          {post.user_id !== idInLocalStorage && 
                             <div className="Icons_Container">
-                                <img src={likeLogo} alt="like logo" id="icon__notLiked" className="Icons_Container__icon"
-                                    onClick={(e)=>{e.stopPropagation(); liked(post.post_id)}}/>
+                              {
+                                post.userLikeId.some(id=>id===idInLocalStorage) ?
 
-                                <img src={likeLogoRed} alt="like logo" id="icon__liked" className="Icons_Container__icon"
-                                    onClick={(e)=>{e.stopPropagation(); notLiked(post.post_id)}}/>
-
-                                {/* <p className="likesNumber">{numberOfLikes(post.post_id)} {likesByPost.Likes}</p> */}
-                            </div>            
+                                  <img src={likeLogoRed} alt="like logo" id="icon__liked" className="Icons_Container__icon"
+                                    onClick={(e) => { e.stopPropagation(); notLiked(post.userLikeId, post.post_id) }} />
+                                  
+                                  :
+                                  <img src={likeLogo} alt="like logo" id="icon__notLiked" className="Icons_Container__icon"
+                                    onClick={(e) => { e.stopPropagation(); liked(post.userLikeId, post.post_id) }} />
+                              }
+                              <p className="likesNumber">{post.userLikeId.length}</p>
+                            </div>
+                          }            
                     </div>
                 ))}
                 {allComments.map((comment) => (
