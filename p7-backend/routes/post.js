@@ -26,7 +26,8 @@ router.put('/:id', auth, postController.modifyPost)
 router.delete('/:id', auth, postController.deletePost)
 // Recherche d'un post par son Id
 router.get('/all/:id', auth, postController.getPostById)
-
+// Modification de userLikeId dans post (likes)
+router.put('/userLikeId/:id', auth, postController.modifyUserLikeId)
 
 
 // Export router

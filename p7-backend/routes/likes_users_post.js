@@ -21,7 +21,6 @@ const auth = require("../middleware/auth")
 router.post('/', auth, likesController.createLike)
 // Suppression d'un like
 router.delete('/:id', auth, likesController.deleteLike)
-// Recherche 
 // Recherche du nombre de likes par l'Id
 router.get('/all/:id', auth, likesController.getLikesByPostId)
 
