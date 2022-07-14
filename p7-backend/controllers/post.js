@@ -91,26 +91,6 @@ exports.getPostById = (req, res) => {
     }
 }
 
-// // Création userLikedId 
-// exports.createUserLikeId = (req, res) => {
-//     const post_id = parseInt(req.params.id)
-//     // Connection BDD MySql
-//     // tester si l'id qui est envoyé est un nombre. 
-//     // si c'est un nombre: requete -> BDD
-//     // si ce n'est pas un nombre: retourner erreur
-//     if (typeof post_id == 'number') {
-//         connection.execute('INSERT INTO `post` (`userLikeId`) VALUES (?) WHERE post_id = ?', [req.body.user_id, req.body.title, req.body.content, req.body.attachement]`UPDATE post SET userLikeId = ? WHERE post_id = ?`, [req.body.userLikeId, post_id]).then(modifications => {
-//                 return res.send(modifications)
-//             }).catch(err=> {
-//                 console.log(err)
-//                 return res.sendStatus(400)
-//             })
-//     } else {
-//         return res.sendStatus(400)
-//     }
-// }
-
-
 // Modification userLikedId 
 exports.modifyUserLikeId = (req, res) => {
     const post_id = parseInt(req.params.id)

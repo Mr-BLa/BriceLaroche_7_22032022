@@ -39,7 +39,7 @@ export default function Accueil() {
   /** Tableau des posts **/
   const [allPosts, setAllPosts] = useState([])
 
-  /** Déclaration fonction get/post/all **/
+  /** Déclaration fonction requête get/post/all **/
   function setPostRequest(token) {
 
     axios.get(`http://localhost:5000/api/post/all/`, {
@@ -64,7 +64,6 @@ export default function Accueil() {
   useEffect(() => {
     setPostRequest(tokenInLocalStorage)
   }, []);
-
 
 
   /**MODIFICATION POST**/
@@ -97,7 +96,6 @@ export default function Accueil() {
 
   /** GESTION LIKES **/
 
-  /** USERSLIKEID **/
   /* Like d'un post */
   function liked(userLikeId, post_id) {
   
@@ -122,12 +120,13 @@ export default function Accueil() {
       setPostRequest(tokenInLocalStorage)
   }
 
+
   /* Délike d'un post */
   function notLiked(userLikeId, post_id) {
+
     // On récupère le tableau (sous forme de string, que l'on parse), on ENLEVE l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
     const likesTable = userLikeId
     const newUserLikeId = JSON.stringify(likesTable.filter(id => id !== idInLocalStorage))
-    console.log("newUserLikeId", newUserLikeId)
     // Requete put => BDD
     axios.put(`http://localhost:5000/api/post/userLikeId/${post_id}`, 
     { userLikeId: newUserLikeId },
@@ -174,10 +173,10 @@ export default function Accueil() {
               <div className="Icons_Container">
                 {
                   post.userLikeId.some(id=>id===idInLocalStorage) ?
-                    <>
+
                     <img src={likeLogoRed} alt="like logo" id="icon__liked" className="Icons_Container__icon"
                       onClick={(e) => { e.stopPropagation(); notLiked(post.userLikeId, post.post_id) }} />
-                    </>
+                    
                     :
                     <img src={likeLogo} alt="like logo" id="icon__notLiked" className="Icons_Container__icon"
                       onClick={(e) => { e.stopPropagation(); liked(post.userLikeId, post.post_id) }} />
@@ -193,7 +192,6 @@ export default function Accueil() {
               </span>)
             }
           </div>
-
         ))}
 
         <div className="imgAccueil__container">

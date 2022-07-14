@@ -240,6 +240,8 @@ top: 0px;
 
 /*Container des icons*/
 .Icons_Container{
+    display: flex;
+    flex-direction: row;
 }
 
 /* Like LOGO */ 
@@ -249,8 +251,10 @@ top: 0px;
     margin: 0 0 1.5rem 2rem;
 }
 
-/* icon__liked */ 
-#icon__liked{
+/* Nombre de likes */ 
+.likesNumber{
+    color: #f17e66;
+    margin-left: 0.3rem;
 }
 
 
