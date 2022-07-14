@@ -39,12 +39,11 @@ export default function Accueil() {
   /** Tableau des posts **/
   const [allPosts, setAllPosts] = useState([])
 
+  /** Déclaration fonction get/post/all **/
+  function setPostRequest(token) {
 
-  /**  POSTS: Au chargement de la page, récupération dans la BDD des posts **/
-  // Récupérer la data au backend via Get/post/all/
-  useEffect(() => {
     axios.get(`http://localhost:5000/api/post/all/`, {
-      headers: { 'Authorization': `Bearer ${tokenInLocalStorage}` },
+      headers: { 'Authorization': `Bearer ${token}` },
     })
       .then((res) => {
         setAllPosts(res.data.map(post=>{
@@ -57,6 +56,13 @@ export default function Accueil() {
       .catch((err) => {
         console.log(err)
       })
+  }
+
+
+  /**  POSTS: Au chargement de la page, récupération dans la BDD des posts **/
+  // Récupérer la data au backend via Get/post/all/
+  useEffect(() => {
+    setPostRequest(tokenInLocalStorage)
   }, []);
 
 
@@ -86,47 +92,10 @@ export default function Accueil() {
           console.log(err)
         })
     }
-
   }
 
 
   /** GESTION LIKES **/
-
-
-  // /* Recherche présence like par post */
-  // function statusLike(userLikeId) {
-
-  //     if (userLikeId == null ) {
-  //         console.log("userlikeId null")
-  //         console.log(userLikeId)
-  //         // Si aucun user n'a liké ce post:
-  //         const iconNotLiked = document.getElementById("icon__notLiked")
-  //         const iconLiked = document.getElementById("icon__liked")
-  //         iconLiked.style.display = "none"
-  //         iconNotLiked.style.display = "block"
-
-  //     } else {
-  //         //si il y a quelque chose dans userlikeId: le parser pour voir ce qu'il y a dedans:
-  //         const likesTable = JSON.parse(userLikeId)
-  //         console.log(likesTable)
-
-  //         for (let i = 0; i < likesTable.length; i++) {
-  //             if (likesTable[i] == idInLocalStorage){
-  //                 // Si on retrouve l'id de l'user dans la table des utilisateur qui ont déjà liké ce post: on active l'icone "liké" et on désactive "déliké":
-  //                 const iconNotLiked = document.getElementById("icon__notLiked")
-  //                 const iconLiked = document.getElementById("icon__liked")
-  //                 iconLiked.style.display = "block"
-  //                 iconNotLiked.style.display = "none"
-  //             } else {
-  //                 // Si on ne retrouve pas l'id de l'user: on active l'icone "déliké" et on désactive l'icone "liké":
-  //                 const iconNotLiked = document.getElementById("icon__notLiked")
-  //                 const iconLiked = document.getElementById("icon__liked")
-  //                 iconLiked.style.display = "none"
-  //                 iconNotLiked.style.display = "block"
-  //             }
-  //         }
-  //     }
-  // }
 
   /** USERSLIKEID **/
   /* Like d'un post */
@@ -149,11 +118,8 @@ export default function Accueil() {
           console.log(err)
         })
 
-      // Définition variables DOM et passage de l'icône "non-liké" à l'icone "liké"
-      const iconNotLiked = document.getElementById("icon__notLiked")
-      const iconLiked = document.getElementById("icon__liked")
-      iconLiked.style.display = "block"
-      iconNotLiked.style.display = "none"
+      // Rechargement des posts après modification
+      setPostRequest(tokenInLocalStorage)
   }
 
   /* Délike d'un post */
@@ -174,11 +140,8 @@ export default function Accueil() {
       console.log(err)
     })
 
-    // Définition variables DOM et passage de l'icône "liké" à l'icone "non-liké"
-    const iconNotLiked = document.getElementById("icon__notLiked")
-    const iconLiked = document.getElementById("icon__liked")
-    iconLiked.style.display = "none"
-    iconNotLiked.style.display = "block"
+    // Rechargement des posts après modification
+    setPostRequest(tokenInLocalStorage)
   }
 
 
@@ -207,28 +170,27 @@ export default function Accueil() {
                 }
               </div>
             </Link>
-            <div className="Icons_Container">
-              {
-                post.userLikeId.some(id=>id===idInLocalStorage) ?
-                  <>
-                  <img src={likeLogoRed} alt="like logo" id="icon__liked" className="Icons_Container__icon"
-                    onClick={(e) => { e.stopPropagation(); notLiked(post.userLikeId, post.post_id) }} />
-                  </>
-                  :
-                  <img src={likeLogo} alt="like logo" id="icon__notLiked" className="Icons_Container__icon"
-                    onClick={(e) => { e.stopPropagation(); liked(post.userLikeId, post.post_id) }} />
-              }
-
-
-
-
-              {/* <p className="likesNumber">{numberOfLikes(post.post_id)} {likesByPost.Likes}</p> */}
-            </div>
+            {post.user_id !== idInLocalStorage && 
+              <div className="Icons_Container">
+                {
+                  post.userLikeId.some(id=>id===idInLocalStorage) ?
+                    <>
+                    <img src={likeLogoRed} alt="like logo" id="icon__liked" className="Icons_Container__icon"
+                      onClick={(e) => { e.stopPropagation(); notLiked(post.userLikeId, post.post_id) }} />
+                    </>
+                    :
+                    <img src={likeLogo} alt="like logo" id="icon__notLiked" className="Icons_Container__icon"
+                      onClick={(e) => { e.stopPropagation(); liked(post.userLikeId, post.post_id) }} />
+                }
+                <p className="likesNumber">{post.userLikeId.length}</p>
+              </div>
+            }
+            
             {
-              isAdmin === 1 || idInLocalStorage === post.user_id ? (<span className="title__btn--container">
+              (isAdmin === 1 || idInLocalStorage === post.user_id) && (<span className="title__btn--container">
                 <button className="btn__modif" onClick={(e) => { e.stopPropagation(); postModif(post.post_id) }}>Modifier</button>
                 <button className="btn__suppr" onClick={(e) => { e.stopPropagation(); postDelete(post.post_id) }}>Supprimer</button>
-              </span>) : null
+              </span>)
             }
           </div>
 
