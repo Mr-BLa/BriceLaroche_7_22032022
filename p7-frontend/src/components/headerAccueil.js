@@ -39,7 +39,7 @@ export default function HeaderApp() {
     function newPost() {
         navigate('/new')
     }
-//<Link to='/accueil/new' className="new--link"></Link>
+
     /**DECONNEXION**/
     function logOff() {
         localStorage.removeItem('token')
@@ -50,13 +50,6 @@ export default function HeaderApp() {
         navigate('/')
     }
 
-    /** Retour Page Accueil **/
-    // function backToAccueil(e) {
-    //     navigate('/accueil')
-        
-    // }
-
-//onClick={(e)=>{e.stopPropagation(); backToAccueil()}}>     //onClick={backToAccueil}
     return (
         
             <header id="headerAccueilContainer" >

@@ -3,7 +3,7 @@
 */
 
 import React from "react"
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import logo from "../logos/icon-v.login.svg"
 import axios from "axios"
 import { Link, useNavigate, Navigate } from "react-router-dom"

@@ -14,7 +14,6 @@ export default function PostModif() {
     // Définition variables éléments du localStorage
     let tokenInLocalStorage = JSON.parse(localStorage.getItem('token'))
     let idInLocalStorage = JSON.parse(localStorage.getItem('user_id'))
-    let isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
     let post_id = JSON.parse(localStorage.getItem('post_id'))
 
 

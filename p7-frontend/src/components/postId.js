@@ -206,7 +206,7 @@ export default function PostId() {
     /* Like d'un post */
     function liked(userLikeId, post_id) {
         
-      // On récupère le tableau (sous forme de string, que l'on parse), on y push l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
+      // On récupère le tableau, on y push l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
       const likesTable = userLikeId
       likesTable.push(idInLocalStorage)
       const newUserLikeId = JSON.stringify(likesTable)
@@ -231,7 +231,7 @@ export default function PostId() {
     /* Délike d'un post */
     function notLiked(userLikeId, post_id) {
         
-      // On récupère le tableau (sous forme de string, que l'on parse), on ENLEVE l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
+      // On récupère le tableau, on ENLEVE l'id de l'utilisateur qui like, puis on stringify le nouveau tableau et on fait une requete PUT, pour modifier le tableau dans post.userLikeId dans la BDD
       const likesTable = userLikeId
       const newUserLikeId = JSON.stringify(likesTable.filter(id => id !== idInLocalStorage))
       // Requete put => BDD
