@@ -276,21 +276,21 @@ export default function PostId() {
                                 }
                             </div>
 
-                          {post.user_id !== idInLocalStorage && 
-                            <div className="Icons_Container">
-                              {
-                                post.userLikeId.some(id=>id===idInLocalStorage) ?
 
-                                  <img src={likeLogoRed} alt="like logo" id="icon__liked" className="Icons_Container__icon"
-                                    onClick={(e) => { e.stopPropagation(); notLiked(post.userLikeId, post.post_id) }} />
-                                  
-                                  :
-                                  <img src={likeLogo} alt="like logo" id="icon__notLiked" className="Icons_Container__icon"
-                                    onClick={(e) => { e.stopPropagation(); liked(post.userLikeId, post.post_id) }} />
-                              }
-                              <p className="likesNumber">{post.userLikeId.length}</p>
-                            </div>
-                          }            
+                          <div className="Icons_Container">
+                            {
+                              post.userLikeId.some(id=>id===idInLocalStorage) ?
+
+                                <img src={likeLogoRed} alt="like logo" id="icon__liked" className="Icons_Container__icon"
+                                  onClick={(e) => { e.stopPropagation(); notLiked(post.userLikeId, post.post_id) }} />
+                                
+                                :
+                                <img src={likeLogo} alt="like logo" id="icon__notLiked" className="Icons_Container__icon"
+                                  onClick={(e) => { e.stopPropagation(); liked(post.userLikeId, post.post_id) }} />
+                            }
+                            <p className="likesNumber">{post.userLikeId.length}</p>
+                          </div>
+                    
                     </div>
                 ))}
                 {allComments.map((comment) => (

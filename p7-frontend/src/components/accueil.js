@@ -169,7 +169,6 @@ export default function Accueil() {
                 }
               </div>
             </Link>
-            {post.user_id !== idInLocalStorage && 
               <div className="Icons_Container">
                 {
                   post.userLikeId.some(id=>id===idInLocalStorage) ?
@@ -183,7 +182,6 @@ export default function Accueil() {
                 }
                 <p className="likesNumber">{post.userLikeId.length}</p>
               </div>
-            }
             
             {
               (isAdmin === 1 || idInLocalStorage === post.user_id) && (<span className="title__btn--container">
