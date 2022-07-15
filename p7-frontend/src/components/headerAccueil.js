@@ -35,11 +35,6 @@ export default function HeaderApp() {
     }
     
 
-    /**NOUVEAU POST**/
-    function newPost() {
-        navigate('/new')
-    }
-
     /**DECONNEXION**/
     function logOff() {
         localStorage.removeItem('token')
